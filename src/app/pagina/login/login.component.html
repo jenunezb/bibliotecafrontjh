@@ -1,0 +1,27 @@
+<ng-container *ngIf="!loading">
+  <div class="page-container">
+    <mat-spinner *ngIf="!loading" class="spinner" diameter="40"></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="loading">
+  <div class="page-container1">
+    <form [formGroup]="form" (ngSubmit)="ingresar()">
+      <div class="login-form">
+        <div class="input-container">
+          <div class="login">
+            <img src="../../../assets/img/ingeniero.png" width="25%">
+            <p>Iniciar Sesión</p>
+            <div class="input-container">
+              <input type="email" class="ancho" placeholder="Email" formControlName="email">
+            </div>
+            <div class="input-container">
+              <input type="password" class="ancho" placeholder="Contraseña" formControlName="password">
+            </div>
+            <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="form.invalid">Ingresar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

@@ -1,0 +1,67 @@
+/* Estilos para el contenedor principal */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #d3f2c4;
+}
+
+/* Estilos para el formulario de inicio de sesión */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Alinea el texto en el centro */
+
+  border: 2px solid #ffffff;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 20px;
+  background: #fffcfc;
+}
+
+/* Estilos para el contenedor de inputs */
+.input-container {
+  margin-bottom: 15px;
+  /* Aumenta el espacio entre los inputs */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.login {
+  width: 120%;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* Estilos para el elemento con clase "ancho" */
+.ancho {
+  padding: 8px;
+  border: 1px solid #070707;
+  width: 50%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.ancho-boton {
+  width: 80px;
+  background-color: #21bd33;
+  border-radius: 5px;
+  border: 1px solid #070707;
+}
+
+.page-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #d3f2c4;
+}

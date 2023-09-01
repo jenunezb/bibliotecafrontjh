@@ -40,7 +40,7 @@ export class LoginComponent {
         objeto.alerta = new Alerta(error.error.respuesta, "danger");
       }
     });
-  }
+      }
 
   fakeLoading() {
     this.loading = false;

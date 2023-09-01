@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
     if (email == 'proyectogrado@gmail.com' && password == 'holamundo') {
       //lo llevamos al menu
+      this.fakeLoading();
     } else {
       //mostramos un mensaje
       this.error();
@@ -48,9 +49,9 @@ export class LoginComponent implements OnInit {
   }
 
   fakeLoading() {
-
+    this.loading = false;
     setTimeout(() => {
-      this.loading = false;
+
       //redireccionamos al menu
       this.router.navigate(['menu']);
     }, 1500);

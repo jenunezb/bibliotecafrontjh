@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loading = true;
 
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -44,6 +45,15 @@ export class LoginComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     })
+  }
+
+  fakeLoading() {
+
+    setTimeout(() => {
+      this.loading = false;
+      //redireccionamos al menu
+      this.router.navigate(['menu']);
+    }, 1500);
   }
 }
 

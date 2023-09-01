@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SesionDTO } from 'src/app/modelo/sesion-dto';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { TokenService } from 'src/app/servicios/token.service';
+import { Alerta } from 'src/app/modelo/alerta';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,44 +12,34 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form: FormGroup;
   loading = true;
+  alerta!: Alerta;
+  sesion: SesionDTO;
 
-
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private authService: AuthService, private tokenService: TokenService) {
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     })
+    this.sesion = new SesionDTO();
   }
-  ngOnInit(): void {
 
-  }
   ingresar() {
 
-    const email = this.form.value.email;
-    const password = this.form.value.password;
+    const objeto = this;
 
-    console.log(email);
-    console.log(password);
+    console.log(this.sesion);
 
-
-    if (email == 'proyectogrado@gmail.com' && password == 'holamundo') {
-      //lo llevamos al menu
-      this.fakeLoading();
-    } else {
-      //mostramos un mensaje
-      this.error();
-    }
-  }
-
-  error() {
-    this._snackBar.open('Email o contraseña invalido', '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    })
+    this.authService.login(this.sesion).subscribe({
+      next: data => {
+        objeto.tokenService.login(data.respuesta.token);
+      },
+      error: error => {
+        objeto.alerta = new Alerta(error.error.respuesta, "danger");
+      }
+    });
   }
 
   fakeLoading() {
@@ -56,8 +50,5 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['menu']);
     }, 1500);
   }
+
 }
-
-
-
-

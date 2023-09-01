@@ -1,0 +1,56 @@
+<form #f="ngForm" (ngSubmit)="registrar()" >
+    
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Cedula:</label>
+            <input type="text" name="nombre" [(ngModel)]="usuario.cedula" />
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Estados:</label>
+        <div class="col-sm-10">
+          <select class="form-control" name="estado" [(ngModel)]="usuario.estado" required>
+            <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+          </select>
+        </div>
+      </div>
+
+<div class="mb-3 row">
+  <label class="col-sm-2 col-form-label">Roles:</label>
+  <div class="col-sm-10">
+    <select class="form-control" name="rol" [(ngModel)]="usuario.rol" required>
+      <option *ngFor="let rol of roles" [value]="rol">{{ rol }}</option>
+    </select>
+  </div>
+</div>
+    <div class="mb-3 row">
+    <label >Nombre: </label>
+    <input type="text" name="nombre" [(ngModel)]="usuario.nombre" />
+    </div>
+    <div class="mb-3 row">
+
+    <label >Email: </label>
+    <input type="email" name="email" [(ngModel)]="usuario.email" />
+    </div>
+    
+    <div class="mb-3 row">
+    <label >Teléfono: </label>
+    <input type="text" name="telefono" [(ngModel)]="usuario.telefono" />
+    </div>
+    <div class="mb-3 row">
+    <label >Contraseña: </label>
+    <input type="password" name="password" [(ngModel)]="usuario.password" />
+    </div>
+
+    <div class="mb-3 row">
+        <label >Repetir contraseña: </label>
+        <input type="password" name="confirmaPassword" [(ngModel)]="usuario.confirmaPassword"
+        required />
+    </div>
+    
+    <p *ngIf="!sonIguales()" >Las contraseñas no coinciden</p>
+
+    <button type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+
+    <app-alerta [alerta]="alerta"></app-alerta>
+
+</form>

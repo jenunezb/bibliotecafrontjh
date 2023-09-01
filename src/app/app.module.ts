@@ -12,6 +12,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pagina/login/login.component';
 import { MenuComponent } from './pagina/menu/menu.component';
+import { InicioComponent } from './pagina/menu/inicio/inicio.component';
+import { NavbarComponent } from './pagina/menu/navbar/navbar.component';
+import { ReportesComponent } from './pagina/menu/reportes/reportes.component';
+import { UsuariosComponent } from './pagina/menu/usuarios/usuarios.component';
 
 
 
@@ -19,7 +23,11 @@ import { MenuComponent } from './pagina/menu/menu.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    InicioComponent,
+    NavbarComponent,
+    ReportesComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ export class TokenService {
   public login(token: string) {
     this.setToken(token);
     this.sesionService.updateSession(true);
-    this.router.navigate(["/menuadmin"]);
+    this.router.navigate(["/menu"]);
   }
 
   public logout() {

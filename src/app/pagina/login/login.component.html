@@ -6,19 +6,30 @@
 
 <ng-container *ngIf="loading">
   <div class="page-container1">
-    <form [formGroup]="form" (ngSubmit)="ingresar()">
+    <form #f="ngForm" (ngSubmit)="ingresar()">
       <div class="login-form">
         <div class="input-container">
           <div class="login">
             <img src="../../../assets/img/ingeniero.png" width="25%">
             <p>Iniciar Sesión</p>
             <div class="input-container">
-              <input type="email" class="ancho" placeholder="Email" formControlName="email">
+              <input #email="ngModel" class="ancho" [ngClass]="{
+                'is-invalid': email.invalid && (email.dirty || email.touched)
+              }" type="email" id="email" name="email" [(ngModel)]="sesion.email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Ingresa tu Email"
+                style="background-color: #ffffff;" />
             </div>
             <div class="input-container">
-              <input type="password" class="ancho" placeholder="Contraseña" formControlName="password">
+              <input #password="ngModel" class="ancho" [ngClass]="{
+                'is-invalid':
+                  password.invalid &&
+                  (password.dirty || password.touched)
+              }" type="password" id="password" name="password" [(ngModel)]="sesion.password" required
+                placeholder="Ingresa tu Contraseña" style="background-color: #ffffff;" />
             </div>
-            <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="form.invalid">Ingresar</button>
+            <div class="text-center">
+              <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="f.invalid">Ingresar</button>
+            </div>
           </div>
         </div>
       </div>

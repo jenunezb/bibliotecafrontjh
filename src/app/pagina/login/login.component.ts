@@ -34,6 +34,7 @@ export class LoginComponent {
 
     this.authService.login(this.sesion).subscribe({
       next: data => {
+
         objeto.tokenService.login(data.respuesta.token);
       },
       error: error => {

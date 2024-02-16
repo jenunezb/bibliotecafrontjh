@@ -1,7 +1,7 @@
 <mat-toolbar class="mi-color-personalizado">
   <span>Administrador</span>
   <span class="example-spacer"></span>
-  <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/usuarios">Usuarios</button>
+  <button *ngIf="esAdmin === true" type="button" mat-stroked-button routerLink="/menu/usuarios">Usuarios</button>
   <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Ensayos</button>
   <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Muestras</button>
   <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Obras</button>

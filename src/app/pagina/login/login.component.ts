@@ -1,65 +1,42 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Alerta } from 'src/app/modelo/alerta';
 import { SesionDTO } from 'src/app/modelo/sesion-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
-import { Alerta } from 'src/app/modelo/alerta';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  form: FormGroup;
-  loading = true;
-  alerta!: Alerta;
-  sesion: SesionDTO;
+export class LoginComponent implements OnInit{
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private authService: AuthService, private tokenService: TokenService) {
-    this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    })
-    this.sesion = new SesionDTO();
-  }
-
-  ingresar() {
-    const email = this.sesion.email;
-    const password = this.sesion.password;
-
-    const objeto = this;
-
-    console.log(this.sesion);
-
-    this.authService.login(this.sesion).subscribe({
-      next: data => {
-
-        objeto.tokenService.login(data.respuesta.token);
-      },
-      error: error => {
-        objeto.alerta = new Alerta(error.error.respuesta, "danger");
-      }
-
-    });
-
-
-
-    if (email == 'proyectogrado@gmail.com' && password == 'holamundo') {
-      //lo llevamos al menu
-      this.fakeLoading();
+  ngOnInit() {
+    // Verificar si el usuario ya está autenticado
+    if (this.authService.estaAutenticado()) {
+      // Redirigir a la página principal o el dashboard
+      this.router.navigate(['/dashboard']); // Reemplaza '/dashboard' con tu ruta deseada
     }
   }
 
-  fakeLoading() {
-    this.loading = false;
-    setTimeout(() => {
+  sesionDTO: SesionDTO;
+  alerta!: Alerta;
 
-      //redireccionamos al menu
-      this.router.navigate(['menu']);
-    }, 1500);
+  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService){
+  this.sesionDTO = new SesionDTO();
+  }
+
+  public ingresar(){
+    this.authService.login(this.sesionDTO).subscribe({
+    next: data => {
+    this.tokenService.login(data.respuesta.token);
+  },
+
+  error: err => {
+      this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+  }
+});
   }
 
 }

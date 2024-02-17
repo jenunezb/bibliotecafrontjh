@@ -11,8 +11,6 @@ import { SharedModule } from './pagina/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

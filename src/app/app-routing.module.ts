@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pagina/login/login.component';
+import { UsuariosComponent } from './pagina/menu/usuarios/usuarios.component';
+import { LoginGuard } from './guards/permiso.service';
+import { RolesGuard } from './guards/roles.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'menu/usuarios', component: UsuariosComponent, canActivate: [RolesGuard], data: { expectedRole: ["administrador"] } },
   { path: 'menu', loadChildren: () => import('./pagina/menu/menu.module').then(x => x.MenuModule) }
 ];
 

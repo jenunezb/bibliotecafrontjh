@@ -13,6 +13,7 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     if(this.tokenService.getRole()[0]=="a"){
+      console.log("pasa como admin")
       this.esAdmin=true;
     }
   }

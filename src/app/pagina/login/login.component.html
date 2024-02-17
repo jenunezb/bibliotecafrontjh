@@ -1,22 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Iniciar Sesión</title>
-</head>
-<body>
-    <div class="container">
-        <div class="login-container">
-            <h2>Iniciar Sesión</h2>
-            <form #r="ngForm" (ngSubmit)="ingresar()">
-                <input type="text" name="email" placeholder="Correo Electrónico" [(ngModel)]="sesionDTO.email">
-                <input type="password" name="password" placeholder="Contraseña" [(ngModel)]="sesionDTO.password">
-                <p class="forgot-password">
-                </p>
-                <input type="submit" value="Iniciar Sesión" class="login-button">
-                <app-alerta [alerta]="alerta"></app-alerta>
-            </form>
+<ng-container *ngIf="!loading">
+  <div class="page-container">
+    <mat-spinner *ngIf="!loading" class="spinner" diameter="40"></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="loading">
+  <div class="page-container1">
+    <form #f="ngForm" (ngSubmit)="ingresar()">
+      <div class="login-form">
+        <div class="input-container">
+          <div class="login">
+            <img src="../../../assets/img/ingeniero.png" width="25%">
+            <p>Iniciar Sesión</p>
+            <div class="input-container">
+              <input #email="ngModel" class="ancho" [ngClass]="{
+                'is-invalid': email.invalid && (email.dirty || email.touched)
+              }" type="email" id="email" name="email" [(ngModel)]="sesion.email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Ingresa tu Email"
+                style="background-color: #ffffff;" />
+            </div>
+            <div class="input-container">
+              <input #password="ngModel" class="ancho" [ngClass]="{
+                'is-invalid':
+                  password.invalid &&
+                  (password.dirty || password.touched)
+              }" type="password" id="password" name="password" [(ngModel)]="sesion.password" required
+                placeholder="Ingresa tu Contraseña" style="background-color: #ffffff;" />
+            </div>
+            <div class="text-center">
+              <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="f.invalid">Ingresar</button>
+              <app-alerta [alerta]="alerta"></app-alerta>
+            </div>
+          </div>
         </div>
-        <img src="assets\imagenes\doctor.png" alt="Doctores">
-    </div>
-</body>
-</html>
+      </div>
+    </form>
+  </div>
+</ng-container>

@@ -1,1 +1,14 @@
-<p>navbar works!</p>
+<mat-toolbar class="mi-color-personalizado">
+  <span>Administrador</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="esAdmin === true" type="button" mat-stroked-button routerLink="/menu/usuarios">Usuarios</button>
+  <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Ensayos</button>
+  <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Muestras</button>
+  <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Obras</button>
+  <button class="ancho-boton-menu" mat-stroked-button routerLink="/menu/reportes">Empresas</button>
+  <span class="example-spacer"></span>
+  <!-- <button mat-button routerLink="/menu">LogOut</button> -->
+  <button  routerLink="/login" mat-icon-button class="example-icon"  aria-label="Example icon-button with menu icon">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

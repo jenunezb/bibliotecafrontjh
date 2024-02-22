@@ -27,9 +27,9 @@ export class LoginComponent {
   }
 
   ingresar() {
-
+    const email = this.sesion.email;
+    const password = this.sesion.password;
     const objeto = this;
-
     console.log(this.sesion);
 
     this.authService.login(this.sesion).subscribe({
@@ -40,12 +40,13 @@ export class LoginComponent {
         objeto.alerta = new Alerta(error.error.respuesta, "danger");
       }
     });
+      //lo llevamos al menu
+      this.fakeLoading();
   }
 
   fakeLoading() {
     this.loading = false;
     setTimeout(() => {
-
       //redireccionamos al menu
       this.router.navigate(['menu']);
     }, 1500);

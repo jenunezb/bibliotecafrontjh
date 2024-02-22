@@ -33,7 +33,7 @@ export class TokenService {
   public login(token: string) {
     this.setToken(token);
     this.sesionService.updateSession(true);
-    this.router.navigate(["/menuadmin"]);
+    this.router.navigate(["/menu"]);
   }
 
   public logout() {
@@ -51,11 +51,11 @@ export class TokenService {
     return "";
   }
 
-  public getRole(): string[] {
+  public getRole():string[]{
     const token = this.getToken();
-    if (token) {
-      const values = this.decodePayload(token);
-      return values.roles;
+    if(token){
+    const values = this.decodePayload(token);
+    return values.rol;
     }
     return [];
   }

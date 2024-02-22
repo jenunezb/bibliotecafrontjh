@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  esAdmin: boolean = false;
+
+  constructor(private tokenService: TokenService){}
+
+  ngOnInit(): void {
+    if(this.tokenService.getRole()[0]=="a"){
+      console.log("pasa como admin")
+      this.esAdmin=true;
+    }
+  }
 
 }

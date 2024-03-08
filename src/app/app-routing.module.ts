@@ -8,7 +8,7 @@ import { RolesGuard } from './guards/roles.service';
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'menu/usuarios', component: UsuariosComponent, canActivate: [RolesGuard], data: { expectedRole: ["administrador"] } },
+  { path: 'menu/usuarios', component: UsuariosComponent,  },
   { path: 'menu', loadChildren: () => import('./pagina/menu/menu.module').then(x => x.MenuModule) }
 ];
 

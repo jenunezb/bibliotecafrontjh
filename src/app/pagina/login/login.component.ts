@@ -34,14 +34,17 @@ export class LoginComponent {
 
     this.authService.login(this.sesion).subscribe({
       next: data => {
+        console.log("entra");
+              //lo llevamos al menu
+      this.fakeLoading();
         objeto.tokenService.login(data.respuesta.token);
       },
       error: error => {
+        console.log("no entra");
         objeto.alerta = new Alerta(error.error.respuesta, "danger");
       }
     });
-      //lo llevamos al menu
-      this.fakeLoading();
+
   }
 
   fakeLoading() {

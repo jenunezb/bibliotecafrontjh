@@ -6,11 +6,11 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-inicio',
+  templateUrl: './inicio.component.html',
+  styleUrls: ['./inicio.component.css']
 })
-export class LoginComponent implements OnInit{
+export class InicioComponent implements OnInit{
 
   ngOnInit() {
     // Verificar si el usuario ya está autenticado

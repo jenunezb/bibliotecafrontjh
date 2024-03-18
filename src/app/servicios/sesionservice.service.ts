@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+export class SesionserviceService {
 
-export class SesionService {
   private messageSource = new BehaviorSubject<any>(0);
   currentMessage: Observable<any>;
   constructor() {

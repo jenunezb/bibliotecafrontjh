@@ -1,6 +1,4 @@
-export class SesionDTO {
-
-  email: string = "";
-  password: string = "";
-
+export class SesionDto {
+    email: string = "";
+    password: string = "";
 }

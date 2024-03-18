@@ -19,13 +19,10 @@ export class LoginComponent implements OnInit{
   alerta!: Alerta;
 
   ngOnInit() {
-    // Verificar si el usuario ya está autenticado
     if (this.authService.estaAutenticado()) {
       this.router.navigate(['/menu']); 
     }
-
     this.isLogged = this.tokenService.isLogged();
-
     if (this.isLogged) {
       this.email = this.tokenService.getEmail();
       this.roles = this.tokenService.getRole();  

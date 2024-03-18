@@ -72,5 +72,5 @@ public getRole():string[]{
   }
   return [];
 }
-                
+
 }

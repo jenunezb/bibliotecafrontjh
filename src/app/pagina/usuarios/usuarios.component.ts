@@ -12,10 +12,10 @@ import { TokenService } from 'src/app/servicios/token.service';
 })
 export class UsuariosComponent implements OnInit {
   dataSource = new MatTableDataSource<IngenieroGetDTO>([]);
-  displayedColumns: string[] = ['rol', 'nombre', 'apellido', 'sexo', 'firma']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
-  constructor(private administradorService: AdministradorService, private tokenService: TokenService) {}
+  constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
 
   ngOnInit(): void {
     this.listarIngenieros();
@@ -25,8 +25,8 @@ export class UsuariosComponent implements OnInit {
     this.administradorService.listarIngenieros()
       .subscribe(
         (response: any) => {
-          console.log('Respuesta del servidor:', response); // Imprimir la respuesta por consola
-          this.dataSource.data = response.data; 
+          confirm
+          this.dataSource.data = response.respuesta; 
         },
         error => {
           console.error('Error al obtener la lista de ingenieros:', error);

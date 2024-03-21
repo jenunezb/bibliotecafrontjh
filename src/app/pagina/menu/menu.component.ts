@@ -8,7 +8,10 @@ import { TokenService } from 'src/app/servicios/token.service';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
+<<<<<<< HEAD
 
+=======
+>>>>>>> 813290d810101baa14fbdf7843517ecf9531de5a
 })
 export class MenuComponent implements OnInit{
 

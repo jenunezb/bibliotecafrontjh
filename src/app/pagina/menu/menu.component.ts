@@ -7,7 +7,7 @@ import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit{
 

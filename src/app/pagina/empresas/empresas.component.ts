@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Alerta } from 'src/app/modelo/alerta';
-import { IngenieroGetDTO } from 'src/app/modelo/ingeniero-get-dto';
+import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-empresas',
+  templateUrl: './empresas.component.html',
+  styleUrls: ['./empresas.component.css']
 })
-export class UsuariosComponent implements OnInit {
+export class EmpresasComponent implements OnInit {
   
-  dataSource = new MatTableDataSource<IngenieroGetDTO>([]);
-  displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones', 'roles']; // Define las columnas que deseas mostrar
+  dataSource = new MatTableDataSource<EmpresasGetDTO>([]);
+  displayedColumns: string[] = ['nit', 'nombre','direccion','telefono','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
   constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
@@ -36,3 +36,4 @@ export class UsuariosComponent implements OnInit {
       );
   }
 }
+

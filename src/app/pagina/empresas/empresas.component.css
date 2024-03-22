@@ -28,7 +28,7 @@ th{
   .mi-boton:hover {
     background-color: #0056b3; 
   }
-  .Usuarios{
+  .Empresas{
     margin-bottom: 10px;
     width: 100%;
     text-align: center; 
@@ -60,17 +60,3 @@ th{
   .search-button:hover {
     background-color: #06495e;
   }
-  .filtro-roles {
-    margin-bottom: 20px;
-  }
-  
-  .roles-select {
-    padding: 10px 10px; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 12px;
-    width: 200px;
-  }
-  
-
-  

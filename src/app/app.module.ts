@@ -13,6 +13,8 @@ import { LoginComponent } from './pagina/login/login.component';
 import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
+import { MatSelectModule } from '@angular/material/select';
+import { EmpresasComponent } from './pagina/empresas/empresas.component';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
     LoginComponent,
     UsuariosComponent,
     EnsayosComponent,
+    EmpresasComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
     HttpClientModule,
     MatToolbarModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

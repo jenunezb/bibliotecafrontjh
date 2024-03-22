@@ -1,10 +1,30 @@
 <div class="container">
-    
-        <div><span>Usuarios</span></div>
-   
-    <div><button>Crear usuario</button></div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <div class="Usuarios"><span>Usuarios</span></div>
+   
+        <div>
+            <button class="mi-boton">Crear usuario</button>
+
+            <div class="busqueda">
+                <form action="../../form-result.php" method="post" target="_blank" class="search-form">
+                  <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
+                  <button type="submit" class="search-button">
+                    <mat-icon>search</mat-icon>
+                  </button>
+                </form>
+              </div>
+              <div class="filtro-roles">
+                <select id="roles-filter" class="roles-select">
+                  <option value="" selected disabled>Seleccione un rol</option>
+                  <option value="administrador">Administrador</option>
+                  <option value="usuario">Ingeniero</option>
+                  <option value="invitado">Invitado</option>
+                </select>
+              </div>
+              
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Cedula Column -->
         <ng-container matColumnDef="cedula">
             <th mat-header-cell *matHeaderCellDef> Cedula </th>
@@ -26,7 +46,7 @@
 
         <!-- Telefono Column -->
         <ng-container matColumnDef="telefono">
-            <th mat-header-cell *matHeaderCellDef> Telefono </th>
+            <th mat-header-cell *matHeaderCellDef> Teléfono</th>
             <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
         </ng-container>
 

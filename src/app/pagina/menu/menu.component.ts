@@ -15,7 +15,10 @@ export class MenuComponent implements OnInit{
   roles: string[] = [];
   email: string = "";
   mostrarUsuarios: boolean = false;
+  mostrarEmpresas: boolean = false;
   mostrarEnsayos: boolean = false;
+  mostrarSedes: boolean = false;
+  
 
   ngOnInit() {
     // Verificar si el usuario ya está autenticado

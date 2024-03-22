@@ -12,6 +12,7 @@ import { MenuComponent } from './pagina/menu/menu.component';
 import { LoginComponent } from './pagina/login/login.component';
 import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
+import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
     AlertaComponent,
     LoginComponent,
     UsuariosComponent,
+    EnsayosComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,21 +8,18 @@ import { TokenService } from 'src/app/servicios/token.service';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
-<<<<<<< HEAD
-
-=======
->>>>>>> 813290d810101baa14fbdf7843517ecf9531de5a
 })
 export class MenuComponent implements OnInit{
 
   isLogged = false;
   roles: string[] = [];
   email: string = "";
+  mostrarUsuarios: boolean = false;
+  mostrarEnsayos: boolean = false;
 
   ngOnInit() {
     // Verificar si el usuario ya está autenticado
     if (this.authService.estaAutenticado()) {
-      this.router.navigate(['/menu']); 
     }
 
     this.isLogged = this.tokenService.isLogged();
@@ -42,5 +39,5 @@ export class MenuComponent implements OnInit{
   public logout() {
     this.tokenService.logout();
   }
-
+  
 }

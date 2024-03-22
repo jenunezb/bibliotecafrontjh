@@ -1,14 +1,12 @@
 <div class="navbar">
-    <div class="logo">Hola {{email}}</div>
-    <div class="menu-items">
-      <button class="menu-item" >Usuarios</button>
-      <button class="menu-item" >Ensayos</button>
+  <div class="logo">Hola {{email}}</div>
+  <div class="menu-items">
+    <button class="menu-item" (click)="mostrarUsuarios = true; mostrarEnsayos = false;">Usuarios</button>
+    <button class="menu-item" (click)="mostrarEnsayos = true; mostrarUsuarios = false;">Ensayos</button>
       <button class="menu-item" >Sedes</button>
-      <button class="menu-item" (click)="logout()" >Salir</button>
-    </div>
+      <button class="menu-item" (click)="logout()">Salir</button>
   </div>
+</div>
 
-  <app-usuarios></app-usuarios>
-  
-  
-  
+<app-usuarios *ngIf="mostrarUsuarios"></app-usuarios>
+<app-ensayos *ngIf="mostrarEnsayos"></app-ensayos>

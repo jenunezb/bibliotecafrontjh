@@ -1,19 +1,20 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Alerta } from 'src/app/modelo/alerta';
-import { ConcretosDto } from 'src/app/modelo/concretos-dto';
+import { SedesGetDTO } from 'src/app/modelo/sedes-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
-  selector: 'app-ensayos',
-  templateUrl: './ensayos.component.html',
-  styleUrls: ['./ensayos.component.css']
+  selector: 'app-sedes',
+  templateUrl: './sedes.component.html',
+  styleUrls: ['./sedes.component.css']
 })
-export class EnsayosComponent implements OnInit {
-  
-  dataSource = new MatTableDataSource<ConcretosDto>([]);
-  displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto','ensayo', 'fechadeToma','acciones']; // Define las columnas que deseas mostrar
+export class SedesComponent implements OnInit {
+
+  dataSource = new MatTableDataSource<SedesGetDTO>([]);
+  displayedColumns: string[] = ['Nombre', 'Direccion', 'telefono','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
   constructor(private administradorService: AdministradorService, tokenService: TokenService) {}

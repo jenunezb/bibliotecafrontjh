@@ -3,7 +3,6 @@ table {
     margin-top: 4px;
     margin-left: auto;
     margin-right: auto;
-    overflow-y: auto;
 }
 
 th{
@@ -17,7 +16,7 @@ th{
   .mi-boton {
     padding: 10px 20px; 
     margin-bottom: 20px;
-    margin-right: 850px;
+    margin-right: 900px;
     background-color: #2e0257; 
     color: #fff; 
     border: none; 
@@ -29,7 +28,7 @@ th{
   .mi-boton:hover {
     background-color: #0056b3; 
   }
-  .Concretos{
+  .Sedes{
     margin-bottom: 10px;
     width: 100%;
     text-align: center; 
@@ -43,7 +42,6 @@ th{
   .search-input {
     
     padding: 10px 10px; 
-    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 12px;
@@ -62,26 +60,3 @@ th{
   .search-button:hover {
     background-color: #06495e;
   }
-  .next-button {
-    cursor: pointer; 
-    background-color: #202122;
-    color: white;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    margin-left: 80px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .next-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Media query para pantallas pequeñas */
-  @media screen and (max-width: 1024px) {
-    .next-button {
-      margin-left: 5px; /* Ajusta el margen para pantallas más pequeñas */
-    }
-
-  }
-  

@@ -15,6 +15,8 @@ import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
 import { MatSelectModule } from '@angular/material/select';
 import { EmpresasComponent } from './pagina/empresas/empresas.component';
+import { SedesComponent } from './pagina/sedes/sedes.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { EmpresasComponent } from './pagina/empresas/empresas.component';
     UsuariosComponent,
     EnsayosComponent,
     EmpresasComponent,
+    SedesComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { EmpresasComponent } from './pagina/empresas/empresas.component';
     MatToolbarModule,
     MatTableModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

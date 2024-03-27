@@ -5,16 +5,21 @@ import { LoginComponent } from './pagina/login/login.component';
 import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { LoginGuard } from './guards/permiso.service';
 import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
+import { SuelosComponent } from './pagina/suelos/suelos.component';
 
 const routes: Routes = [
-{ path: "menu", component: MenuComponent},
-{ path: "login", component: LoginComponent, canActivate: [LoginGuard] },
-{ path: "usuarios", component: UsuariosComponent, canActivate: [LoginGuard], data: { expectedRole: ["administrador"] }},
-{ path: "ensayos", component: EnsayosComponent, canActivate: [LoginGuard], data: { expectedRole: ["administrador"] }},
-{ path: "**", pathMatch: "full", redirectTo: "" }
+    { path: "menu", component: MenuComponent },
+    { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+    { path: "usuarios", component: UsuariosComponent, canActivate: [LoginGuard], data: { expectedRole: ["administrador"] } },
+    { path: "ensayos", component: EnsayosComponent, canActivate: [LoginGuard], data: { expectedRole: ["administrador"] } },
+    { path: 'suelos', component: SuelosComponent },
+    { path: "**", pathMatch: "full", redirectTo: "" }
+    
 ];
+
 @NgModule({
-imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

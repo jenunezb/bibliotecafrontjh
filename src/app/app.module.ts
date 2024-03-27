@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { EmpresasComponent } from './pagina/empresas/empresas.component';
 import { SedesComponent } from './pagina/sedes/sedes.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SuelosComponent } from './pagina/suelos/suelos.component';
+
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     EnsayosComponent,
     EmpresasComponent,
     SedesComponent,
+    SuelosComponent,
+
   ],
   imports: [
     BrowserModule,

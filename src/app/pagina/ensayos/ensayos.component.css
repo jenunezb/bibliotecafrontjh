@@ -63,6 +63,7 @@ th{
     background-color: #06495e;
   }
   .next-button {
+    vertical-align: middle;
     cursor: pointer; 
     background-color: #202122;
     color: white;
@@ -72,7 +73,7 @@ th{
     margin-left: 80px;
     transition: background-color 0.3s ease;
   }
-  
+
   .next-button:hover {
     background-color: #0056b3;
   }

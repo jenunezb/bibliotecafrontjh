@@ -15,8 +15,8 @@ export class UsuarioInterceptor implements HttpInterceptor {
 constructor(private tokenService: TokenService, private authService: AuthService) { }
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 const isApiUrl = req.url.includes("api/auth");
-const urlClinica = req.url.includes("api/clinica");
-if ( !this.tokenService.isLogged() || isApiUrl || urlClinica ) {
+const  administrador= req.url.includes("api/administrador");
+if ( !this.tokenService.isLogged() || isApiUrl || administrador ) {
 return next.handle(req);
 }
 let initReq = req;

@@ -18,6 +18,7 @@ import { EmpresasComponent } from './pagina/empresas/empresas.component';
 import { SedesComponent } from './pagina/sedes/sedes.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SuelosComponent } from './pagina/suelos/suelos.component';
+import { RegistroUsuariosComponent } from './pagina/registro-usuarios/registro-usuarios.component';
 
 
 
@@ -32,6 +33,7 @@ import { SuelosComponent } from './pagina/suelos/suelos.component';
     EmpresasComponent,
     SedesComponent,
     SuelosComponent,
+    RegistroUsuariosComponent
 
   ],
   imports: [

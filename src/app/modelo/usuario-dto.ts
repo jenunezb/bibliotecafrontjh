@@ -7,4 +7,5 @@ export class UsuarioDTO {
   password: string = "";
   telefono: string = "";
   confirmaPassword: string = "";
+  ciudad: string = "";
 }

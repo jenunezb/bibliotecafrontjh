@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Alerta } from 'src/app/modelo/alerta';
 import { IngenieroGetDTO } from 'src/app/modelo/ingeniero-get-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -14,7 +13,6 @@ export class UsuariosComponent implements OnInit {
   
   dataSource = new MatTableDataSource<IngenieroGetDTO>([]);
   displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones', 'roles']; // Define las columnas que deseas mostrar
-  alerta!: Alerta;
 
   constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
 

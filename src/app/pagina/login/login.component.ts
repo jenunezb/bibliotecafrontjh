@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit{
     if (this.authService.estaAutenticado()) {
       this.router.navigate(['/menu']); 
     }
+    
     this.isLogged = this.tokenService.isLogged();
     if (this.isLogged) {
       this.email = this.tokenService.getEmail();

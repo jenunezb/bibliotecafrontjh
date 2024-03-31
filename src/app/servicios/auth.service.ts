@@ -5,6 +5,7 @@ import { SesionDto } from '../modelo/sesion-dto';
 import { MensajeDTO } from '../modelo/mensaje-dto';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
+import { CiudadGetDto } from '../modelo/ciudad-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,8 @@ export class AuthService {
     return false;
   }
 
- /* 
-    tengo que crear el dto para listar las ciudades
  public listarCiudades():Observable<CiudadGetDto>{
     return this.http.get<CiudadGetDto>(`${this.authURL}/ciudades`);
   }
-  */
-
+  
 }

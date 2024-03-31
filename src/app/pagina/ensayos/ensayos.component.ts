@@ -21,6 +21,7 @@ export class EnsayosComponent {
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
   ngOnInit(): void {
+
     this.listarIngenieros();
   }
   

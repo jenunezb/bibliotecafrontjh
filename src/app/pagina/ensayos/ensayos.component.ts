@@ -21,9 +21,6 @@ export class EnsayosComponent {
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
   ngOnInit(): void {
-    if (this.authService.estaAutenticado()) {
-      this.router.navigate(['/suelos']); 
-    }
     this.listarIngenieros();
   }
   

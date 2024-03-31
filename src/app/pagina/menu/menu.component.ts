@@ -11,6 +11,7 @@ import { TokenService } from 'src/app/servicios/token.service';
 })
 export class MenuComponent implements OnInit{
 
+  title = "SteelSoft";
   isLogged = false;
   roles: string[] = [];
   email: string = "";
@@ -19,7 +20,6 @@ export class MenuComponent implements OnInit{
   mostrarEnsayos: boolean = false;
   mostrarSedes: boolean = false;
   
-
   ngOnInit() {
     // Verificar si el usuario ya está autenticado
     if (this.authService.estaAutenticado()) {

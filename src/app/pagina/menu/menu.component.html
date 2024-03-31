@@ -1,5 +1,10 @@
 <div class="navbar">
-  <div class="logo">Hola {{email}}</div>
+
+<div class="logo">
+  <a href="/menu" style="color: white;">Hola {{ email }}</a>
+</div>
+
+  
   <div class="menu-items">
     <button class="menu-item" (click)="mostrarUsuarios = true; mostrarEmpresas = false; mostrarEnsayos = false; mostrarSedes = false;">Usuarios</button>
     <button class="menu-item" (click)="mostrarEmpresas = true; mostrarUsuarios = false; mostrarEnsayos = false; mostrarSedes = false;">Empresas</button>
@@ -8,7 +13,6 @@
     <button class="menu-item" (click)="logout()">Salir</button>
   </div>
 </div>
-
 
 <app-usuarios *ngIf="mostrarUsuarios"></app-usuarios>
 <app-empresas *ngIf="mostrarEmpresas"></app-empresas>

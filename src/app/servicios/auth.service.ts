@@ -26,5 +26,12 @@ export class AuthService {
     }
     return false;
   }
-    
+
+ /* 
+    tengo que crear el dto para listar las ciudades
+ public listarCiudades():Observable<CiudadGetDto>{
+    return this.http.get<CiudadGetDto>(`${this.authURL}/ciudades`);
+  }
+  */
+
 }

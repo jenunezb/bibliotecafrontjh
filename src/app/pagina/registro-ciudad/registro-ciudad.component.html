@@ -1,10 +1,16 @@
 <form #f="ngForm" (ngSubmit)="registrar()">
-
   <div>
     <label>Ciudad: </label>
-    <input type="text" name="ciudad" [(ngModel)]="ciudad" />
+    <input type="text" name="ciudad" [(ngModel)]="ciudad" required />
   </div>
-
-  <button (click)="registrar()">Registrarse</button>
-
+  <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="f.invalid">Agregar ciudad</button>
+  <div *ngIf="alerta && alerta.tipo === 'danger'" style="color: #721c24; background-color: #f8d7da; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+  
 </form>
+
+<!-- Estilo en línea para mensaje de éxito -->
+<div *ngIf="alerta && alerta.tipo === 'success'" style="color: #155724; background-color: #d4edda; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+  {{ alerta.mensaje }}
+</div>

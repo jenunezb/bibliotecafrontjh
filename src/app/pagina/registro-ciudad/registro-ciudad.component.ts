@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Alerta } from 'src/app/modelo/alerta';
+import { CiudadGetDto } from 'src/app/modelo/ciudad-get-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
+
+import { MatTableDataSource } from '@angular/material/table';
+
 @Component({
   selector: 'app-registro-ciudad',
   templateUrl: './registro-ciudad.component.html',
@@ -8,6 +12,8 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 })
 export class RegistroCiudadComponent {
   
+  dataSource = new MatTableDataSource<CiudadGetDto>([]);
+  displayedColumns: string[] = ['ciudad','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   ciudad: string = '';
   constructor(private adminService: AdministradorService){

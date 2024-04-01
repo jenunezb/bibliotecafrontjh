@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
   }
 
     // Método para verificar si la ruta actual es registro-usuarios
-    isRegistroUsuariosRoute(): boolean {
-      return this.router.url === '/registro-usuarios';
+    isRouteIncluded(routes: string[]): boolean {
+      return routes.includes(this.router.url);
     }
+ 
 }

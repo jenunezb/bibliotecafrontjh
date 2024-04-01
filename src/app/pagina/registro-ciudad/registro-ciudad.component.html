@@ -1,0 +1,10 @@
+<form #f="ngForm" (ngSubmit)="registrar()">
+
+  <div>
+    <label>Ciudad: </label>
+    <input type="text" name="ciudad" [(ngModel)]="ciudad" />
+  </div>
+
+  <button (click)="registrar()">Registrarse</button>
+
+</form>

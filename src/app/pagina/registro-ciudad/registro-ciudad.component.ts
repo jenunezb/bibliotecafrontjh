@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Alerta } from 'src/app/modelo/alerta';
 import { CiudadGetDto } from 'src/app/modelo/ciudad-get-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
-
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/servicios/auth.service';
 

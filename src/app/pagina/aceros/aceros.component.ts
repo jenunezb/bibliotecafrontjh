@@ -7,15 +7,16 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
-  selector: 'app-suelos',
-  templateUrl: './suelos.component.html',
-  styleUrls: ['./suelos.component.css']
+  selector: 'app-aceros',
+  templateUrl: './aceros.component.html',
+  styleUrls: ['./aceros.component.css']
 })
-export class SuelosComponent {
+export class AcerosComponent {
 
   dataSource = new MatTableDataSource<ConcretosDto>([]);
   displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
+
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
@@ -39,3 +40,4 @@ export class SuelosComponent {
   }
 
 }
+

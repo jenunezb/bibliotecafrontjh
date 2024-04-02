@@ -2,11 +2,10 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-            <div class="Concretos"><span>Concretos</span></div>
+            <div class="Aceros"><span>Aceros</span></div>
        
             <div>
-                <button class="mi-boton" href="/registro-cilindro" onclick="window.open('/registro-cilindro', 'Crear Cilindro', 'width=600, height=500'); return false;" class="mi-boton">Crear cilindro</button>
-
+                <button class="mi-boton">Crear Aceros</button>
     
                 <div class="busqueda">
                     <form action="../../form-result.php" method="post" target="_blank" class="search-form">
@@ -14,15 +13,8 @@
                       <button type="submit" class="search-button">
                         <mat-icon>search</mat-icon>
                       </button>
-                    </form>
-
-                    <a href="#" class="next-button" onclick="window.open('/suelos', '_blank'); return false;">
-                        <div style="display: flex; align-items: center;">
-                            <mat-icon>arrow_forward</mat-icon>
-        
-                        </div>
-                    </a>
-    
+                    </form>    
+                    
                 </div>                    
     
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

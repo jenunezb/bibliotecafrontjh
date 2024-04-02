@@ -23,6 +23,10 @@ import { RegistroCiudadComponent } from './pagina/registro-ciudad/registro-ciuda
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AcerosComponent } from './pagina/aceros/aceros.component';
+import { RegistroSedesComponent } from './pagina/registro-sedes/registro-sedes.component';
+import { RegistroEmpresaComponent } from './pagina/registro-empresa/registro-empresa.component';
+import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-cilindro.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SedesComponent,
     SuelosComponent,
     RegistroUsuariosComponent,
-    RegistroCiudadComponent
+    RegistroCiudadComponent,
+    AcerosComponent,
+    RegistroSedesComponent,
+    RegistroEmpresaComponent,
+    RegistroCilindroComponent
   ],
   imports: [
     BrowserModule,

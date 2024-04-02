@@ -6,7 +6,6 @@ import { CiudadGetDto } from 'src/app/modelo/ciudad-get-dto';
 import { SesionDto } from 'src/app/modelo/sesion-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
-import { FormsModule } from '@angular/forms';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
 
 @Component({

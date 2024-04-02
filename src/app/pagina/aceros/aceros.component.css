@@ -1,23 +1,19 @@
-body {
-  background-color: white;
-}
-
 table {
     width: 80%;
     margin-top: 4px;
     margin-left: auto;
     margin-right: auto;
     overflow-y: auto;
-}
-
-th{
+  }
+  
+  th{
     width: 10%;
-}
-
-.pointer{
+  }
+  
+  .pointer{
     cursor: pointer;
-}
-
+  }
+  
   .mi-boton {
     padding: 10px 20px; 
     margin-bottom: 20px;
@@ -33,7 +29,7 @@ th{
   .mi-boton:hover {
     background-color: #0056b3; 
   }
-  .Suelos{
+  .Aceros{
     margin-bottom: 10px;
     width: 100%;
     text-align: center; 
@@ -80,16 +76,18 @@ th{
     margin-left: 40px;
     transition: background-color 0.3s ease;
     padding: 10px; /* Añadimos un padding para que el icono y el texto tengan espacio alrededor */
-}
-
-.next-button:hover {
+  }
+  
+  .next-button:hover {
     background-color: #0056b3;
-}
+  }
+  
+  
   /* Media query para pantallas pequeñas */
   @media screen and (max-width: 1024px) {
     .next-button {
       margin-left: 5px; /* Ajusta el margen para pantallas más pequeñas */
     }
-
+  
   }
   

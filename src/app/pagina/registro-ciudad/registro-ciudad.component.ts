@@ -50,4 +50,20 @@ export class RegistroCiudadComponent implements OnInit {
         
         );
       }
+
+      public eliminarCiudad(ciudad: string): void {
+        if (confirm('¿Estás seguro de eliminar la ciudad?')) {
+            this.adminService.eliminarCiudad(ciudad).subscribe({
+                next: data => {
+                    this.alerta = { mensaje: data.respuesta, tipo: "success" };
+                    // Vuelve a cargar la lista de ciudades después de eliminar
+                    this.listarCiudades();
+                },
+                error: err => {
+                    this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+                }
+            });
+        }
+    }
+    
     }

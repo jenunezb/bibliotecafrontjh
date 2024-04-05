@@ -1,1 +1,42 @@
-<router-outlet></router-outlet>
+
+<header class="p-3 text-bg-dark">
+    <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center
+    justify-content-lg-start">
+    <a routerLink="" class="d-flex align-items-center mb-2 mb-lg-0 text-bg-dark
+    text-decoration-none">
+    </a>
+    <ul *ngIf="roles.includes('administrador')" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <app-menu *ngIf="!isRouteIncluded(['/registro-usuarios', '/registro-ciudad','/registro-sedes','/registro-empresa','/registro-cilindro'])"></app-menu>
+        
+    </ul>
+
+    <ul *ngIf="roles.includes('paciente')" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a routerLink="/lista-citas" class="nav-link px-1 text-secondary fs-4 ms-3 me-1 text-dark">Gestionar Citas</a></li>
+      <li><a routerLink="/gestion-pqrs" class="nav-link px-1 text-secondary fs-4 ms-3 me-1 text-dark">Gestión PQRS</a></li>
+      <li><a routerLink="/gestion-paciente" class="nav-link px-1 text-secondary fs-4 ms-3 me-1 text-dark">Editar perfil</a></li>
+      <li><a routerLink="/gestion-historial" class="nav-link px-1 text-secondary fs-4 ms-3 me-1 text-dark">Historial</a></li>
+    </ul>
+  
+    <ul *ngIf="roles.includes('medico')" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a routerLink="/gestion-historial" class="nav-link px-1 text-secondary fs-5 ms-3 me-1 text-dark"><i class="fas fa-file-medical"></i> Historiales</a></li>
+      <li><a routerLink="/lista-citas" class="nav-link px-1 text-secondary fs-5 ms-3 me-1 text-dark"><i class="fas fa-calendar-alt"></i> Citas Pendientes</a></li>
+      <li><a routerLink="/gestion-paciente" class="nav-link px-1 text-secondary fs-5 ms-1 me-1 text-dark"><i class="fas fa-calendar-plus"></i> Agendar día libre</a></li>
+      <li><a routerLink="/citas-realizadas" class="nav-link px-1 text-secondary fs-5 ms-1 me-1 text-dark"><i class="fas fa-check-circle"></i> Citas realizadas</a></li>
+    </ul>
+
+<div *ngIf="!isLogged; then nologged else logged"></div>
+<ng-template #nologged>
+  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
+<app-login></app-login>
+</ng-template>
+<ng-template #logged>
+</ng-template>
+    </div>
+    </div>
+    </header>
+    <div class="seccion-pagina p-4">
+      <router-outlet></router-outlet>
+    <div class="container" >
+    </div>
+    </div>

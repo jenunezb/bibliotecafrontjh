@@ -1,0 +1,14 @@
+.alert {
+    margin-top: 10px; /* Espacio entre el mensaje y otros elementos */
+  }
+  
+  .alert-danger {
+    color: #721c24; /* Color de texto rojo oscuro */
+    background-color: #f8d7da; /* Color de fondo rojo claro */
+    border-color: #f5c6cb; /* Color del borde rojo claro */
+    padding: 0.75rem 1.25rem; /* Espaciado interno */
+    border: 1px solid transparent; /* Borde */
+    border-radius: 0.25rem; /* Borde redondeado */
+  }
+  
+  

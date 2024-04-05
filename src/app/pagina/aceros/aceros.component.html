@@ -1,0 +1,74 @@
+<div class="container">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+            <div class="Aceros"><span>Aceros</span></div>
+       
+            <div>
+                <button class="mi-boton">Crear Aceros</button>
+    
+                <div class="busqueda">
+                    <form action="../../form-result.php" method="post" target="_blank" class="search-form">
+                      <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
+                      <button type="submit" class="search-button">
+                        <mat-icon>search</mat-icon>
+                      </button>
+                    </form>    
+                    
+                </div>                    
+    
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Nit Column -->
+            <ng-container matColumnDef="numerodeMuestra">
+                <th mat-header-cell *matHeaderCellDef> Numero de Muestra </th>
+    
+                <td mat-cell *matCellDef="let element"> {{element.numerodeMuestra}} </td>
+            </ng-container>        
+    
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="Cr">
+                <th mat-header-cell *matHeaderCellDef> Cr </th>
+                <td mat-cell *matCellDef="let element"> {{element.Cr}} </td>
+            </ng-container>
+
+            <!-- Direccion Column -->
+            <ng-container matColumnDef="proyecto">
+                <th mat-header-cell *matHeaderCellDef> Proyecto </th>
+                <td mat-cell *matCellDef="let element"> {{element.proyecto}} </td>
+            </ng-container>
+    
+    
+            <!-- Telefono Column -->
+            <ng-container matColumnDef="ensayo">
+                <th mat-header-cell *matHeaderCellDef> Ensayo</th>
+                <td mat-cell *matCellDef="let element"> {{element.ensayo}} </td>
+            </ng-container>
+
+            <!-- Telefono Column -->
+            <ng-container matColumnDef="fechadeToma">
+                <th mat-header-cell *matHeaderCellDef> Fecha de Toma</th>
+                <td mat-cell *matCellDef="let element"> {{element.fechadeToma}} </td>
+            </ng-container>
+
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let element" style="text-align: left;">
+                    <a class="pointer" style="color: #1878b0;" matTooltip="Ver Usuario">
+                        <mat-icon>add</mat-icon> <!-- Icono de búsqueda -->
+                    </a>
+                    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario">
+                        <mat-icon>edit</mat-icon> <!-- Icono de edición -->
+                    </a>
+                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
+                        <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
+                    </a>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+        </table>
+    </div>
+    

@@ -1,2 +1,20 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="navbar">
+
+<div class="logo">
+  <a href="/menu" style="color: white;">Hola {{ email }}</a>
+</div>
+
+  
+  <div class="menu-items">
+    <button class="menu-item" (click)="mostrarUsuarios = true; mostrarEmpresas = false; mostrarEnsayos = false; mostrarSedes = false;">Usuarios</button>
+    <button class="menu-item" (click)="mostrarEmpresas = true; mostrarUsuarios = false; mostrarEnsayos = false; mostrarSedes = false;">Empresas</button>
+    <button class="menu-item" (click)="mostrarEnsayos = true; mostrarUsuarios = false; mostrarEmpresas = false; mostrarSedes = false;">Ensayos</button>
+    <button class="menu-item" (click)="mostrarSedes = true; mostrarEnsayos = false; mostrarUsuarios = false; mostrarEmpresas = false;">Sedes</button>
+    <button class="menu-item" (click)="logout()">Salir</button>
+  </div>
+</div>
+
+<app-usuarios *ngIf="mostrarUsuarios"></app-usuarios>
+<app-empresas *ngIf="mostrarEmpresas"></app-empresas>
+<app-ensayos *ngIf="mostrarEnsayos"></app-ensayos>
+<app-sedes *ngIf="mostrarSedes"></app-sedes>

@@ -1,0 +1,46 @@
+<!-- Formulario para agregar una ciudad -->
+<form #f="ngForm" (ngSubmit)="registrar()">
+  <div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <label class="ciudad">Ciudad: </label>
+    <input type="text" name="ciudad" [(ngModel)]="ciudad" required />
+  </div>
+  <button type="submit" class="ancho-boton" mat-stroked-button [disabled]="f.invalid">Agregar ciudad</button>
+</form>
+
+<!-- Mensaje de alerta -->
+<div *ngIf="alerta" style="margin-top: 10px;">
+  <div *ngIf="alerta.tipo === 'danger'" style="color: #721c24; background-color: #f8d7da; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+  <div *ngIf="alerta.tipo === 'success'" style="color: #155724; background-color: #d4edda; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+</div>
+
+<!-- Tabla para mostrar las ciudades -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<!-- Columna Ciudad -->
+<ng-container matColumnDef="ciudad">
+  <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+  <td mat-cell *matCellDef="let ciudad">{{ ciudad.nombre }}</td>
+</ng-container>
+
+<!-- Columna Acciones -->
+<ng-container matColumnDef="acciones">
+  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+  <td mat-cell *matCellDef="let ciudad">
+    <!-- Aquí agregas las acciones, por ejemplo: -->
+    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Ciudad">
+        <mat-icon>edit</mat-icon> <!-- Icono de edición -->
+    </a>
+    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Ciudad" (click)="eliminarCiudad(ciudad.nombre)">
+      <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
+    </a>
+  </td>
+</ng-container>
+
+  <!-- Definición de las filas -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

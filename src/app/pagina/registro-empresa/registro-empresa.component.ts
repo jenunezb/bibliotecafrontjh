@@ -1,28 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { TokenService } from 'src/app/servicios/token.service';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
+import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 
 @Component({
   selector: 'app-registro-empresa',
   templateUrl: './registro-empresa.component.html',
   styleUrls: ['./registro-empresa.component.css']
 })
-export class RegistroEmpresaComponent implements OnInit {
+export class RegistroEmpresaComponent {
 
   dataSource = new MatTableDataSource<EmpresasGetDTO>([]);
-  displayedColumns: string[] = ['Nit','Nombre','Dirección','Teléfono'];
+  displayedColumns: string[] = ['Nit', 'Nombre', 'Dirección', 'Teléfono'];
+  alerta: { mensaje: string, tipo: string } | null = null;
+  nit: string = '';
+  nombre: string = '';
+  direccion: string = '';
+  telefono: string = '';
 
-  ngOnInit() {
-    if (this.authService.estaAutenticado()) {
-      this.router.navigate(['/registro-empresa']); 
+  constructor(
+    private adminService: AdministradorService,
+    private router: Router
+  ) {}
+
+  registrar(): void {
+    if (!this.nit || !this.nombre || !this.direccion || !this.telefono) {
+      this.alerta = { mensaje: 'Por favor completa todos los campos.', tipo: 'danger' };
+      return;
     }
-  }
 
-  
-  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService){
-
+    this.adminService.agregarEmpresa(this.nit, this.nombre, this.direccion, this.telefono).subscribe({
+      next: (data) => {
+        this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+        alert('¡La empresa ha sido creada!');
+      
+        window.close();
+      },
+      error: (err) => {
+        this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+      }
+    });
   }
 }

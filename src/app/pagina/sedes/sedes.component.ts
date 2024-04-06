@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { Alerta } from 'src/app/modelo/alerta';
 import { SedesGetDTO } from 'src/app/modelo/sedes-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
-import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-sedes',
@@ -16,15 +15,16 @@ export class SedesComponent implements OnInit {
   dataSource = new MatTableDataSource<SedesGetDTO>([]);
   displayedColumns: string[] = ['Nombre', 'Direccion', 'telefono','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
+  ciudad: string = '';
 
-  constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
+  constructor(private authService: AuthService,private adminService: AdministradorService) {}
 
   ngOnInit(): void {
     this.listarIngenieros();
   }
 
   listarIngenieros(): void {
-    this.administradorService.listarIngenieros()
+    this.adminService.listarIngenieros()
       .subscribe(
         (response: any) => {
           confirm
@@ -36,4 +36,19 @@ export class SedesComponent implements OnInit {
       
       );
   }
+  public listarSedes(): void{
+    this.authService.listarCiudades()
+    .subscribe(
+      (response: any) => {
+        confirm
+        this.dataSource.data = response.respuesta; 
+        console.log(this.dataSource.data);
+      },
+      error => {
+        console.error('Error al obtener la lista de ciudades:', error);
+      }
+    
+    );
+  }
+
 }

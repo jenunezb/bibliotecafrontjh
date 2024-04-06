@@ -6,6 +6,8 @@ import { MensajeDTO } from '../modelo/mensaje-dto';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { CiudadGetDto } from '../modelo/ciudad-get-dto';
+import { SedesGetDTO } from '../modelo/sedes-dto';
+import { EmpresasGetDTO } from '../modelo/empresas-get-dto ';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,9 @@ export class AuthService {
 
  public listarCiudades():Observable<CiudadGetDto>{
     return this.http.get<CiudadGetDto>(`${this.authURL}/ciudades`);
-  }
+  }  
   
+  public listarEmpresas():Observable<EmpresasGetDTO>{
+    return this.http.get<EmpresasGetDTO>(`${this.authURL}/empresas`);
+  }  
 }

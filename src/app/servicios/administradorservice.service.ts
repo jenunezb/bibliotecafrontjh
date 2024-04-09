@@ -46,12 +46,18 @@ export class AdministradorService {
     // La información de la ciudad se pasa como parte de la URL
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarCiudad/${ciudad}`);
   }
-  public deleteEmpresa(nit: string) {
-    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarEmpresa/${nit}`);
+  public eliminarEmpresa(nombre: string): Observable<MensajeDTO> {
+    // Imprime la URL antes de enviar la solicitud
+    console.log('URL de eliminación de empresa:', `${this.authURL}/eliminarEmpresa/${nombre}`);
+    // La información de la ciudad se pasa como parte de la URL
+    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarEmpresa/${nombre}`);
   }
   buscarEmpresas(nombre: string): Observable<EmpresasGetDTO[]> {
     const url = `${this.authURL}/buscarEmpresa/${nombre}`;
-    console.log('URL de búsqueda de empresa:', url);
     return this.http.get<EmpresasGetDTO[]>(url);
+  }
+  editarEmpresa(empresa: EmpresasGetDTO): Observable<any> {
+    const url = `${this.authURL}/editarEmpresa`; // Reemplaza 'editarEmpresa' con la ruta correcta en tu backend
+    return this.http.put(url, empresa);
   }
 }

@@ -60,3 +60,27 @@ th{
   .search-button:hover {
     background-color: #06495e;
   }
+  /* Estilos para el modo de edición */
+.edit-input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.pointer {
+  cursor: pointer;
+  color: #084da7c2;
+}
+
+.btn-danger {
+  cursor: pointer;
+  color: #e15639;
+}

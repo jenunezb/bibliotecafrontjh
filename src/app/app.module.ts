@@ -14,6 +14,7 @@ import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
 import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 import { EmpresasComponent } from './pagina/empresas/empresas.component';
 import { SedesComponent } from './pagina/sedes/sedes.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -59,7 +60,8 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
     NgxPaginationModule,
     MatInputModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CommonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

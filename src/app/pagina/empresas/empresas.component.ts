@@ -14,19 +14,44 @@ export class EmpresasComponent implements OnInit {
 
   dataSource = new MatTableDataSource<EmpresasGetDTO>([]);
   displayedColumns: string[] = ['nit', 'nombre', 'direccion', 'telefono', 'acciones']; // Define las columnas que deseas mostrar
-  alerta: Alerta | null = null; 
+  alerta: Alerta | null = null;
+  editingRowIndex: number | null = null;
 
-  constructor(private authService: AuthService, private adminService: AdministradorService) {}
+  constructor(private authService: AuthService, private adminService: AdministradorService) {
+
+  }
 
   ngOnInit(): void {
     this.listarEmpresas(); // Cargar empresas al inicializar el componente
+
+  }
+  // Método para activar el modo de edición en una fila específica
+  startEditing(rowIndex: number): void {
+    this.editingRowIndex = rowIndex;
+  }
+
+  saveChanges(): void {
+    if (this.editingRowIndex !== null && this.editingRowIndex >= 0 && this.editingRowIndex < this.dataSource.data.length) {
+      const modifiedRow = this.dataSource.data[this.editingRowIndex];
+      this.adminService.editarEmpresa(modifiedRow).subscribe(
+        (response) => {
+          this.editingRowIndex = null; // Salir del modo de edición
+          alert('¡La empresa ha sido editada!');
+          this.listarEmpresas(); // Actualizar la lista de empresas después de editar
+        },
+        (error) => {
+          console.error('Error al editar la empresa:', error);
+          // Manejo de errores, mostrar mensaje al usuario, etc.
+        }
+      );
+    }
   }
 
   listarEmpresas(): void {
     this.authService.listarEmpresas()
       .subscribe(
         (response: any) => {
-          this.dataSource.data = response.respuesta; 
+          this.dataSource.data = response.respuesta;
         },
         error => {
           console.error('Error al obtener la lista de empresas:', error);
@@ -37,20 +62,31 @@ export class EmpresasComponent implements OnInit {
   buscarEmpresas(nombre: string): void {
     if (nombre.trim() === '') {
       // No se permite búsqueda con campo vacío
-      this.dataSource.data = [];
-      this.alerta = { mensaje: 'Debe ingresar un nombre para buscar.', tipo: 'info' };
+      this.listarEmpresas();
       return;
     }
 
     this.adminService.buscarEmpresas(nombre).subscribe(
-      (empresas: EmpresasGetDTO[]) => {
-        if (empresas.length === 0) {
-          this.alerta = { mensaje: 'No se encontraron empresas con ese nombre.', tipo: 'info' };
+      (empresaEncontrada: any) => {
+        if (empresaEncontrada && empresaEncontrada.nit) {
+          // Convertir la empresa encontrada a EmpresaDTO
+          const empresaDTO: EmpresasGetDTO = {
+            nit: empresaEncontrada.nit,
+            nombre: empresaEncontrada.nombre,
+            direccion: empresaEncontrada.direccion,
+            telefono: empresaEncontrada.telefono
+          };
+
+          // Actualizar el dataSource con el resultado transformado
+          this.dataSource.data = [empresaDTO];
+
+          // Limpiar la alerta si la búsqueda fue exitosa
+          this.alerta = null;
         } else {
-          this.alerta = null; // Limpiar la alerta si se encontraron resultados
+          console.error('Respuesta del servicio no válida:', empresaEncontrada);
+          this.dataSource.data = []; // Vaciar la tabla si la respuesta no es válida
+          this.alerta = { mensaje: 'Respuesta del servicio no válida.', tipo: 'error' };
         }
-        // Actualizar la tabla con los resultados de la búsqueda
-        this.dataSource.data = empresas;
       },
       error => {
         console.error('Error al buscar empresas:', error);
@@ -60,20 +96,24 @@ export class EmpresasComponent implements OnInit {
     );
   }
 
-  delete(empresasGetDTO: EmpresasGetDTO): void {
-    this.adminService.deleteEmpresa(empresasGetDTO.nit).subscribe(
-      () => {
-        console.log('Empresa eliminada correctamente');
-        this.adminService.listarEmpresas().subscribe(
-          (error) => {
-            console.error('Error al obtener la lista de empresas:', error);
-          }
-        );
-      },
-      (error) => {
-        console.error('Error al eliminar la empresa:', error);
-      }
-    );
+  eliminarEmpresa(direccion: string): void {
+    if (confirm('¿Estás seguro de eliminar la empresa?')) {
+      this.adminService.eliminarEmpresa(direccion).subscribe({
+        next: data => {
+          this.alerta = { mensaje: data.respuesta, tipo: "success" };
+          alert('¡La empresa ha sido eliminada!');
+          this.listarEmpresas();
+        },
+        error: err => {
+          this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+        }
+      });
+    }
+  }
+  onBuscarInputChange(value: string): void {
+    if (value.trim() === '') {
+      this.listarEmpresas(); // Volver a cargar la lista completa cuando el campo de búsqueda esté vacío
+    }
   }
 
 }

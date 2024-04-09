@@ -12,12 +12,14 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 export class RegistroEmpresaComponent {
 
   dataSource = new MatTableDataSource<EmpresasGetDTO>([]);
-  displayedColumns: string[] = ['Nit', 'Nombre', 'Dirección', 'Teléfono'];
+  displayedColumns: string[] = ['Nit', 'Nombre', 'Dirección', 'Teléfono','Acciones'];
   alerta: { mensaje: string, tipo: string } | null = null;
   nit: string = '';
   nombre: string = '';
   direccion: string = '';
   telefono: string = '';
+
+  
 
   constructor(
     private adminService: AdministradorService,
@@ -29,17 +31,17 @@ export class RegistroEmpresaComponent {
       this.alerta = { mensaje: 'Por favor completa todos los campos.', tipo: 'danger' };
       return;
     }
-
     this.adminService.agregarEmpresa(this.nit, this.nombre, this.direccion, this.telefono).subscribe({
       next: (data) => {
         this.alerta = { mensaje: data.respuesta, tipo: 'success' };
         alert('¡La empresa ha sido creada!');
-      
-        window.close();
+        window.close(); // Cuidado: cerrar la ventana puede ser una experiencia de usuario inesperada
       },
       error: (err) => {
+        console.error('Error al registrar la empresa:', err);
         this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
       }
     });
   }
+  
 }

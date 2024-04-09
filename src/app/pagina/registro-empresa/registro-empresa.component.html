@@ -1,18 +1,25 @@
-<div>
-  <h2>Registro de Empresa</h2>
-  <div *ngIf="alerta" class="alert alert-{{alerta.tipo}}">
-    {{ alerta.mensaje }}
+<div class="registration-form">
+
+  <div class="form-group">
+    <label for="nit">NIT:</label>
+    <input type="text" id="nit" [(ngModel)]="nit" class="form-control">
   </div>
 
-  <div>
-    <label>NIT:</label>
-    <input type="text" [(ngModel)]="nit">
-    <label>Nombre:</label>
-    <input type="text" [(ngModel)]="nombre">
-    <label>Dirección:</label>
-    <input type="text" [(ngModel)]="direccion">
-    <label>Teléfono:</label>
-    <input type="text" [(ngModel)]="telefono">
-    <button (click)="registrar()">Registrar Empresa</button>
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control">
   </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" [(ngModel)]="direccion" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" [(ngModel)]="telefono" class="form-control">
+  </div>
+
+  <button class="btn" (click)="registrar()">Registrar</button>
 </div>
+

@@ -1,0 +1,35 @@
+<!-- Formulario para agregar una ciudad -->
+<form #f="ngForm">
+    <div>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Columna: Edad de Talla -->
+        <ng-container matColumnDef="edadTalla">
+          <th mat-header-cell *matHeaderCellDef> Edad de Talla </th>
+          <td mat-cell *matCellDef="let muestras">
+            <mat-form-field class="custom-form-field">
+              <input matInput type="number" [(ngModel)]="muestras.edadTalla" class="custom-input">
+            </mat-form-field>
+          </td>
+        </ng-container>
+      
+        <!-- Columna: Numero de Cilindro -->
+        <ng-container matColumnDef="NumeroCilindro">
+          <th mat-header-cell *matHeaderCellDef> Numero de Cilindro </th>
+          <td mat-cell *matCellDef="let muestras">
+            <mat-form-field class="custom-form-field">
+              <input matInput type="number" [(ngModel)]="muestras.NumeroCilindro" class="custom-input">
+            </mat-form-field>
+          </td>
+        </ng-container>
+      
+        <!-- Definición de las filas -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      <!-- Botón de Guardar Cambios -->
+      <button type="submit" class="btn" mat-stroked-button [disabled]="f.invalid">Guardar Cambios</button>
+      

@@ -28,6 +28,7 @@ import { AcerosComponent } from './pagina/aceros/aceros.component';
 import { RegistroSedesComponent } from './pagina/registro-sedes/registro-sedes.component';
 import { RegistroEmpresaComponent } from './pagina/registro-empresa/registro-empresa.component';
 import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-cilindro.component';
+import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-muestra.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
     AcerosComponent,
     RegistroSedesComponent,
     RegistroEmpresaComponent,
-    RegistroCilindroComponent
+    RegistroCilindroComponent,
+    RegistroMuestraComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,11 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    CommonModule
+    CommonModule,
+    BrowserModule,
+    FormsModule, 
+    MatTableModule,
+    MatInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

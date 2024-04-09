@@ -1,0 +1,19 @@
+  /* Estilos para el botón de guardar */
+  .btn {
+    display: block; /* Cambiar a bloque para ocupar todo el ancho disponible */
+    margin: 20px auto; /* Margen superior e inferior automático */
+    width: 50%; /* Ancho del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Borde redondeado */
+    background-color: #1b8603; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Sin subrayado de texto */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición suave al cambiar de color */
+  }
+  /* Selector basado en la clase 'btn' y el tipo 'submit' del botón */
+button.btn[type="submit"] {
+    color: white; /* Establece el color del texto como blanco */
+  }
+  

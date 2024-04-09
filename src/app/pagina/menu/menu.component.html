@@ -1,20 +1,40 @@
 <div class="navbar">
 
-<div class="logo">
-  <a href="/menu" style="color: white;">Hola {{ email }}</a>
-</div>
+  <div class="logo">
+    <a href="/menu" style="color: white;">Hola {{ email }}</a>
+  </div>
 
-  
   <div class="menu-items">
-    <button class="menu-item" (click)="mostrarUsuarios = true; mostrarEmpresas = false; mostrarEnsayos = false; mostrarSedes = false;">Usuarios</button>
-    <button class="menu-item" (click)="mostrarEmpresas = true; mostrarUsuarios = false; mostrarEnsayos = false; mostrarSedes = false;">Empresas</button>
-    <button class="menu-item" (click)="mostrarEnsayos = true; mostrarUsuarios = false; mostrarEmpresas = false; mostrarSedes = false;">Ensayos</button>
-    <button class="menu-item" (click)="mostrarSedes = true; mostrarEnsayos = false; mostrarUsuarios = false; mostrarEmpresas = false;">Sedes</button>
+    <button class="menu-item" (click)="cambiarSeccion('usuarios')">Usuarios</button>
+    <button class="menu-item" (click)="cambiarSeccion('empresas')">Empresas</button>
+    <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
+      <option value="" selected disabled>Ensayos</option>
+      <option value="ensayos">Concretos</option>
+      <option value="suelos">Suelos</option>
+      <option value="aceros">Aceros</option>
+    </select>
+    
+    <button class="menu-item" (click)="cambiarSeccion('sedes')">Sedes</button>
     <button class="menu-item" (click)="logout()">Salir</button>
   </div>
-</div>
 
-<app-usuarios *ngIf="mostrarUsuarios"></app-usuarios>
-<app-empresas *ngIf="mostrarEmpresas"></app-empresas>
-<app-ensayos *ngIf="mostrarEnsayos"></app-ensayos>
-<app-sedes *ngIf="mostrarSedes"></app-sedes>
+  <!-- Área para mostrar las secciones activas -->
+  <div class="menu-container">
+    <div *ngIf="seccionActiva === 'usuarios'">
+      <a routerLink="/usuarios" (click)="cambiarSeccion('usuarios')"></a>
+    </div>
+    <div *ngIf="seccionActiva === 'empresas'">
+      <a routerLink="/empresas" (click)="cambiarSeccion('empresas')"></a>
+    </div>
+    <div *ngIf="seccionActiva === 'sedes'">
+      <a routerLink="/sedes" (click)="cambiarSeccion('sedes')"></a>
+    </div>
+    <div *ngIf="seccionActiva === 'ensayos' || seccionActiva === 'suelos' || seccionActiva === 'aceros'">
+      <a routerLink="/ensayos" (click)="cambiarSeccion('ensayos')"></a>
+      <a routerLink="/suelos" (click)="cambiarSeccion('suelos')"></a>
+      <a routerLink="/aceros" (click)="cambiarSeccion('aceros')"></a>
+    </div>
+  </div>
+  
+
+</div>

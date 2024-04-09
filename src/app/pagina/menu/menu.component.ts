@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener  } from '@angular/core';
 import { Router } from '@angular/router';
 import { SesionDto } from 'src/app/modelo/sesion-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -18,8 +18,12 @@ export class MenuComponent implements OnInit{
   mostrarUsuarios: boolean = false;
   mostrarEmpresas: boolean = false;
   mostrarEnsayos: boolean = false;
+  mostrarSuelos: boolean = false;
+  mostrarAceros: boolean = false;
   mostrarSedes: boolean = false;
-  
+  seccionActiva: string = ''; // Variable para controlar la sección activa
+
+
   ngOnInit() {
     // Verificar si el usuario ya está autenticado
     if (this.authService.estaAutenticado()) {
@@ -38,9 +42,22 @@ export class MenuComponent implements OnInit{
   constructor(private authService: AuthService, private router: Router, private tokenService: TokenService){
     this.sesionDTO = new SesionDto();
   }
+  seleccionarSeccion(event: any) {
+    const seccionSeleccionada = event.target.value;
+    if (seccionSeleccionada) {
+      this.cambiarSeccion(seccionSeleccionada);
+    }
+  }
+  cambiarSeccion(seccion: string) {
+    this.seccionActiva = seccion;
+    this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
+    
+  }
+
 
   public logout() {
     this.tokenService.logout();
   }
+  }
   
-}
+

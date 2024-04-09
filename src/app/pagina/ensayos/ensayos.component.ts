@@ -15,11 +15,12 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class EnsayosComponent {
 
   dataSource = new MatTableDataSource<ConcretosDto>([]);
-  displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['Cr','numerodeMuestra', 'nombreObra', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
+  
   ngOnInit(): void {
 
     this.listarIngenieros();

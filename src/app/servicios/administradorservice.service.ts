@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IngenieroGetDTO } from '../modelo/ingeniero-get-dto';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { MensajeDTO } from '../modelo/mensaje-dto';
+import { UsuarioDTO } from '../modelo/usuario-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +30,16 @@ export class AdministradorService {
     // Realizar la solicitud POST enviando el objeto como el cuerpo de la solicitud
     return this.http.post<MensajeDTO>(`${this.authURL}/agregarEmpresa`, empresaData);
   }
-  public agregarUsuario(cedula: string, nombre: string, telefono: string, correo: string): Observable<MensajeDTO> {
-    // Construir un objeto con los datos de la empresa
-    const usuarioData = { cedula, nombre, telefono, correo };
 
-    // Realizar la solicitud POST enviando el objeto como el cuerpo de la solicitud
-    return this.http.post<MensajeDTO>(`${this.authURL}/listaIngenieros`, usuarioData);
+  public agregarAdministrador(usuarioDto: UsuarioDTO): Observable<MensajeDTO>{
+    this.authURL = 'http://localhost:8080/api/auth';
+    return this.http.post<MensajeDTO>(`${this.authURL}/crearAdministrador`, usuarioDto);
   }
+
+  public agregarIngeniero(usuarioDto: UsuarioDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/agregarIngeniero`, usuarioDto);
+  }
+
   public listarEmpresas(): Observable<EmpresasGetDTO[]> {
     return this.http.get<EmpresasGetDTO[]>(`${this.authURL}/listarEmpresas`);
   }

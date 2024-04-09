@@ -3,7 +3,7 @@ export class UsuarioDTO {
   estado: string = "";
   rol: string = "";
   nombre: string = "";
-  email: string = "";
+  correo: string = "";
   password: string = "";
   telefono: string = "";
   confirmaPassword: string = "";

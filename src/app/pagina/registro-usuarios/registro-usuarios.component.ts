@@ -18,14 +18,6 @@ export class RegistroUsuariosComponent{
   displayedColumns: string[] = ['cedula','nombre','ciudad','telefono','correo','acciones'];
   usuarioDto: UsuarioDTO;
   alerta: { mensaje: string, tipo: string } | null = null;
-  cedula: string = '';
-  nombre: string = '';
-  telefono: string = '';
-  correo: string = '';
-  email: string = '';
-  password: string = '';
-  rol: string = '';
-  confirmPassword: string = '';
 
   constructor(private authService: AuthService, private router: Router, private tokenService: TokenService,private adminService: AdministradorService){
     this.usuarioDto = new UsuarioDTO();
@@ -48,21 +40,41 @@ export class RegistroUsuariosComponent{
   }
 
   registrar(): void {
-    if (!this.cedula || !this.nombre || !this.telefono || !this.correo) {
-      this.alerta = { mensaje: 'Por favor completa todos los campos.', tipo: 'danger' };
-      return;
+
+    if(this.usuarioDto.rol=='administrador'){
+      this.adminService.agregarAdministrador(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Administrador ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
     }
 
-    this.adminService.agregarUsuario(this.cedula, this.nombre, this.telefono, this.correo).subscribe({
-      next: (data) => {
-        this.alerta = { mensaje: data.respuesta, tipo: 'success' };
-        alert('¡El Usuario ha sido creado!');
+    if(this.usuarioDto.rol=='cliente'){
+     
+    }
+
+    if(this.usuarioDto.rol=='ingeniero'){
+      this.adminService.agregarIngeniero(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Ingeniero ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
+    }
+
+    if(this.usuarioDto.rol=='digitador'){
       
-        window.close();
-      },
-      error: (err) => {
-        this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
-      }
-    });
+    }
   }
 }

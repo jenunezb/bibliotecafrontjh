@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Alerta } from 'src/app/modelo/alerta';
 import { IngenieroGetDTO } from 'src/app/modelo/ingeniero-get-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -12,25 +13,42 @@ import { TokenService } from 'src/app/servicios/token.service';
 export class UsuariosComponent implements OnInit {
   
   dataSource = new MatTableDataSource<IngenieroGetDTO>([]);
-  displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones', 'roles']; // Define las columnas que deseas mostrar
-
-  constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
-
-  ngOnInit(): void {
-    this.listarIngenieros();
+  displayedColumns: string[] = ['correo', 'acciones']; // Define las columnas que deseas mostrar
+  correo:string='';
+  alerta!: Alerta;
+  constructor(private administradorService: AdministradorService, tokenService: TokenService) {
   }
 
-  listarIngenieros(): void {
-    this.administradorService.listarIngenieros()
+  ngOnInit(): void {
+    this.listarAdministradores();
+  }
+
+  listarAdministradores(): void {
+    this.administradorService.listarAdministradores()
       .subscribe(
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta; 
         },
         error => {
-          console.error('Error al obtener la lista de ingenieros:', error);
+          console.error('Error al obtener la lista de Administradores:', error);
         }
       
       );
   }
+
+  eliminarAdministrador(correo:string): void {
+    if (confirm('¿Estás seguro de eliminar el Administrador?')) {
+        this.administradorService.eliminarAdministrador(correo).subscribe({
+            next: data => {
+                this.alerta = { mensaje: data.respuesta, tipo: "success" };
+                // Vuelve a cargar la lista de ciudades después de eliminar
+                this.listarAdministradores();
+            },
+            error: err => {
+                this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+            }
+        });
+    }
+}
 }

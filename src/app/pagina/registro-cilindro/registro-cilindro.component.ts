@@ -13,7 +13,7 @@ import { EnsayosComponent } from '../ensayos/ensayos.component';
 export class RegistroCilindroComponent implements OnInit {
 
   dataSource = new MatTableDataSource<EnsayosComponent>([]);
-  displayedColumns: string[] = ['Numero de muestra','Cr','Proyecto','Ensayo','Fecha de toma'];
+  displayedColumns: string[] = ['Numero de muestra','Cr','Ensayo','Fecha de toma'];
 
   ngOnInit() {
     if (this.authService.estaAutenticado()) {

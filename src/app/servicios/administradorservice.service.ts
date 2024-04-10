@@ -20,6 +20,10 @@ export class AdministradorService {
     return this.http.get<IngenieroGetDTO>(`${this.authURL}/listaIngenieros`);
   }
 
+  public listarAdministradores(): Observable<IngenieroGetDTO> {
+    return this.http.get<IngenieroGetDTO>(`${this.authURL}/listaAdministradores`);
+  }
+
   public agregarCiudad(ciudad: string): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/agregarCiudad`, ciudad);
   }
@@ -50,6 +54,11 @@ export class AdministradorService {
     // La información de la ciudad se pasa como parte de la URL
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarCiudad/${ciudad}`);
   }
+
+  public eliminarAdministrador(correo: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarAdministrador/${correo}`);
+  }
+
   public eliminarEmpresa(nombre: string): Observable<MensajeDTO> {
     // Imprime la URL antes de enviar la solicitud
     console.log('URL de eliminación de empresa:', `${this.authURL}/eliminarEmpresa/${nombre}`);

@@ -37,4 +37,9 @@ export class AuthService {
   public listarEmpresas():Observable<EmpresasGetDTO>{
     return this.http.get<EmpresasGetDTO>(`${this.authURL}/empresas`);
   }  
+
+  public listarSedes():Observable<SedesGetDTO>{
+    return this.http.get<SedesGetDTO>(`${this.authURL}/sedes`);
+  }  
+  
 }

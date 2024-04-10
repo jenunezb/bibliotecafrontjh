@@ -1,23 +1,21 @@
-<form class="registration-form">
+<div class="registration-form">
 
-    <div class="form-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="direccion" class="form-control" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" class="form-control">
-    </div>
-  
-  
-    <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary">Registrar</button>
-    </div>
-  </form>
-  
-  
+  <div class="form-group">
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control">
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn" (click)="registrar()">Registrar</button>
+  </div>
+</div>

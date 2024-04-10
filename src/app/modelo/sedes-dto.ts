@@ -1,6 +1,6 @@
 export class SedesGetDTO {
 
-  nombre: string = "";
+  ciudad: string = "";
   direccion: string = "";
   telefono: string = "";
   

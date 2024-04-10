@@ -42,13 +42,21 @@
                             <input
                               type="text"
                               [(ngModel)]="element[col]"
-                              (blur)="saveChanges()"
                               class="edit-input"
                             >
                           </ng-container>
+                          <!-- Icono de guardado -->
+                          <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #0f41e6;" (click)="saveChanges()">
+                            <mat-icon class="circle-icon">check_circle</mat-icon>
+                          </a>
+                          <!-- Icono de cancelación -->
+                          <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #e15639;" (click)="cancelEditing()">
+                            <mat-icon>cancel</mat-icon>
+                          </a>
                         </ng-template>
                       </td>
                     </ng-container>
+                
                   
                     <!-- Fila de encabezado y fila de datos -->
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -115,5 +115,8 @@ export class EmpresasComponent implements OnInit {
       this.listarEmpresas(); // Volver a cargar la lista completa cuando el campo de búsqueda esté vacío
     }
   }
+  cancelEditing() {
+    this.editingRowIndex = null; // Salir del modo de edición
+  }
 
 }

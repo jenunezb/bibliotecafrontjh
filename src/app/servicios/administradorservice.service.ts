@@ -6,6 +6,7 @@ import { IngenieroGetDTO } from '../modelo/ingeniero-get-dto';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { MensajeDTO } from '../modelo/mensaje-dto';
 import { UsuarioDTO } from '../modelo/usuario-dto';
+import { SedesGetDTO } from '../modelo/sedes-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -73,4 +74,27 @@ export class AdministradorService {
     const url = `${this.authURL}/editarEmpresa`; // Reemplaza 'editarEmpresa' con la ruta correcta en tu backend
     return this.http.put(url, empresa);
   }
+  public agregarSede(ciudad: string, direccion: string, telefono: string): Observable<MensajeDTO> {
+    // Construir un objeto con los datos de la empresa
+    const sedeData = {ciudad, direccion, telefono };
+
+    // Realizar la solicitud POST enviando el objeto como el cuerpo de la solicitud
+    return this.http.post<MensajeDTO>(`${this.authURL}/agregarSede`, sedeData);
+  }
+
+  public listarSedes(): Observable<SedesGetDTO[]> {
+    return this.http.get<SedesGetDTO[]>(`${this.authURL}/listarSedes`);
+  }
+  public eliminarSedes(ciudad: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarSede/${ciudad}`);
+  }
+  buscarSede(ciudad: string): Observable<EmpresasGetDTO[]> {
+    const url = `${this.authURL}/buscarSede/${ciudad}`;
+    return this.http.get<EmpresasGetDTO[]>(url);
+  }
+  editarSede(sedesDto: SedesGetDTO): Observable<any> {
+    const url = `${this.authURL}/editarSede`;
+    return this.http.put(url, sedesDto);
+
+}
 }

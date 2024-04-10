@@ -21,6 +21,9 @@ export class MenuComponent implements OnInit{
   mostrarSuelos: boolean = false;
   mostrarAceros: boolean = false;
   mostrarSedes: boolean = false;
+  mostrarIngenieros: boolean = false;
+  mostrarClientes: boolean = false;
+  mostrarDigitadores: boolean = false;
   seccionActiva: string = ''; // Variable para controlar la sección activa
 
 

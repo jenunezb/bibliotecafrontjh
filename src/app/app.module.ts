@@ -29,6 +29,10 @@ import { RegistroSedesComponent } from './pagina/registro-sedes/registro-sedes.c
 import { RegistroEmpresaComponent } from './pagina/registro-empresa/registro-empresa.component';
 import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-cilindro.component';
 import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-muestra.component';
+import { ObraComponent } from './pagina/obra/obra.component';
+import { IngenieroComponent } from './pagina/ingeniero/ingeniero.component';
+import { DigitadorComponent } from './pagina/digitador/digitador.component';
+import { ClienteComponent } from './pagina/cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-mue
     RegistroSedesComponent,
     RegistroEmpresaComponent,
     RegistroCilindroComponent,
-    RegistroMuestraComponent
+    RegistroMuestraComponent,
+    ObraComponent,
+    IngenieroComponent,
+    DigitadorComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

@@ -5,8 +5,15 @@
   </div>
 
   <div class="menu-items">
-    <button class="menu-item" (click)="cambiarSeccion('usuarios')">Usuarios</button>
+    <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
+      <option value="" selected disabled>Usuarios</option>
+      <option value="usuarios">Administrador</option>
+      <option value="ingeniero">Ingeniero</option>
+      <option value="digitador">Digitador</option>
+      <option value="cliente">Cliente</option>
+    </select>
     <button class="menu-item" (click)="cambiarSeccion('empresas')">Empresas</button>
+    <button class="menu-item" (click)="cambiarSeccion('obra')">Obras</button>
     <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
       <option value="" selected disabled>Ensayos</option>
       <option value="ensayos">Concretos</option>
@@ -20,11 +27,17 @@
 
   <!-- Área para mostrar las secciones activas -->
   <div class="menu-container">
-    <div *ngIf="seccionActiva === 'usuarios'">
+    <div *ngIf="seccionActiva === 'usuarios' || seccionActiva === 'ingeniero' || seccionActiva === 'digitador'|| seccionActiva === 'cliente'">
       <a routerLink="/usuarios" (click)="cambiarSeccion('usuarios')"></a>
+      <a routerLink="/ingeniero" (click)="cambiarSeccion('ingeniero')"></a>
+      <a routerLink="/digitador" (click)="cambiarSeccion('digitador')"></a>
+      <a routerLink="/cliente" (click)="cambiarSeccion('cliente')"></a>
     </div>
     <div *ngIf="seccionActiva === 'empresas'">
       <a routerLink="/empresas" (click)="cambiarSeccion('empresas')"></a>
+    </div>
+    <div *ngIf="seccionActiva === 'obra'">
+      <a routerLink="/obra" (click)="cambiarSeccion('obra')"></a>
     </div>
     <div *ngIf="seccionActiva === 'sedes'">
       <a routerLink="/sedes" (click)="cambiarSeccion('sedes')"></a>

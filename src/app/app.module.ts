@@ -33,6 +33,7 @@ import { ObraComponent } from './pagina/obra/obra.component';
 import { IngenieroComponent } from './pagina/ingeniero/ingeniero.component';
 import { DigitadorComponent } from './pagina/digitador/digitador.component';
 import { ClienteComponent } from './pagina/cliente/cliente.component';
+import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ClienteComponent } from './pagina/cliente/cliente.component';
     ObraComponent,
     IngenieroComponent,
     DigitadorComponent,
-    ClienteComponent
+    ClienteComponent,
+    RegistroObraComponent
   ],
   imports: [
     BrowserModule,

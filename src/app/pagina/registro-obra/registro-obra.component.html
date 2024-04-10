@@ -1,0 +1,55 @@
+<div>
+    <h2>Registro de Obras</h2>
+    <div *ngIf="alerta" class="alert alert-{{alerta.tipo}}">
+      {{ alerta.mensaje }}
+    </div>
+  
+      <div class="form-group">
+        <label for="cr">Cr</label>
+        <input type="cr" id="cr" name="cr" class="form-control" [(ngModel)]="obrasDTO.cr" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="nombre" id="nombre" name="nombre" class="form-control" [(ngModel)]="obrasDTO.nombre" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="direccion">Direccion</label>
+        <input type="direccion" id="direccion" name="direccion" class="form-control" [(ngModel)]="obrasDTO.direccion" required>
+      </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" class="form-control" [(ngModel)]="usuarioDto.telefono" >
+        </div>
+
+        <div class="form-group">
+            <label for="empresa">Nombre de la Empresa:</label>
+            <select id="empresa" name="empresa" class="form-control" [(ngModel)]="obrasDTO.nombre" >
+              <option value="" selected disabled>Seleccione Nombre de la empresa</option>
+              <option *ngFor="let empresa of dataSources.data" [value]="empresa.nombre">{{ empresa.nombre }}</option>
+            </select>
+          </div>
+          
+        <div class="form-group">
+            <label for="ciudad">Ciudad:</label>
+            <select id="ciudad" name="ciudad" class="form-control" [(ngModel)]="obrasDTO.ciudad" >
+              <option value="" selected disabled>Seleccione una ciudad</option>
+              <option *ngFor="let ciudad of dataSource.data" [value]="ciudad.nombre">{{ ciudad.nombre }}</option>
+            </select>
+          </div>
+          </div>
+
+         
+          <div class="form-group">
+            <label for="fechaInicio">Fecha de inicio:</label>
+            <input type="text" id="fechaInicio" name="fechaInicio" class="form-control" [(ngModel)]="obrasDTO.FechaInicio" >
+          </div>
+  
+        <div class="form-group text-center">
+        <button type="button" class="btn btn-primary">Registrarse</button>
+        </div>
+       
+
+  

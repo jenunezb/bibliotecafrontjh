@@ -1,0 +1,59 @@
+.registration-form {
+    max-width: 100px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: calc(100% - 20px);
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn {
+    display: block; /* Cambiar a bloque para que ocupe todo el ancho disponible */
+    margin: 0 auto; /* Alinear horizontalmente */
+    width: 50%; /* Establecer un ancho para el botón */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #1b8603;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .btn:hover {
+    background-color: #099432;
+  }
+
+  .modal-content {
+    max-width: 200px; /* Establece el ancho máximo de la ventana emergente */
+    margin: 0 auto; /* Centra la ventana emergente horizontalmente */
+    padding: 20px; /* Agrega espacio interno */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  

@@ -5,5 +5,6 @@ export class ObrasDto {
     telefono:string  = "";
     ciudad: string = "";
     NitEmpresa: string="";
+    FechaInicio: string="";
   }
   

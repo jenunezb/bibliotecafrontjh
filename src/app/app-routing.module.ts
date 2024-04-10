@@ -20,6 +20,7 @@ import { ObraComponent } from './pagina/obra/obra.component';
 import { IngenieroComponent } from './pagina/ingeniero/ingeniero.component';
 import { ClienteComponent } from './pagina/cliente/cliente.component';
 import { DigitadorComponent } from './pagina/digitador/digitador.component';
+import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -40,6 +41,7 @@ const routes: Routes = [
     { path: "digitador", component: DigitadorComponent},
     { path: "registro-ciudad", component: RegistroCiudadComponent },
     { path: "registro-muestra", component: RegistroMuestraComponent },
+    { path: "registro-obra", component: RegistroObraComponent },
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

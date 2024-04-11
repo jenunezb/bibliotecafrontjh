@@ -7,6 +7,10 @@ import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { MensajeDTO } from '../modelo/mensaje-dto';
 import { UsuarioDTO } from '../modelo/usuario-dto';
 import { SedesGetDTO } from '../modelo/sedes-dto';
+import { DigitadorDTO } from '../modelo/digitador-get-dto';
+import { ClienteDTO } from '../modelo/cliente-get-dto';
+import { UsuarioGetDTO } from '../modelo/usuario-get-dto';
+import { AdministradorDTO } from '../modelo/administrador-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +29,12 @@ export class AdministradorService {
     return this.http.get<IngenieroGetDTO>(`${this.authURL}/listaAdministradores`);
   }
 
+  public listarDigitadores(): Observable<DigitadorDTO> {
+    return this.http.get<DigitadorDTO>(`${this.authURL}/listarDigitadores`);
+  }
+  public listarClientes(): Observable<ClienteDTO> {
+    return this.http.get<ClienteDTO>(`${this.authURL}/listarClientes`);
+  }
   public agregarCiudad(ciudad: string): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/agregarCiudad`, ciudad);
   }
@@ -44,6 +54,12 @@ export class AdministradorService {
   public agregarIngeniero(usuarioDto: UsuarioDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/agregarIngeniero`, usuarioDto);
   }
+  public agregarDigitador(usuarioDto: UsuarioDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/agregarDigitador`, usuarioDto);
+  }
+  public agregarCliente(usuarioDto: UsuarioDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/agregarCliente`, usuarioDto);
+  }
 
   public listarEmpresas(): Observable<EmpresasGetDTO[]> {
     return this.http.get<EmpresasGetDTO[]>(`${this.authURL}/listarEmpresas`);
@@ -56,10 +72,19 @@ export class AdministradorService {
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarCiudad/${ciudad}`);
   }
 
+  editarAdministrador(correo: string): Observable<any> {
+    const url = `${this.authURL}/editarAdministrador`;
+    return this.http.put(url, { correo: correo });
+  }
   public eliminarAdministrador(correo: string): Observable<MensajeDTO> {
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarAdministrador/${correo}`);
   }
-
+  public eliminarDigitador(correo: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarDigitador/${correo}`);
+  }
+  public eliminarIngeniero(correo: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarIngeniero/${correo}`);
+  }
   public eliminarEmpresa(nombre: string): Observable<MensajeDTO> {
     // Imprime la URL antes de enviar la solicitud
     console.log('URL de eliminación de empresa:', `${this.authURL}/eliminarEmpresa/${nombre}`);
@@ -70,9 +95,18 @@ export class AdministradorService {
     const url = `${this.authURL}/buscarEmpresa/${nombre}`;
     return this.http.get<EmpresasGetDTO[]>(url);
   }
+ 
+  buscarAdministrador(correo: string): Observable<AdministradorDTO[]> {
+    const url = `${this.authURL}/buscarAdministrador/${correo}`;
+    return this.http.get<AdministradorDTO[]>(url);
+  }
   editarEmpresa(empresa: EmpresasGetDTO): Observable<any> {
     const url = `${this.authURL}/editarEmpresa`; // Reemplaza 'editarEmpresa' con la ruta correcta en tu backend
     return this.http.put(url, empresa);
+  }
+  editarIngeniero(ingeniero: IngenieroGetDTO): Observable<any> {
+    const url = `${this.authURL}/editarIngeniero/${ingeniero.cedula}`; // Asegúrate de incluir la cédula en la URL
+    return this.http.put(url, ingeniero);
   }
   public agregarSede(ciudad: string, direccion: string, telefono: string): Observable<MensajeDTO> {
     // Construir un objeto con los datos de la empresa
@@ -88,9 +122,17 @@ export class AdministradorService {
   public eliminarSedes(ciudad: string): Observable<MensajeDTO> {
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarSede/${ciudad}`);
   }
-  buscarSede(ciudad: string): Observable<EmpresasGetDTO[]> {
+  buscarSede(ciudad: string): Observable<SedesGetDTO[]> {
     const url = `${this.authURL}/buscarSede/${ciudad}`;
-    return this.http.get<EmpresasGetDTO[]>(url);
+    return this.http.get<SedesGetDTO[]>(url);
+  }
+  buscarIngeniero(nombre: string): Observable<IngenieroGetDTO[]> {
+    const url = `${this.authURL}/buscarIngenieros/${nombre}`;
+    return this.http.get<IngenieroGetDTO[]>(url);
+  }
+  buscarDigitador(nombre: string): Observable<DigitadorDTO[]> {
+    const url = `${this.authURL}/buscarDigitador/${nombre}`;
+    return this.http.get<DigitadorDTO[]>(url);
   }
   editarSede(sedesDto: SedesGetDTO): Observable<any> {
     const url = `${this.authURL}/editarSede`;

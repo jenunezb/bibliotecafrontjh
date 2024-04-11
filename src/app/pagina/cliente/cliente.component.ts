@@ -18,11 +18,11 @@ export class ClienteComponent {
   constructor(private administradorService: AdministradorService, tokenService: TokenService) {}
 
   ngOnInit(): void {
-    this.listarIngenieros();
+    this.listarClientes();
   }
 
-  listarIngenieros(): void {
-    this.administradorService.listarIngenieros()
+  listarClientes(): void {
+    this.administradorService.listarClientes()
       .subscribe(
         (response: any) => {
           confirm

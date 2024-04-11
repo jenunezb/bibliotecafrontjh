@@ -56,7 +56,17 @@ export class RegistroUsuariosComponent{
     }
 
     if(this.usuarioDto.rol=='cliente'){
-     
+      this.adminService.agregarCliente(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Ingeniero ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
     }
 
     if(this.usuarioDto.rol=='ingeniero'){
@@ -74,7 +84,17 @@ export class RegistroUsuariosComponent{
     }
 
     if(this.usuarioDto.rol=='digitador'){
-      
+      this.adminService.agregarDigitador(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Digitador ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
+    }
     }
   }
-}

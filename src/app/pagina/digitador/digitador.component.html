@@ -4,13 +4,13 @@
     <div>
         <button class="mi-boton" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario','width=800, height=700'); return false;" class="mi-boton">Crear Digitador</button>
         <div class="busqueda">
-            <form action="../../form-result.php" method="post" target="_blank" class="search-form">
-                <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
-                <button type="submit" class="search-button">
-                    <mat-icon>search</mat-icon>
-                </button>
+            <form (ngSubmit)="buscarDigitadores(busqueda.value)" class="search-form">
+              <input #busqueda type="search" name="busquedamusica" placeholder="Search for Cedula...." class="search-input" (keyup)="onBuscarInputChange(busqueda.value)" required>
+              <button type="submit" class="search-button">
+                <mat-icon>search</mat-icon>
+              </button>
             </form>
-        </div>
+          </div>
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <!-- Cedula Column -->
@@ -45,7 +45,7 @@
                     <a class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario">
                         <mat-icon>edit</mat-icon> <!-- Icono de edición -->
                     </a>
-                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
+                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario"(click)="eliminarDigitador(element.correo)">
                         <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
                     </a>
                 </td>

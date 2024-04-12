@@ -32,6 +32,7 @@ export class AdministradorService {
   public listarDigitadores(): Observable<DigitadorDTO> {
     return this.http.get<DigitadorDTO>(`${this.authURL}/listarDigitadores`);
   }
+
   public listarClientes(): Observable<ClienteDTO> {
     return this.http.get<ClienteDTO>(`${this.authURL}/listarClientes`);
   }

@@ -17,9 +17,6 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
 import { SedesComponent } from './pagina/sedes/sedes.component';
 import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-muestra.component';
 import { ObraComponent } from './pagina/obra/obra.component';
-import { IngenieroComponent } from './pagina/ingeniero/ingeniero.component';
-import { ClienteComponent } from './pagina/cliente/cliente.component';
-import { DigitadorComponent } from './pagina/digitador/digitador.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 
 const routes: Routes = [
@@ -36,9 +33,6 @@ const routes: Routes = [
     { path: "sedes", component: SedesComponent },
     { path: "empresas", component: EmpresasComponent },
     { path: "obra", component: ObraComponent},
-    { path: "ingeniero", component: IngenieroComponent},
-    { path: "cliente", component: ClienteComponent},
-    { path: "digitador", component: DigitadorComponent},
     { path: "registro-ciudad", component: RegistroCiudadComponent },
     { path: "registro-muestra", component: RegistroMuestraComponent },
     { path: "registro-obra", component: RegistroObraComponent },

@@ -30,9 +30,6 @@ import { RegistroEmpresaComponent } from './pagina/registro-empresa/registro-emp
 import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-cilindro.component';
 import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-muestra.component';
 import { ObraComponent } from './pagina/obra/obra.component';
-import { IngenieroComponent } from './pagina/ingeniero/ingeniero.component';
-import { DigitadorComponent } from './pagina/digitador/digitador.component';
-import { ClienteComponent } from './pagina/cliente/cliente.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 
 @NgModule({
@@ -54,9 +51,6 @@ import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.comp
     RegistroCilindroComponent,
     RegistroMuestraComponent,
     ObraComponent,
-    IngenieroComponent,
-    DigitadorComponent,
-    ClienteComponent,
     RegistroObraComponent
   ],
   imports: [

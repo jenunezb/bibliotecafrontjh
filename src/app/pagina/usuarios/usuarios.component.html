@@ -1,6 +1,7 @@
 <div class="container">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div class="Usuarios"><span>Usuarios</span></div>
+    
     <div>
         <button class="mi-boton" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario','width=800, height=700'); return false;" class="mi-boton">Crear Administrador</button>
         <div class="busqueda">
@@ -10,28 +11,57 @@
                     <mat-icon>search</mat-icon>
                 </button>
             </form>
+    </div>
+
+        <div class="menu-items">
+            <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
+                <option value="usuarios" [selected]="seccionActiva === 'usuarios'">Administradores</option>
+                <option value="ingenieros" [selected]="seccionActiva === 'ingenieros'">Ingenieros</option>
+                <option value="digitadores" [selected]="seccionActiva === 'digitadores'">Digitadores</option>
+                <!-- Agrega opciones para otros tipos de usuarios si es necesario -->
+            </select>            
         </div>
-    
+
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <!-- Correo Column -->
-            <ng-container matColumnDef="correo">
-                <th mat-header-cell *matHeaderCellDef> Correo </th>
-                <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+            <!-- Definición de columnas -->
+            <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+              <th mat-header-cell *matHeaderCellDef> {{ col === 'acciones' ? 'Acciones' : col | titlecase }} </th>
+              <td mat-cell *matCellDef="let element; let rowIndex = index">
+                <!-- Verificar si estamos en modo de edición para esta fila -->
+                <ng-container *ngIf="editingRowIndex !== rowIndex; else editMode">
+                  <!-- Contenido de la celda -->
+                  {{ element[col] }}
+                  <!-- Icono de edición -->
+                  <a *ngIf="col === 'acciones' && !editingRowIndex" class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario" (click)="startEditing(rowIndex)">
+                    <mat-icon>edit</mat-icon>
+                  </a>
+                  <!-- Icono de eliminación -->
+                  <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" matTooltip="Eliminar Usuario" (click)="eliminarIngeniero(element.correo)">
+                    <mat-icon>delete</mat-icon>
+                  </a>
+                </ng-container>
+                <!-- Modo de edición -->
+                <ng-template #editMode>
+                    <ng-container *ngIf="col === 'nombre'|| col === 'telefono'|| col === 'correo'">
+                    <input type="text" [(ngModel)]="element[col]" class="edit-input">
+                  </ng-container>
+                  <!-- Icono de guardado -->
+                  <a *ngIf="col === 'acciones'" class="btn-danger pointer" style="color: #0f41e6;" matTooltip="Guardar Cambios" (click)="saveChanges()">
+                    <mat-icon class="circle-icon">check_circle</mat-icon>
+                  </a>
+                  <!-- Icono de cancelación -->
+                  <a *ngIf="col === 'acciones'" class="btn-danger pointer" style="color: #e15639;" matTooltip="Cancelar Edición" (click)="cancelEditing()">
+                    <mat-icon>cancel</mat-icon>
+                  </a>
+                </ng-template>
+              </td>
             </ng-container>
-            <!-- Acciones Column -->
-            <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                <td mat-cell *matCellDef="let element" style="text-align: left;">
-                    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario">
-                        <mat-icon>edit</mat-icon> <!-- Icono de edición -->
-                    </a>
-                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Ciudad" (click)="eliminarAdministrador(element.correo)">
-                        <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
-                      </a>
-                </td>
-            </ng-container>
+            
+            <!-- Fila de encabezado -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+            
+            <!-- Fila de datos -->
+            <tr mat-row *matRowDef="let row; index as rowIndex; columns: displayedColumns;"></tr>
+          </table>
     </div>
 </div>

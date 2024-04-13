@@ -46,3 +46,15 @@ label {
 .btn:hover {
   background-color: #099432;
 }
+
+
+.disabled-button {
+  background-color: #cccccc; /* Color de fondo gris */
+  cursor: not-allowed; /* Cambia el cursor a no permitido */
+  opacity: 0.6; /* Reducción de opacidad */
+}
+
+.matched-password-button {
+  background-color: #28a745; /* Color de fondo verde */
+  cursor: pointer; /* Cambia el cursor a puntero */
+}

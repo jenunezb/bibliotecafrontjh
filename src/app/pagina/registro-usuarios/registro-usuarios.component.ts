@@ -97,4 +97,8 @@ export class RegistroUsuariosComponent{
       });
     }
     }
+
+    public sonIguales():boolean{
+      return this.usuarioDto.password == this.usuarioDto.confirmaPassword;
+      }
   }

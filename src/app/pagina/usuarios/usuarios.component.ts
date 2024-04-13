@@ -84,20 +84,6 @@ export class UsuariosComponent implements OnInit {
       );
   }
 
-  eliminarAdministrador(correo: string): void {
-    if (confirm('¿Estás seguro de eliminar el Administrador?')) {
-        this.administradorService.eliminarAdministrador(correo).subscribe({
-            next: data => {
-                this.alerta = { mensaje: data.respuesta, tipo: "success" };
-                this.listarAdministradores(); // Vuelve a cargar la lista después de eliminar
-            },
-            error: err => {
-                this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
-            }
-        });
-    }
-  }
-
   cambiarSeccion(seccion: string) {
     this.seccionActiva = seccion;
     switch(seccion) {
@@ -159,9 +145,9 @@ cancelEditing() {
   this.editingRowIndex = null; // Salir del modo de edición
 }
 
-eliminarIngeniero(correo:string): void {
-  if (confirm('¿Estás seguro de eliminar el Ingeniero?')) {
-      this.administradorService.eliminarDigitador(correo).subscribe({
+eliminarUsuario(correo:string): void {
+  if (confirm('¿Estás seguro de eliminar el usuario?')) {
+      this.administradorService.eliminarUsuario(correo).subscribe({
           next: data => {
               this.alerta = { mensaje: data.respuesta, tipo: "success" };
               // Vuelve a cargar la lista de ciudades después de eliminar
@@ -173,6 +159,5 @@ eliminarIngeniero(correo:string): void {
       });
   }
 }
-
 
 }

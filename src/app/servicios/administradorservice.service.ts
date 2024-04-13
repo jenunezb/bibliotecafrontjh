@@ -77,7 +77,7 @@ export class AdministradorService {
     const url = `${this.authURL}/editarAdministrador`;
     return this.http.put(url, { correo: correo });
   }
-  public eliminarAdministrador(correo: string): Observable<MensajeDTO> {
+  public eliminarUsuario(correo: string): Observable<MensajeDTO> {
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarAdministrador/${correo}`);
   }
   public eliminarDigitador(correo: string): Observable<MensajeDTO> {

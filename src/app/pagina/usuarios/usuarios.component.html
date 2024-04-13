@@ -37,7 +37,7 @@
                     <mat-icon>edit</mat-icon>
                   </a>
                   <!-- Icono de eliminación -->
-                  <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" matTooltip="Eliminar Usuario" (click)="eliminarIngeniero(element.correo)">
+                  <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" matTooltip="Eliminar Usuario" (click)="eliminarUsuario(element.correo)">
                     <mat-icon>delete</mat-icon>
                   </a>
                 </ng-container>

@@ -1,25 +1,34 @@
 <div class="registration-form">
-
   <div class="form-group">
     <label for="nit">NIT:</label>
-    <input type="text" id="nit" [(ngModel)]="nit" class="form-control">
+    <input type="text" id="nit" [(ngModel)]="nit" class="form-control" (input)="detectarCambios()">
   </div>
 
   <div class="form-group">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control">
+    <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" (input)="detectarCambios()">
   </div>
 
   <div class="form-group">
     <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" [(ngModel)]="direccion" class="form-control">
+    <input type="text" id="direccion" [(ngModel)]="direccion" class="form-control" (input)="detectarCambios()">
   </div>
 
   <div class="form-group">
     <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" [(ngModel)]="telefono" class="form-control">
+    <input type="text" id="telefono" [(ngModel)]="telefono" class="form-control" (input)="detectarCambios()">
   </div>
 
-  <button class="btn" (click)="registrar()">Registrar</button>
+  <!-- Mostrar mensaje de error si hay campos incompletos -->
+  <div *ngIf="camposIncompletos" class="alert-message">
+    Por favor completa todos los campos.
+  </div>
+<!-- Mostrar mensaje de error si el NIT está repetido -->
+<div *ngIf="mostrarErrorNitRepetido" class="alert alert-danger">
+  El NIT ya se encuentra registrado.
 </div>
-
+  <button class="btn" (click)="registrar()">Registrar</button>
+  <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert">
+    {{ alerta.mensaje }}
+  </div>
+</div>

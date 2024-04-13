@@ -58,3 +58,15 @@ label {
   background-color: #28a745; /* Color de fondo verde */
   cursor: pointer; /* Cambia el cursor a puntero */
 }
+.alert-danger, .alert-message {
+  margin-top: 20px; /* Espacio superior para separar del contenido anterior */
+  margin-bottom: 10px; /* Espacio inferior para separar del contenido posterior */
+  padding: 10px;
+  background-color: #f8d7da; /* Color de fondo rojo claro (estilo de advertencia) */
+  color: #721c24; /* Color del texto oscuro */
+  border: 1px solid #f5c6cb; /* Borde rojo */
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center; /* Centrar el texto horizontalmente */
+  width: 180px; /* Ancho del mensaje */
+}
+

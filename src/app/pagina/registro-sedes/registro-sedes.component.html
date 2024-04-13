@@ -2,20 +2,31 @@
 
   <div class="form-group">
     <label for="ciudad">Ciudad:</label>
-    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" class="form-control" required>
+    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" class="form-control"(input)="detectarCambios()">
   </div>
 
   <div class="form-group">
     <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" class="form-control" required>
+    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" class="form-control"(input)="detectarCambios()">
   </div>
 
   <div class="form-group">
     <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control">
+    <input type="tel" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control"(input)="detectarCambios()">
+  </div>
+
+  <!-- Mostrar mensaje de error si hay campos incompletos -->
+  <div *ngIf="camposIncompletos" class="alert-message">
+    Por favor completa todos los campos.
+  </div>
+  <div *ngIf="mostrarErrorSedeRepetido" class="alert-message">
+    La sede ya se encuentra registrada para esta ciudad.
   </div>
 
   <div class="form-group text-center">
     <button class="btn" (click)="registrar()">Registrar</button>
+    <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert-message">
+      {{ alerta.mensaje }}
+    </div>
   </div>
 </div>

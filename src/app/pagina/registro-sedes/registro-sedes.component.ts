@@ -20,6 +20,8 @@ export class RegistroSedesComponent {
   ciudad: string = '';
   direccion: string = '';
   telefono: string = '';
+  camposIncompletos: boolean = false;
+  mostrarErrorSedeRepetido: boolean = false;
 
   
   constructor(private adminService: AdministradorService){
@@ -28,7 +30,8 @@ export class RegistroSedesComponent {
 
   registrar(): void {
     if (!this.ciudad || !this.direccion ||!this.telefono) {
-      this.alerta = { mensaje: 'Por favor completa todos los campos.', tipo: 'danger' };
+      this.camposIncompletos = true;
+      this.mostrarErrorSedeRepetido = false;
       return;
     }
     this.adminService.agregarSede(this.ciudad, this.direccion,this.telefono).subscribe({
@@ -37,10 +40,39 @@ export class RegistroSedesComponent {
         alert('¡La sede ha sido creada!');
         window.close(); 
       },
-      error: (err) => {
-        console.error('Error al registrar la sede:', err);
-        this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+      error: (error) => {
+        console.error('Error al registrar la empresa:', error);
+        if (error && error.error && typeof error.error === 'string') {
+          // Mostrar mensaje de error del backend con estilo de error
+          this.mostrarAlerta(error.error, 'danger');
+        } else {
+          // Mostrar mensaje de error genérico con estilo de error
+          this.mostrarAlerta('La sede ya se encuentra registrada para esta ciudad.', 'danger');
+        }
+      },
+      complete: () => {
+        // Restablecer la bandera de campos incompletos una vez se inicia el registro
+        this.camposIncompletos = true;
+        this.mostrarErrorSedeRepetido = false;
       }
     });
   }
+
+    // Función para mostrar alerta con estilo específico
+    mostrarAlerta(mensaje: string, tipo: string): void {
+      this.alerta = { mensaje: mensaje, tipo: tipo };
+    }
+    
+  
+    // Función para detectar cambios en los campos y ocultar el mensaje de error si todos los campos están llenos
+    detectarCambios(): void {
+      if (this.ciudad && this.direccion && this.telefono) {
+        this.camposIncompletos = false; // Ocultar alerta de campos incompletos si el NIT está repetido
+      this.mostrarErrorSedeRepetido = true; // Mostrar alerta de NIT repetido
+    } else {
+      this.camposIncompletos = false; // Ocultar alerta de campos incompletos si no hay errores
+      this.mostrarErrorSedeRepetido = false; // Ocultar alerta de NIT repetido si no hay errores
+    }
 }
+
+  }

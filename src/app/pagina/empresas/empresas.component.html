@@ -1,70 +1,62 @@
 <div class="container">
-    
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-            <div class="Empresas"><span>Empresas</span></div>
-       
-            <div>
-                <button class="mi-boton" href="/registro-empresa" onclick="window.open('/registro-empresa', 'Crear Empresas', 'width=600, height=400'); return false;" class="mi-boton">Crear Empresas</button>
+  <div class="Empresas"><span>Empresas</span></div>
 
-    
-                <div class="busqueda">
-                    <form (ngSubmit)="buscarEmpresas(busqueda.value)" class="search-form">
-                      <input #busqueda type="search" name="busquedamusica" placeholder="Search for Nit...." class="search-input" 
-                             (keyup)="onBuscarInputChange(busqueda.value)" required>
-                      <button type="submit" class="search-button">
-                        <mat-icon>search</mat-icon>
-                      </button>
-                    </form>
-                  </div>
-                  
-    
-                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <!-- Definición de columnas -->
-                    <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-                      <th mat-header-cell *matHeaderCellDef> {{col === 'acciones' ? 'Acciones' : col | titlecase}} </th>
-                      <td mat-cell *matCellDef="let element; let rowIndex = index">
-                        <!-- Verifica si estamos en modo de edición para esta fila -->
-                        <ng-container *ngIf="editingRowIndex !== rowIndex; else editMode">
-                          {{element[col]}}
-                          <!-- Icono de edición -->
-                          <a *ngIf="col === 'acciones' && !editingRowIndex" class="pointer" (click)="startEditing(rowIndex)">
-                            <mat-icon>edit</mat-icon>
-                          </a>
-                          <!-- Icono de eliminación -->
-                          <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" (click)="eliminarEmpresa(element.nombre)">
-                            <mat-icon>delete</mat-icon>
-                          </a>
-                        </ng-container>
-                        <!-- Modo de edición -->
-                        <ng-template #editMode>
-                          <ng-container *ngIf="col === 'nombre'|| col === 'direccion' || col === 'telefono'">
-                            <input
-                              type="text"
-                              [(ngModel)]="element[col]"
-                              class="edit-input"
-                            >
-                          </ng-container>
-                          <!-- Icono de guardado -->
-                          <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #0f41e6;" (click)="saveChanges()">
-                            <mat-icon class="circle-icon">check_circle</mat-icon>
-                          </a>
-                          <!-- Icono de cancelación -->
-                          <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #e15639;" (click)="cancelEditing()">
-                            <mat-icon>cancel</mat-icon>
-                          </a>
-                        </ng-template>
-                      </td>
-                    </ng-container>
-                
-                  
-                    <!-- Fila de encabezado y fila de datos -->
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; index as rowIndex; columns: displayedColumns"></tr>
-                  </table>
-                  
-                  
-   
-                  
+  <div>
+    <button class="mi-boton" href="/registro-empresa" onclick="window.open('/registro-empresa', 'Crear Empresas', 'width=600, height=400'); return false;" class="mi-boton">Crear Empresas</button>
+
+    <div class="busqueda">
+      <form (ngSubmit)="buscarEmpresas(busqueda.value)" class="search-form">
+        <input #busqueda type="search" name="busquedamusica" placeholder="Search for Nit...." class="search-input" 
+               (keyup)="onBuscarInputChange(busqueda.value)" required>
+        <button type="submit" class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
     </div>
-    
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Definición de columnas -->
+      <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+        <th mat-header-cell *matHeaderCellDef> {{col === 'acciones' ? 'Acciones' : col === 'direccion' ? 'Dirección' : col === 'telefono' ? 'Teléfono' : col | titlecase}} </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index">
+          <!-- Verifica si estamos en modo de edición para esta fila -->
+          <ng-container *ngIf="editingRowIndex !== rowIndex; else editMode">
+            {{element[col]}}
+            <!-- Icono de edición -->
+            <a *ngIf="col === 'acciones' && !editingRowIndex" class="pointer" (click)="startEditing(rowIndex)">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <!-- Icono de eliminación -->
+            <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" (click)="eliminarEmpresa(element.nombre)">
+              <mat-icon>delete</mat-icon>
+            </a>
+          </ng-container>
+          <!-- Modo de edición -->
+          <ng-template #editMode>
+            <ng-container *ngIf="col === 'nombre' || col === 'direccion' || col === 'telefono'">
+              <input
+                type="text"
+                [(ngModel)]="element[col]"
+                class="edit-input"
+              >
+            </ng-container>
+            <!-- Icono de guardado -->
+            <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #0f41e6;" (click)="saveChanges()">
+              <mat-icon class="circle-icon">check_circle</mat-icon>
+            </a>
+            <!-- Icono de cancelación -->
+            <a *ngIf="col === 'acciones' && editingRowIndex === rowIndex" class="btn-danger pointer" style="color: #e15639;" (click)="cancelEditing()">
+              <mat-icon>cancel</mat-icon>
+            </a>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- Fila de encabezado y fila de datos -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; index as rowIndex; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

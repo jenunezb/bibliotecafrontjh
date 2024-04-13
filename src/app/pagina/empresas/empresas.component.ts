@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class EmpresasComponent implements OnInit {
 
   dataSource = new MatTableDataSource<EmpresasGetDTO>([]);
-  displayedColumns: string[] = ['nit', 'nombre', 'direccion', 'telefono', 'acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['nit', 'nombre', 'direccion', 'telefono', 'acciones']; 
   alerta: Alerta | null = null;
   editingRowIndex: number | null = null;
 

@@ -138,6 +138,6 @@ export class AdministradorService {
   editarSede(sedesDto: SedesGetDTO): Observable<any> {
     const url = `${this.authURL}/editarSede`;
     return this.http.put(url, sedesDto);
-
 }
+
 }

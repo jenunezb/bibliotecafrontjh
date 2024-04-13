@@ -1,6 +1,7 @@
 <div class="container">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <div class="Usuarios"><span>Usuarios</span></div>
+    <div class="Usuarios"><span>{{ titulo }}</span></div>
+
     
     <div>
         <button class="mi-boton" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario','width=800, height=700'); return false;" class="mi-boton">Crear Usuario</button>
@@ -26,7 +27,7 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <!-- Definición de columnas -->
             <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-              <th mat-header-cell *matHeaderCellDef> {{ col === 'acciones' ? 'Acciones' : col | titlecase }} </th>
+              <th mat-header-cell *matHeaderCellDef> {{col === 'acciones' ? 'Acciones' : col === 'cedula' ? 'Cédula' : col === 'telefono' ? 'Teléfono' : col | titlecase}} </th>
               <td mat-cell *matCellDef="let element; let rowIndex = index">
                 <!-- Verificar si estamos en modo de edición para esta fila -->
                 <ng-container *ngIf="editingRowIndex !== rowIndex; else editMode">
@@ -43,7 +44,7 @@
                 </ng-container>
                 <!-- Modo de edición -->
                 <ng-template #editMode>
-                    <ng-container *ngIf="col === 'nombre'|| col === 'telefono'|| col === 'correo'">
+                    <ng-container *ngIf="col === 'nombre'|| col === 'telefono'|| col === 'correo'|| col === 'correo'">
                     <input type="text" [(ngModel)]="element[col]" class="edit-input">
                   </ng-container>
                   <!-- Icono de guardado -->

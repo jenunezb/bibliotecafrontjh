@@ -8,4 +8,6 @@ export class UsuarioDTO {
   telefono: string = "";
   confirmaPassword: string = "";
   ciudad: string = "";
+  cargo: string = "";
+
 }

@@ -18,6 +18,7 @@ export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];  alerta: Alerta | null = null;
   seccionActiva: string = ''; // Variable para almacenar la sección activa
   editingRowIndex: number | null = null;
+  titulo = 'Usuarios';
 
 
   constructor(private administradorService: AdministradorService, tokenService: TokenService, private router: Router) {
@@ -30,7 +31,7 @@ export class UsuariosComponent implements OnInit {
   listarAdministradores(): void {
 
     this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
-
+    this.titulo = 'Administradores';
     this.administradorService.listarAdministradores()
       .subscribe(
         (response: any) => {
@@ -44,6 +45,7 @@ export class UsuariosComponent implements OnInit {
 
   listarIngenieros(): void {
     this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
+    this.titulo = 'Ingenieros';
     this.administradorService.listarIngenieros()
       .subscribe(
         (response: any) => {
@@ -57,6 +59,7 @@ export class UsuariosComponent implements OnInit {
 
   listarDigitadores(): void {
     this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
+    this.titulo = 'Digitadores';
     this.administradorService.listarDigitadores()
       .subscribe(
         (response: any) => {
@@ -71,7 +74,7 @@ export class UsuariosComponent implements OnInit {
   listarClientes(): void {
 
     this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo','cargo', 'acciones']; 
-
+    this.titulo = 'Clientes';
     console.log("entra a clientes")
     this.administradorService.listarClientes()
       .subscribe(

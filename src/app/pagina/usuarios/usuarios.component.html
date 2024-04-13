@@ -3,7 +3,7 @@
     <div class="Usuarios"><span>Usuarios</span></div>
     
     <div>
-        <button class="mi-boton" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario','width=800, height=700'); return false;" class="mi-boton">Crear Administrador</button>
+        <button class="mi-boton" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario','width=800, height=700'); return false;" class="mi-boton">Crear Usuario</button>
         <div class="busqueda">
             <form action="../../form-result.php" method="post" target="_blank" class="search-form">
                 <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
@@ -18,6 +18,7 @@
                 <option value="usuarios" [selected]="seccionActiva === 'usuarios'">Administradores</option>
                 <option value="ingenieros" [selected]="seccionActiva === 'ingenieros'">Ingenieros</option>
                 <option value="digitadores" [selected]="seccionActiva === 'digitadores'">Digitadores</option>
+                <option value="clientes" [selected]="seccionActiva === 'clientes'">Clientes</option>
                 <!-- Agrega opciones para otros tipos de usuarios si es necesario -->
             </select>            
         </div>

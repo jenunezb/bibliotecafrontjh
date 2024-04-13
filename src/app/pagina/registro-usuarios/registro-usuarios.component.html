@@ -1,8 +1,5 @@
 <div>
   <h2>Registro de Usuario</h2>
-  <div *ngIf="alerta" class="alert alert-{{alerta.tipo}}">
-    {{ alerta.mensaje }}
-  </div>
 
   <form class="registration-form">
     <div class="form-group">
@@ -61,5 +58,16 @@
       <div class="form-group text-center">
       <button type="button" class="btn btn-primary" (click)="registrar()">Registrarse</button>
       </div>
+
+   <!-- Mensaje de alerta -->
+<div *ngIf="alerta" style="margin-top: 10px;">
+  <div *ngIf="alerta.tipo === 'danger'" style="color: #721c24; background-color: #f8d7da; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+  <div *ngIf="alerta.tipo === 'success'" style="color: #155724; background-color: #d4edda; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+</div>
+
       </form>
 </div>

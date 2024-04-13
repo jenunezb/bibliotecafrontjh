@@ -28,6 +28,9 @@ export class UsuariosComponent implements OnInit {
   }
 
   listarAdministradores(): void {
+
+    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
+
     this.administradorService.listarAdministradores()
       .subscribe(
         (response: any) => {
@@ -40,6 +43,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   listarIngenieros(): void {
+    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
     this.administradorService.listarIngenieros()
       .subscribe(
         (response: any) => {
@@ -52,8 +56,24 @@ export class UsuariosComponent implements OnInit {
   }
 
   listarDigitadores(): void {
-    console.log("entra a digitadores")
+    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
     this.administradorService.listarDigitadores()
+      .subscribe(
+        (response: any) => {
+          this.dataSource.data = response.respuesta; 
+        },
+        error => {
+          console.error('Error al obtener la lista de Digitadores:', error);
+        }
+      );
+  }
+
+  listarClientes(): void {
+
+    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo','cargo', 'acciones']; 
+
+    console.log("entra a clientes")
+    this.administradorService.listarClientes()
       .subscribe(
         (response: any) => {
           this.dataSource.data = response.respuesta; 
@@ -90,6 +110,9 @@ export class UsuariosComponent implements OnInit {
         case 'digitadores':
           this.listarDigitadores();
           break;
+          case 'clientes':
+            this.listarClientes();
+            break;
       default:
         console.error('Sección no válida:', seccion);
         break;

@@ -11,6 +11,7 @@ import { DigitadorDTO } from '../modelo/digitador-get-dto';
 import { ClienteDTO } from '../modelo/cliente-get-dto';
 import { UsuarioGetDTO } from '../modelo/usuario-get-dto';
 import { AdministradorDTO } from '../modelo/administrador-get-dto';
+import { ObrasDto } from '../modelo/obras-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,11 @@ export class AdministradorService {
 
   public listarAdministradores(): Observable<IngenieroGetDTO> {
     return this.http.get<IngenieroGetDTO>(`${this.authURL}/listaAdministradores`);
+  }
+
+  public listarObras(): Observable<ObrasDto> {
+    console.log("pasa");
+    return this.http.get<ObrasDto>(`${this.authURL}/listarObras`);
   }
 
   public listarDigitadores(): Observable<DigitadorDTO> {

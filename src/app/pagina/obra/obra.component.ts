@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -14,10 +14,10 @@ import { Alerta } from 'src/app/modelo/alerta';
   templateUrl: './obra.component.html',
   styleUrls: ['./obra.component.css']
 })
-export class ObraComponent {
+export class ObraComponent implements OnInit{
 
   dataSource = new MatTableDataSource<ObrasDto>([]);
-  displayedColumns: string[] = ['Cr', 'nombre', 'direccion', 'telefono', 'ciudad','nitEmpresa', 'fechaInicio','acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['Cr', 'nombre', 'direccion', 'telefono', 'ciudad','nitEmpresa','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   usuarioDto: UsuarioDTO;
   empresaDto: EmpresasGetDTO;
@@ -27,7 +27,20 @@ export class ObraComponent {
   this.empresaDto = new EmpresasGetDTO();
   }
   ngOnInit(): void {
-
-
+    this.listarObras();
   }
+  
+  listarObras(): void {
+    this.administradorService.listarObras()
+      .subscribe(
+        (response: any) => {
+          this.dataSource.data = response.respuesta;
+          console.log(response.respuesta);
+        },
+        error => {
+          console.error('Error al obtener la lista de obras:', error);
+        }
+      );
+  }
+
 }

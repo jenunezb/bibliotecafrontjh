@@ -15,7 +15,7 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 export class EnsayosComponent {
 
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
-  displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
@@ -32,6 +32,7 @@ export class EnsayosComponent {
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta;
+          console.log(this.dataSource)
         },
         error => {
           console.error('Error al obtener la lista de cilindros:', error);

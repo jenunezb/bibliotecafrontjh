@@ -7,7 +7,6 @@ import { ObrasDto } from 'src/app/modelo/obras-get-dto';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { Alerta } from 'src/app/modelo/alerta';
-import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 
 
 @Component({
@@ -17,8 +16,8 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 })
 export class ObraComponent implements OnInit{
 
-  dataSource = new MatTableDataSource<CilindroGetDto>([]);
-  displayedColumns: string[] = ['cr', 'numeroMuestra', 'nombreObra', 'seccion', 'fechaToma','acciones']; // Define las columnas que deseas mostrar
+  dataSource = new MatTableDataSource<ObrasDto>([]);
+  displayedColumns: string[] = ['cr', 'nombre', 'direccion', 'telefono', 'ciudad','nombreEmpresa','acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   usuarioDto: UsuarioDTO;
   empresaDto: EmpresasGetDTO;

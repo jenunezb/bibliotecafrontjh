@@ -3,6 +3,6 @@ export class ObrasDto {
   nombre:string = "";
   telefono:string  = "";
   ciudad: string = "";
-  NitEmpresa: string="";
+  nombreEmpresa: string="";
   cr:string = "";
   }

@@ -35,7 +35,7 @@ const routes: Routes = [
     { path: "empresas", component: EmpresasComponent },
     { path: "obra", component: ObraComponent},
     { path: "registro-ciudad", component: RegistroCiudadComponent },
-    { path: "registro-muestra", component: RegistroMuestraComponent },
+    { path: "registro-muestra/:id", component: RegistroMuestraComponent },
     { path: "concretos-pdf", component: ConcretosPdfComponent },
     { path: "registro-obra", component: RegistroObraComponent },
     { path: "**", pathMatch: "full", redirectTo: "" }

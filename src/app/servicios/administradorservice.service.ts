@@ -16,6 +16,7 @@ import { CiudadGetDto } from '../modelo/ciudad-get-dto';
 import { CilindroGetDto } from '../modelo/cilindro-get-dto';
 import { RegistroCilindroDto } from '../modelo/registro-cilindro-dto';
 import { SeccionDto } from '../modelo/SeccionDto';
+import { EdadesDto } from '../modelo/edades-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -163,5 +164,9 @@ public agregarCilindro(cilindroDto: RegistroCilindroDto): Observable<MensajeDTO>
 public listaSeccion():Observable<SeccionDto>{
   return this.http.get<SeccionDto>(`${this.authURL}/listarSeccion`);
 } 
+
+public listarEdades(id:number):Observable<EdadesDto>{
+  return this.http.get<EdadesDto>(`${this.authURL}/listarEdades/${id}`);
+}
 
 }

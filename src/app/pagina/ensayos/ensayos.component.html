@@ -58,9 +58,11 @@
                   <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
                     <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
                   </a>
-                  <span style="margin-left: 8px; color: #d47508; cursor: pointer;" onclick="window.open('/registro-muestra', 'Crear Cilindro', 'width=600, height=500'); return false;" matTooltip="Icono de cilindro">
+                  <span style="margin-left: 8px; color: #d47508; cursor: pointer;" (click)="openWindow(element.id)" matTooltip="Icono de cilindro">
                     <mat-icon style="color: #066133;">construction</mat-icon>
                   </span>
+                
+                
                   <span href="#" onclick="generatePDF(); return false;" style="margin-left: 8px; color: #3f51b5;" matTooltip="Icono de cilindro">
                     <mat-icon>get_app</mat-icon>
                   </span>

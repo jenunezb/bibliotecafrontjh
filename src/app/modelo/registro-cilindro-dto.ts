@@ -8,4 +8,5 @@ export class RegistroCilindroDto{
     descripcion: string="";
     observaciones: string="";
     fechaToma: string="";
+    id: number=0;
 }

@@ -33,11 +33,12 @@ export class RegistroCilindroComponent implements OnInit {
     this.adminService.agregarCilindro(this.cilindroDto).subscribe({
       next: (data) => {
         this.alerta = { mensaje: data.respuesta, tipo: 'success' };
-        alert('¡El cilindro ha sido creada!');
-        window.close();
+        alert('¡El cilindro ha sido creado!');
+        this.router.navigate(['/registro-muestra']); // Redireccionar al componente deseado
       },
       error: (err) => {
-        }
+        console.error('Error al registrar el cilindro:', err);
+      }
     });
   }
 

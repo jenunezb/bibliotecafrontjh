@@ -22,7 +22,6 @@ export class EnsayosComponent {
 
   
   ngOnInit(): void {
-
     this.listarCilindros();
   }
   
@@ -32,13 +31,16 @@ export class EnsayosComponent {
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta;
-          console.log(this.dataSource)
+          console.log(this.dataSource.data);
         },
         error => {
           console.error('Error al obtener la lista de cilindros:', error);
         }
-
       );
   }
+
+  openWindow(id: string): void {
+    window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
+}
 
 }

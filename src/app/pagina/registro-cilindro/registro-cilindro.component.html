@@ -3,45 +3,63 @@
     <div class="form-group">
       <div class="form-group">
         <label for="cr">Cr:</label>
-        <input type="text" id="cr" name="cr" class="form-control" required>
+        <input type="text" id="cr" name="cr" class="form-control" [(ngModel)]="cilindroDto.cr" required>
       </div>
         <label for="numeroMuestra">Numero de muestra:</label>
-        <input type="text" id="numeroMuestra" name="numeroMuestra" class="form-control" required>
+        <input type="text" id="numeroMuestra" name="numeroMuestra" class="form-control" [(ngModel)]="cilindroDto.numeroMuestra" required>
     </div>
   
     <div class="form-group">
-      <label for="ensayo">Ensayo:</label>
-      <select id="ensayo" class="form-control">
-        <option value="" selected disabled>Selecciona la compresion</option>
-        <option value="3">Compresion 3</option>
-        <option value="4">Compresion 4</option>
-        <option value="6">Compresion 6</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="seccion">Sección:</label>
+        <select id="seccion" name="seccion" class="form-control" [(ngModel)]="cilindroDto.seccion" required>
+          <option value="" selected disabled>Seleccione una sección</option>
+          <option *ngFor="let seccion of dataSource.data" [value]="seccion">{{ seccion }}</option>
+        </select>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group">
+          <label for="tipoMuestraCilindro">Tipo de muestra:</label>
+          <select id="tipoMuestraCilindro" name="tipoMuestraCilindro" class="form-control" [(ngModel)]="cilindroDto.tipoMuestraCilindro" required>
+            <option value="" selected disabled>Seleccione una sección</option>
+            <option *ngFor="let tipoMuestraCilindro of dataSource.data" [value]="tipoMuestraCilindro">{{ tipoMuestraCilindro }}</option>
+          </select>
+        </div>
+        </div>
+
     <div class="form-group">
         <label for="fechaToma">Fecha de toma:</label>
-        <input type="text" id="fechaToma" name="fechaToma" class="form-control">
+        <input type="text" id="fechaToma" name="fechaToma" class="form-control" [(ngModel)]="cilindroDto.fechaToma" required>
       </div>
+
       <div class="form-group">
         <label for="resistencia">Resistencia:</label>
-        <input type="text" id="resistencia" name="resistencia" class="form-control">
+        <input type="text" id="resistencia" name="resistencia" class="form-control" [(ngModel)]="cilindroDto.resistencia" required>
       </div>
+
       <div class="form-group">
         <label for="cantidadMuestras">Cantidad Muestras:</label>
-        <input type="text" id="cantidadMuestras" name="cantidadMuestras" class="form-control">
+        <input type="text" id="cantidadMuestras" name="cantidadMuestras" class="form-control" [(ngModel)]="cilindroDto.cantidad" required>
       </div>
+
       <div class="form-group">
         <label for="observaciones">Descripción:</label>
-        <input type="text" id="observaciones" name="observaciones" class="form-control">
+        <input type="text" id="observaciones" name="observaciones" class="form-control" [(ngModel)]="cilindroDto.descripcion" required>
       </div>
+
       <div class="form-group">
         <label for="observaciones">Observaciones:</label>
-        <input type="text" id="observaciones" name="observaciones" class="form-control">
+        <input type="text" id="observaciones" name="observaciones" class="form-control" [(ngModel)]="cilindroDto.observaciones" required>
       </div>
   
-    <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary">Registrar</button>
-    </div>
+      <div class="form-group text-center">
+        <button class="btn" (click)="registroCilindro()">Registrar</button>
+        <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert">
+          {{ alerta.mensaje }}
+        </div>
+      </div>
   </form>
   
   

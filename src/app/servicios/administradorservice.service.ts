@@ -14,6 +14,8 @@ import { AdministradorDTO } from '../modelo/administrador-get-dto';
 import { ObrasDto } from '../modelo/obras-get-dto';
 import { CiudadGetDto } from '../modelo/ciudad-get-dto';
 import { CilindroGetDto } from '../modelo/cilindro-get-dto';
+import { RegistroCilindroDto } from '../modelo/registro-cilindro-dto';
+import { SeccionDto } from '../modelo/SeccionDto';
 
 @Injectable({
   providedIn: 'root'
@@ -153,4 +155,13 @@ export class AdministradorService {
 public listarCilindros(): Observable<CilindroGetDto[]>{
   return this.http.get<CilindroGetDto[]>(`${this.authURL}/listarCilindros`);
 }
+
+public agregarCilindro(cilindroDto: RegistroCilindroDto): Observable<MensajeDTO> {
+  return this.http.post<MensajeDTO>(`${this.authURL}/agregarCilindros`, cilindroDto);
+}
+
+public listaSeccion():Observable<SeccionDto>{
+  return this.http.get<SeccionDto>(`${this.authURL}/listarSeccion`);
+} 
+
 }

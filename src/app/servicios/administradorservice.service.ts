@@ -33,8 +33,10 @@ export class AdministradorService {
   }
 
   public listarObras(): Observable<ObrasDto> {
-    console.log("pasa");
     return this.http.get<ObrasDto>(`${this.authURL}/listarObras`);
+  }
+  public agregarObras(obrasDTO: ObrasDto): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/agregarObra`, obrasDTO);
   }
 
   public listarDigitadores(): Observable<DigitadorDTO> {

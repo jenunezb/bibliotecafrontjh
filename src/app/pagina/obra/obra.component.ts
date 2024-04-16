@@ -35,7 +35,6 @@ export class ObraComponent implements OnInit{
       .subscribe(
         (response: any) => {
           this.dataSource.data = response.respuesta;
-          console.log(response.respuesta);
         },
         error => {
           console.error('Error al obtener la lista de obras:', error);

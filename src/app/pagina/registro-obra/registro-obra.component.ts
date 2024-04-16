@@ -30,7 +30,7 @@ export class RegistroObraComponent implements OnInit{
    
   }
   ngOnInit() {
-    this.listarCiudades();
+  this.listarCiudades();
   this.listarEmpresas();  }
 
 
@@ -59,5 +59,20 @@ export class RegistroObraComponent implements OnInit{
           console.error('Error al obtener la lista de empresas:', error);
         }
       );
+  }
+
+  registrarObra(): void {
+
+    console.log(this.obrasDTO);
+    
+    this.adminService.agregarObras(this.obrasDTO).subscribe({
+      next: (data) => {
+        this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+        alert('¡La obra ha sido creada!');
+        window.close();
+      },
+      error: (err) => {
+        }
+    });
   }
 }

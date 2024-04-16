@@ -12,6 +12,8 @@ import { ClienteDTO } from '../modelo/cliente-get-dto';
 import { UsuarioGetDTO } from '../modelo/usuario-get-dto';
 import { AdministradorDTO } from '../modelo/administrador-get-dto';
 import { ObrasDto } from '../modelo/obras-get-dto';
+import { CiudadGetDto } from '../modelo/ciudad-get-dto';
+import { CilindroGetDto } from '../modelo/cilindro-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -146,4 +148,7 @@ export class AdministradorService {
     return this.http.put(url, sedesDto);
 }
 
+public listarCilindros(): Observable<CilindroGetDto[]>{
+  return this.http.get<CilindroGetDto[]>(`${this.authURL}/listarCilindros`);
+}
 }

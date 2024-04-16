@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Alerta } from 'src/app/modelo/alerta';
-import { ConcretosDto } from 'src/app/modelo/concretos-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 
 
 @Component({
@@ -14,8 +14,8 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class EnsayosComponent {
 
-  dataSource = new MatTableDataSource<ConcretosDto>([]);
-  displayedColumns: string[] = ['Cr','numerodeMuestra', 'nombreObra', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
+  dataSource = new MatTableDataSource<CilindroGetDto>([]);
+  displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
@@ -23,18 +23,18 @@ export class EnsayosComponent {
   
   ngOnInit(): void {
 
-    this.listarIngenieros();
+    this.listarCilindros();
   }
   
-  listarIngenieros(): void {
-    this.administradorService.listarIngenieros()
+  listarCilindros(): void {
+    this.administradorService.listarCilindros()
       .subscribe(
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta;
         },
         error => {
-          console.error('Error al obtener la lista de ingenieros:', error);
+          console.error('Error al obtener la lista de cilindros:', error);
         }
 
       );

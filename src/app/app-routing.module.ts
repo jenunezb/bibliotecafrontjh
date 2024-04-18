@@ -19,6 +19,7 @@ import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-mue
 import { ObraComponent } from './pagina/obra/obra.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
+import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: "registro-muestra/:id", component: RegistroMuestraComponent },
     { path: "concretos-pdf", component: ConcretosPdfComponent },
     { path: "registro-obra", component: RegistroObraComponent },
+    { path: "orden-concretos", component: OrdenConcretosComponent},
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

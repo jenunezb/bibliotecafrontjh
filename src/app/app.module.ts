@@ -32,6 +32,7 @@ import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-mue
 import { ObraComponent } from './pagina/obra/obra.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
+import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.comp
     RegistroMuestraComponent,
     ObraComponent,
     RegistroObraComponent,
-    ConcretosPdfComponent
+    ConcretosPdfComponent,
+    OrdenConcretosComponent
   ],
   imports: [
     BrowserModule,

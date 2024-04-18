@@ -17,6 +17,7 @@ export class EnsayosComponent {
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
   displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta: Alerta | null = null;
+  seccionActiva: string = ''; // Variable para controlar la sección activa
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
@@ -53,6 +54,13 @@ export class EnsayosComponent {
       });
     }
   }
+
+  cambiarSeccion(seccion: string) {
+    this.seccionActiva = seccion;
+    this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
+    
+  }
+
   openWindow(id: string): void {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }

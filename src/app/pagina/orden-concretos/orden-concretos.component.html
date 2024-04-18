@@ -1,14 +1,18 @@
 <div class="container">
-    <form>
-        <label for="cr">CR:</label>
-        <input type="text" id="cr" name="cr"><br><br>
-        
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha"><br><br>
-
-        <input type="submit" value="Aceptar">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+  
+  <div class="form-container">
+    <form class="formulario">
+      <label class="label" for="cr">CR:</label>
+      <input class="busqueda" type="text" id="cr" name="cr">
+  
+      <label class="label" for="fecha">Fecha:</label>
+      <input class="fecha" type="date" id="fecha" name="fecha">
+  
+      <input class="mi-boton" type="submit" value="Aceptar">
     </form>
-</div>
+  </div>
+  
 
 <div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

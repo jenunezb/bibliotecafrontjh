@@ -34,7 +34,7 @@ export class RegistroCilindroComponent implements OnInit {
       next: (data) => {
         this.alerta = { mensaje: data.respuesta, tipo: 'success' };
         alert('¡El cilindro ha sido creado!');
-        this.router.navigate(['/registro-muestra']); // Redireccionar al componente deseado
+        window.close();
       },
       error: (err) => {
         console.error('Error al registrar el cilindro:', err);

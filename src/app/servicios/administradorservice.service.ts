@@ -169,8 +169,13 @@ public listarEdades(id:number):Observable<EdadesDto>{
   return this.http.get<EdadesDto>(`${this.authURL}/listarEdades/${id}`);
 }
 
-eliminarCilindro(codigo:number):Observable<MensajeDTO>{
+public eliminarCilindro(codigo:number):Observable<MensajeDTO>{
   return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarCilindro/${codigo}`);
+}
+
+public guardarEdades(edades: EdadesDto[]): Observable<MensajeDTO> {
+  console.log(edades);
+  return this.http.post<MensajeDTO>(`${this.authURL}/guardarEdades`, edades);
 }
 
 }

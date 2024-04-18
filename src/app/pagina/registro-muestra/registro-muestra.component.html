@@ -1,12 +1,9 @@
-<!-- Formulario para agregar las edades de fallo-->
-<form #f="ngForm">
+<form #f="ngForm" (ngSubmit)="guardarEdades()">
   <div>
     <div class="Concretos"><span>Registro Muestras </span></div>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
       <!-- Columna: Edad de Falla -->
       <ng-container matColumnDef="edad">
         <th mat-header-cell *matHeaderCellDef> Edad De Falla</th>
@@ -28,6 +25,11 @@
     </table>
     
     <!-- Botón de Guardar Cambios -->
-    <button type="submit" class="btn" mat-stroked-button [disabled]="f.invalid">Guardar Cambios</button>
+    <div class="form-group text-center">
+        <button type="submit" class="btn">Guardar cambios</button>
+        <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert">
+          {{ alerta.mensaje }}
+        </div>
+      </div>
   </div>
 </form>

@@ -16,7 +16,7 @@ export class EnsayosComponent {
 
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
   displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
-  alerta!: Alerta;
+  alerta: Alerta | null = null;
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
@@ -39,6 +39,20 @@ export class EnsayosComponent {
       );
   }
 
+  eliminarCilindro(id: number): void {
+    if (confirm('¿Estás seguro de eliminar el cilindro?')) {
+      this.administradorService.eliminarCilindro(id).subscribe({
+        next: data => {
+          this.alerta = { mensaje: data.respuesta, tipo: "success" };
+          alert('¡El cilindro ha sido eliminado!');
+          this.listarCilindros();
+        },
+        error: err => {
+          this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+        }
+      });
+    }
+  }
   openWindow(id: string): void {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }

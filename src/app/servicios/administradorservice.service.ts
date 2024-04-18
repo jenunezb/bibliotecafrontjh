@@ -169,4 +169,8 @@ public listarEdades(id:number):Observable<EdadesDto>{
   return this.http.get<EdadesDto>(`${this.authURL}/listarEdades/${id}`);
 }
 
+eliminarCilindro(codigo:number):Observable<MensajeDTO>{
+  return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarCilindro/${codigo}`);
+}
+
 }

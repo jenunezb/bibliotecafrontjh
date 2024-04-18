@@ -55,7 +55,7 @@
                   <a class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario">
                     <mat-icon>edit</mat-icon> <!-- Icono de edición -->
                   </a>
-                  <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
+                  <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario" (click)="eliminarCilindro(element.id)">
                     <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
                   </a>
                   <span style="margin-left: 8px; color: #d47508; cursor: pointer;" (click)="openWindow(element.id)" matTooltip="Icono de cilindro">

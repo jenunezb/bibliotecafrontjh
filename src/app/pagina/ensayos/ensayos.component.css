@@ -93,5 +93,16 @@ th{
   .next-button {
     margin-left: 5px; /* Ajusta el margen para pantallas más pequeñas */
   }
+  .mi-boton1 {
+    padding: 10px 20px; 
+    margin-bottom: 20px;
+    margin-right: 850px;
+    background-color: #ce7a0d; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    float: left;
+  }
 
 }

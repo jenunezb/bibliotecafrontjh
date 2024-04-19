@@ -13,7 +13,7 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 export class OrdenConcretosComponent {
 
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
-  displayedColumns: string[] = ['obra','cr', 'muestra', 'seccion', 'fechadeToma', 'fechadeFalla','edad','acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['obra','cr', 'muestra', 'ensayo', 'fechadeToma', 'fechadeFalla','edad']; // Define las columnas que deseas mostrar
   alerta: Alerta | null = null;
   ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
 

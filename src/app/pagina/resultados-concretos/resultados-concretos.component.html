@@ -1,0 +1,80 @@
+<div class="container">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div>
+    <img class="imagen" src="assets/img/pdf2.png.png" alt="Icono">
+  </div>
+    <form class="formulario" (ngSubmit)="listarOrden()">
+      <label class="label" for="cr">CR:</label>
+      <input class="busqueda" type="text" id="cr" name="cr" [(ngModel)]="ordenDto.cr">
+  
+      <label class="label" for="fecha">Fecha:</label>
+      <input class="fecha" type="date" id="fecha" name="fecha" [(ngModel)]="ordenDto.fecha">
+  
+      <input class="mi-boton" type="submit" value="Aceptar">
+    </form>
+    </div>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="Cr">
+       <th mat-header-cell *matHeaderCellDef> Cr </th>
+       <td mat-cell *matCellDef="let element"> {{element.cr}} </td>
+   </ng-container>
+
+   <!-- Nit Column -->
+   <ng-container matColumnDef="numeroMuestra">
+       <th mat-header-cell *matHeaderCellDef> Numero de Muestra </th>
+       <td mat-cell *matCellDef="let element"> {{element.numeroMuestra}} </td>
+   </ng-container>        
+
+   <!-- Direccion Column -->
+   <ng-container matColumnDef="nombreObra">
+       <th mat-header-cell *matHeaderCellDef> Nombre de la Obra </th>
+       <td mat-cell *matCellDef="let element"> {{element.nombreObra}} </td>
+   </ng-container>
+
+   <!-- Telefono Column -->
+   <ng-container matColumnDef="tipoMuestraCilindro">
+       <th mat-header-cell *matHeaderCellDef> Ensayo</th>
+       <td mat-cell *matCellDef="let element"> {{element.tipoMuestraCilindro}} </td>
+   </ng-container>
+
+   <!-- Telefono Column -->
+   <ng-container matColumnDef="fechadeToma">
+       <th mat-header-cell *matHeaderCellDef> Fecha de Toma</th>
+       <td mat-cell *matCellDef="let element"> {{element.fechaToma}} </td>
+   </ng-container>
+
+ <!-- Campo "peso" -->
+<ng-container matColumnDef="peso">
+  <th mat-header-cell *matHeaderCellDef> Peso </th>
+  <td mat-cell *matCellDef="let element">
+    <!-- Campo de entrada editable para "peso" -->
+    <input type="number" [(ngModel)]="element.peso" class="editable-input">
+  </td>
+</ng-container>
+
+<ng-container matColumnDef="forma">
+    <th mat-header-cell *matHeaderCellDef> Forma</th>
+    <td mat-cell *matCellDef="let element">
+      <!-- Campo de entrada editable -->
+      <input type="text" [(ngModel)]="element.forma" class="editable-input">
+    </td>
+  </ng-container>
+  
+<!-- Campo "idforma" -->
+<ng-container matColumnDef="idForma">
+    <th mat-header-cell *matHeaderCellDef> Id Forma </th>
+    <td mat-cell *matCellDef="let element">
+      <!-- Campo de entrada editable para "idforma" -->
+      <input type="text" [(ngModel)]="element.idforma" class="editable-input">
+    </td>
+  </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+</table>

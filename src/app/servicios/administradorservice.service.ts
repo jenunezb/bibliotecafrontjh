@@ -183,4 +183,9 @@ public listarOrden (orden: OrdenDto):Observable<EdadesDto>{
   return this.http.post<EdadesDto>(`${this.authURL}/listarOrden`, orden);
 }
 
+public asignarObra(cedula: string): Observable<MensajeDTO> {
+  console.log(cedula);
+  return this.http.post<MensajeDTO>(`${this.authURL}/asignarObra`, cedula);
+}
+
 }

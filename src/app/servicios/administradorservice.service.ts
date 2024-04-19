@@ -17,6 +17,7 @@ import { CilindroGetDto } from '../modelo/cilindro-get-dto';
 import { RegistroCilindroDto } from '../modelo/registro-cilindro-dto';
 import { SeccionDto } from '../modelo/SeccionDto';
 import { EdadesDto } from '../modelo/edades-get-dto';
+import { OrdenDto } from '../modelo/orden-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -176,6 +177,10 @@ public eliminarCilindro(codigo:number):Observable<MensajeDTO>{
 public guardarEdades(edades: EdadesDto[]): Observable<MensajeDTO> {
   console.log(edades);
   return this.http.post<MensajeDTO>(`${this.authURL}/guardarEdades`, edades);
+}
+
+public listarOrden (orden: OrdenDto):Observable<EdadesDto>{
+  return this.http.post<EdadesDto>(`${this.authURL}/listarOrden`, orden);
 }
 
 }

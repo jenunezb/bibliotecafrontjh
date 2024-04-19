@@ -5,7 +5,7 @@
   </div>
 
   <div class="menu-items">
-    <button class="menu-item" (click)="cambiarSeccion('usuarios')">Usuarios</button>
+    <button class="menu-item" *ngIf="roles.includes('administrador')" (click)="cambiarSeccion('usuarios')">Usuarios</button>
     <button class="menu-item" (click)="cambiarSeccion('empresas')">Empresas</button>
     <button class="menu-item" (click)="cambiarSeccion('obra')">Obras</button>
     <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">

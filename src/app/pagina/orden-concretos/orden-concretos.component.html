@@ -22,7 +22,7 @@
     <!-- Nombre Column -->
     <ng-container matColumnDef="obra">
        <th mat-header-cell *matHeaderCellDef> Obra </th>
-       <td mat-cell *matCellDef="let element"> {{element.cr}} </td>
+       <td mat-cell *matCellDef="let element"> {{element.obra}} </td>
    </ng-container>
 
    <!-- Nit Column -->
@@ -75,9 +75,7 @@
            <mat-icon style="color: #066133;">construction</mat-icon>
          </span>
        
-         <span href="#" onclick="generatePDF(); return false;" style="margin-left: 8px; color: #3f51b5;" matTooltip="Icono de cilindro">
-           <mat-icon>get_app</mat-icon>
-         </span>
+         <span href="/concretos-pdf" onclick="window.open('/concretos-pdf', 'Crear PDF', 'ancho=800, alto=500'); return false;" estilo="margen-izquierdo: 8px; color: #3f51b5;" matTooltip="Icono de cilindro"> <mat-icon>get_app</mat-icon> </span> 
        </td>
      </ng-container>
      

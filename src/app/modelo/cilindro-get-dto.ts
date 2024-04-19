@@ -4,4 +4,5 @@ export class CilindroGetDto{
     nombreObra: string = "";
     tipoMuestraCilindro: string = "";
     fechaToma: string = "";
+    fechaFalla: string = "";
 }

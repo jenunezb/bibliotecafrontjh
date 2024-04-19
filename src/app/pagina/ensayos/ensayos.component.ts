@@ -18,6 +18,8 @@ export class EnsayosComponent {
   displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta: Alerta | null = null;
   seccionActiva: string = ''; // Variable para controlar la sección activa
+  mostrarOrdenConcretos: boolean = false;
+
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
@@ -25,7 +27,16 @@ export class EnsayosComponent {
   ngOnInit(): void {
     this.listarCilindros();
   }
+  cambiarSecciones(seccion: string) {
+    console.log('Cambiar sección a:', seccion);
+    if (seccion === 'orden-concretos') {
+      this.mostrarOrdenConcretos = true;
+    } else {
+      this.mostrarOrdenConcretos = false;
+    }
+  }
   
+
   listarCilindros(): void {
     this.administradorService.listarCilindros()
       .subscribe(

@@ -4,7 +4,7 @@ export class CilindroGetDto{
     nombreObra: string = "";
     ensayo: string = "";
     fechaToma: string = "";
-    fechaFalla: string = "";
+    fechaFalla: number = 0;
     peso:string="";
     forma: string= "";
     idForma: string= "";

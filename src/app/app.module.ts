@@ -34,6 +34,8 @@ import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.comp
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
 import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
 import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.component';
+import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
+import { AcerosPdfComponent } from './pagina/aceros-pdf/aceros-pdf.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.compone
     RegistroObraComponent,
     ConcretosPdfComponent,
     OrdenConcretosComponent,
-    AsignarObraComponent
+    AsignarObraComponent,
+    SuelosPdfComponent,
+    AcerosPdfComponent
   ],
   imports: [
     BrowserModule,

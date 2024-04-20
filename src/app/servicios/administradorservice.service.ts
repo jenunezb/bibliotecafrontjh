@@ -9,15 +9,14 @@ import { UsuarioDTO } from '../modelo/usuario-dto';
 import { SedesGetDTO } from '../modelo/sedes-dto';
 import { DigitadorDTO } from '../modelo/digitador-get-dto';
 import { ClienteDTO } from '../modelo/cliente-get-dto';
-import { UsuarioGetDTO } from '../modelo/usuario-get-dto';
 import { AdministradorDTO } from '../modelo/administrador-get-dto';
 import { ObrasDto } from '../modelo/obras-get-dto';
-import { CiudadGetDto } from '../modelo/ciudad-get-dto';
 import { CilindroGetDto } from '../modelo/cilindro-get-dto';
 import { RegistroCilindroDto } from '../modelo/registro-cilindro-dto';
 import { SeccionDto } from '../modelo/SeccionDto';
 import { EdadesDto } from '../modelo/edades-get-dto';
 import { OrdenDto } from '../modelo/orden-dto';
+import { AsignarObrasRequestDTO } from '../modelo/asignar-obras-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -185,9 +184,9 @@ public listarOrden (orden: OrdenDto):Observable<EdadesDto>{
   return this.http.post<EdadesDto>(`${this.authURL}/listarOrden`, orden);
 }
 
-public asignarObra(id: number): Observable<MensajeDTO> {
-  console.log(id);
-  return this.http.post<MensajeDTO>(`${this.authURL}/asignarObra`, id);
+public asignarObra(asignarObras: AsignarObrasRequestDTO): Observable<MensajeDTO> {
+  console.log(asignarObras)
+  return this.http.post<MensajeDTO>(`${this.authURL}/asignarObras`, asignarObras);
 }
 
 }

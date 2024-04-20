@@ -12,6 +12,10 @@
     <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
     <label for="tab3">Resultados</label>
     
+    <!-- Tab 3 -->
+    <input type="radio" name="tabset" id="tab4" aria-controls="reports">
+    <label for="tab4">Reportes</label>
+
     <div class="tab-panels">
       <section id="marzen" class="tab-panel">
         <button class="mi-boton" onclick="window.open('/registro-cilindro', 'Crear Cilindro', 'width=600, height=500'); return false;">Crear cilindro</button>
@@ -72,6 +76,9 @@
       </section>
       <section id="dunkles" class="tab-panel">
         <app-resultados-concretos></app-resultados-concretos>
+      </section>
+      <section id="reports" class="tab-panel">
+        <app-reporte></app-reporte>
       </section>
     </div>
   </div>

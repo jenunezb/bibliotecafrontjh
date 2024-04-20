@@ -39,6 +39,7 @@ import { AcerosPdfComponent } from './pagina/aceros-pdf/aceros-pdf.component';
 import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
 import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReporteComponent } from './pagina/reporte/reporte.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ResultadosConcretosComponent,
     InformeConcretosComponent,
     SuelosPdfComponent,
-    AcerosPdfComponent
+    AcerosPdfComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,

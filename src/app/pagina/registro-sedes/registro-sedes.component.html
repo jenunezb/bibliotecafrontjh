@@ -2,7 +2,10 @@
 
   <div class="form-group">
     <label for="ciudad">Ciudad:</label>
-    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" class="form-control"(input)="detectarCambios()">
+    <select id="ciudad" name="ciudad" class="form-control" [(ngModel)]="sedesDto.ciudad" >
+      <option value="" selected disabled>Seleccione una ciudad</option>
+      <option *ngFor="let ciudad of dataSources.data" [value]="ciudad.nombre">{{ ciudad.nombre }}</option>
+    </select>
   </div>
 
   <div class="form-group">
@@ -18,9 +21,6 @@
   <!-- Mostrar mensaje de error si hay campos incompletos -->
   <div *ngIf="camposIncompletos" class="alert-message">
     Por favor completa todos los campos.
-  </div>
-  <div *ngIf="mostrarErrorSedeRepetido" class="alert-message">
-    La sede ya se encuentra registrada para esta ciudad.
   </div>
 
   <div class="form-group text-center">

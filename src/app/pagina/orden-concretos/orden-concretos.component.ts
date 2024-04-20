@@ -33,6 +33,7 @@ export class OrdenConcretosComponent {
         }
       );
   }
+  
   cambiarSeccion(seccion: string) {
     this.seccionActiva = seccion;
     this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente

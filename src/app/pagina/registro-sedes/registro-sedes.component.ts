@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { SedesGetDTO } from 'src/app/modelo/sedes-dto';
 import { Alerta } from 'src/app/modelo/alerta';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
+import { CiudadGetDto } from 'src/app/modelo/ciudad-get-dto';
 
 @Component({
   selector: 'app-registro-sedes',
@@ -14,6 +15,7 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 export class RegistroSedesComponent {
 
   dataSource = new MatTableDataSource<SedesGetDTO>([]);
+  dataSources = new MatTableDataSource<CiudadGetDto>([]);
   displayedColumns: string[] = ['ciudad','direccion','telefono'];
   sedesDto: SedesGetDTO;
   alerta!: Alerta;
@@ -24,10 +26,42 @@ export class RegistroSedesComponent {
   mostrarErrorSedeRepetido: boolean = false;
 
   
-  constructor(private adminService: AdministradorService){
+  constructor(private adminService: AdministradorService,private authService: AuthService){
     this.sedesDto = new SedesGetDTO();
+    this.listarCiudades();
+    this.listarSedes();
   }
 
+  listarCiudades(): void{
+    this.authService.listarCiudades()
+    .subscribe(
+      (response: any) => {
+        confirm
+        this.dataSources.data = response.respuesta; 
+        console.log(this.dataSources.data);
+      },
+      error => {
+        console.error('Error al obtener la lista de ciudades:', error);
+      }
+    
+    );
+  }
+
+  listarSedes(): void{
+    this.adminService.listarSedes()
+      .subscribe(
+        (response: any) => {
+          confirm
+          this.dataSource.data = response.respuesta; 
+          console.log(this.dataSource.data);
+        },
+        error => {
+          console.error('Error al obtener la lista de sedes:', error);
+        }
+      
+      );
+    }
+  
   registrar(): void {
     if (!this.ciudad || !this.direccion ||!this.telefono) {
       this.camposIncompletos = true;

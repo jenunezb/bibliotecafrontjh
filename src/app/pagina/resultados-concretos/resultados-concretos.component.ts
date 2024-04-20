@@ -31,10 +31,6 @@ export class ResultadosConcretosComponent {
   
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
-  
-  ngOnInit(): void {
-    this.listarCilindros();
-  }
   cambiarSecciones(seccion: string) {
     console.log('Cambiar sección a:', seccion);
     if (seccion === 'orden-concretos') {
@@ -46,7 +42,7 @@ export class ResultadosConcretosComponent {
   
 
   listarCilindros(): void {
-    this.administradorService.listarCilindros()
+    this.administradorService.listarResultados(this.ordenDto)
       .subscribe(
         (response: any) => {
           confirm
@@ -84,17 +80,5 @@ export class ResultadosConcretosComponent {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }
 
-public listarOrden(): void {
-  this.administradorService.listarOrden(this.ordenDto)
-    .subscribe(
-      (response: any) => {
-        this.dataSource.data = response.respuesta; 
-        console.log(this.dataSource.data);
-      },
-      error => {
-        console.error('Error al obtener la orden:', error);
-      }
-    );
-}
 }
 

@@ -184,6 +184,10 @@ public listarOrden (orden: OrdenDto):Observable<EdadesDto>{
   return this.http.post<EdadesDto>(`${this.authURL}/listarOrden`, orden);
 }
 
+public listarResultados (orden: OrdenDto):Observable<EdadesDto>{
+  return this.http.post<EdadesDto>(`${this.authURL}/listarResultados`, orden);
+}
+
 public asignarObra(asignarObras: AsignarObrasRequestDTO): Observable<MensajeDTO> {
   console.log(asignarObras)
   return this.http.post<MensajeDTO>(`${this.authURL}/asignarObras`, asignarObras);

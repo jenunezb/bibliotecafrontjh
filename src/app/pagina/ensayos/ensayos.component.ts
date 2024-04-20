@@ -20,9 +20,7 @@ export class EnsayosComponent {
   seccionActiva: string = ''; // Variable para controlar la sección activa
   mostrarOrdenConcretos: boolean = false;
 
-
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
-
   
   ngOnInit(): void {
     this.listarCilindros();

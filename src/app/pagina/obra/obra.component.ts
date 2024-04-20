@@ -17,7 +17,7 @@ import { Alerta } from 'src/app/modelo/alerta';
 export class ObraComponent implements OnInit{
 
   dataSource = new MatTableDataSource<ObrasDto>([]);
-  displayedColumns: string[] = ['cr', 'nombre', 'direccion', 'telefono', 'ciudad','nombreEmpresa','acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['cr', 'nombre', 'direccion', 'telefono', 'ciudad','nombreEmpresa']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   usuarioDto: UsuarioDTO;
   empresaDto: EmpresasGetDTO;

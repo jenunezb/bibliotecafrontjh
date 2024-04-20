@@ -29,79 +29,39 @@
     </div>
     <table>
       <thead>
-        <tr>
-          <th>Cilindro N°</th>
-          <th>Localización</th>
-          <th>Fecha de toma</th>
-          <th>Fecha de ensayo</th>
-          <th>Sección (Días)</th>
-          <th>Edad (Días)</th>
-          <th>Peso (kg)</th>
-          <th>Densidad (kg/m³)</th>
-          <th>Carga máxima (kN)</th>
-          <th>Esfuerzo (kg/cm²)</th>
-          <th>Esfuerzo (MPa)</th>
-          <th>Esfuerzo (P.S.I.)</th>
-          <th>fc %</th>
-          <th>Desarrollo de falla</th>
-          <th>Forma</th>
-          <th>OBS</th>
-        </tr>
+          <tr>
+            <th class="border border-black px-2 py-1">Cilindro N°</th>
+            <th class="border border-black px-2 py-1">Localización</th>
+            <th class="border border-black px-2 py-1">Fecha de toma</th>
+            <th class="border border-black px-2 py-1">Fecha de ensayo</th>
+            <th class="border border-black px-2 py-1">Sección (Días)</th>
+            <th class="border border-black px-2 py-1">Edad (Días)</th>
+            <th class="border border-black px-2 py-1">Peso (kg)</th>
+            <th class="border border-black px-2 py-1">Densidad (kg/m³)</th>
+            <th class="border border-black px-2 py-1">Carga máxima (kN)</th>
+            <th class="border border-black px-2 py-1">Esfuerzo (kg/cm²)</th>
+            <th class="border border-black px-2 py-1">Esfuerzo (MPa)</th>
+            <th class="border border-black px-2 py-1">Esfuerzo (P.S.I.)</th>
+            <th class="border border-black px-2 py-1">Fc %</th>
+            <th class="border border-black px-2 py-1">Desarrollo de falla</th>
+            <th class="border border-black px-2 py-1">Forma</th>
+            <th class="border border-black px-2 py-1">OBS</th>
+          </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>187</td>
-          <td>CIMENTACION T.B. ZARPA APTO 103 ALMA T.E. 102, REM. 36227591</td>
-          <td>2024-02-17</td>
-          <td>2024-03-16</td>
-          <td>4°C</td>
-          <td>28</td>
-          <td>3860</td>
-          <td>2.34</td>
-          <td>159.0</td>
-          <td>200</td>
-          <td>2857</td>
-          <td>20.0</td>
-          <td>21.0</td>
-          <td>95</td>
-          <td>Tip2</td>
-          <td>B</td>
-        </tr>
-        <tr>
-          <td>187</td>
-          <td>CIMENTACION T.B. ZARPA APTO 103 ALMA T.E. 102, REM. 36227591</td>
-          <td>2024-02-17</td>
-          <td>2024-03-16</td>
-          <td>4°C</td>
-          <td>28</td>
-          <td>3788</td>
-          <td>2.30</td>
-          <td>163.4</td>
-          <td>206</td>
-          <td>2936</td>
-          <td>21.0</td>
-          <td>21.0</td>
-          <td>98</td>
-          <td>Tip2</td>
-          <td>B</td>
-        </tr>
-        <tr>
-          <td>187</td>
-          <td>CIMENTACION T.B. ZARPA APTO 103 ALMA T.E. 102, REM. 36227591</td>
-          <td>2024-02-17</td>
-          <td>2024-03-16</td>
-          <td>4°C</td>
-          <td>28</td>
-          <td>3799</td>
-          <td>2.31</td>
-          <td>167.5</td>
-          <td>211</td>
-          <td>3010</td>
-          <td>21.0</td>
-          <td>21.0</td>
-          <td>100</td>
-          <td>Tip2</td>
-          <td>N</td>
+        <tr *ngFor="let cilindro of dataSource">
+          <td class="border border-black px-2 py-1">{{ cilindro.numeroMuestra }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.fechaToma }}</td>
+          <td class="border border-black px-2 py-1">28</td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
+          <td class="border border-black px-2 py-1"></td>
         </tr>
       </tbody>
     </table>

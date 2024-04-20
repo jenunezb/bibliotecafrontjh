@@ -1,6 +1,8 @@
 import { Component, ViewChild , ElementRef,  EventEmitter, Output } from '@angular/core';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+import { AdministradorService } from 'src/app/servicios/administradorservice.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
+import { OrdenDto } from 'src/app/modelo/orden-dto';
 
 @Component({
   selector: 'app-concretos-pdf',
@@ -9,35 +11,26 @@ import html2canvas from 'html2canvas';
 })
 export class ConcretosPdfComponent {
 
-  @Output() generarReportePDF = new EventEmitter<void>();
-  pdfTemplate: any;
+  dataSource: CilindroGetDto[] = [];
+  ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
 
-  generatePDF() {
-    const templateElement = document.getElementById('pdf-template');
-  
-    if (templateElement) {
-      html2canvas(templateElement, { scale: 2 }) 
-        .then(canvas => {
-          const imgData = canvas.toDataURL('image/png');
-          const doc = new jsPDF();
-          doc.addImage(imgData, 'PNG', 10, 10, 180, 0); 
-          doc.save('Informe_ConcreEnsayo.pdf');
-        })
-        .catch(error => {
-          console.error('Error al convertir HTML a lienzo:', error);
-        });
-    } else {
-      console.error('Elemento de plantilla PDF no encontrado');
-    }
+  constructor(private adminService: AdministradorService) {}
+
+  ngOnInit(): void {
+    this.listarCilindros();
   }
-    ngAfterViewInit() {
-      this.generarReportePDF.subscribe(() => {
-        if (this.pdfTemplate) {
-          this.generatePDF();
-        } else {
-          console.error('Elemento de plantilla PDF no encontrado');
+
+ listarCilindros(): void {
+    this.adminService.listarCilindros()
+      .subscribe(
+        (response: any) => {
+          this.dataSource = response.respuesta; // Asigna la respuesta al dataSource
+          console.log(this.dataSource); // Verifica en consola que los datos se han recibido correctamente
+        },
+        error => {
+          console.error('Error al obtener la lista de cilindros:', error);
         }
-      });
+      );
   }
 }
 

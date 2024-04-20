@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Alerta } from 'src/app/modelo/alerta';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -15,6 +17,7 @@ import { OrdenDto } from 'src/app/modelo/orden-dto';
 })
 export class ResultadosConcretosComponent {
 
+
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
   displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma','peso','forma','idForma']; // Define las columnas que deseas mostrar
   alerta: Alerta | null = null;
@@ -23,6 +26,37 @@ export class ResultadosConcretosComponent {
   editState: { [key: string]: boolean } = {};
   ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
 
+
+  @Output() generarReportePDF = new EventEmitter<void>();
+  pdfTemplate: any;
+
+  generatePDF() {
+    const templateElement = document.getElementById('pdf-template');
+  
+    if (templateElement) {
+      html2canvas(templateElement, { scale: 2 }) 
+        .then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+          const doc = new jsPDF();
+          doc.addImage(imgData, 'PNG', 10, 10, 180, 0); 
+          doc.save('Informe_ConcreEnsayo.pdf');
+        })
+        .catch(error => {
+          console.error('Error al convertir HTML a lienzo:', error);
+        });
+    } else {
+      console.error('Elemento de plantilla PDF no encontrado');
+    }
+  }
+    ngAfterViewInit() {
+      this.generarReportePDF.subscribe(() => {
+        if (this.pdfTemplate) {
+          this.generatePDF();
+        } else {
+          console.error('Elemento de plantilla PDF no encontrado');
+        }
+      });
+  }
 
   // Método para activar el modo de edición de un campo al hacer clic en él
   activateEditMode(column: string) {
@@ -40,6 +74,7 @@ export class ResultadosConcretosComponent {
     }
   }
   
+
   listarCilindros(): void {
     this.administradorService.listarResultados(this.ordenDto)
       .subscribe(
@@ -78,6 +113,8 @@ export class ResultadosConcretosComponent {
   openWindow(id: string): void {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }
+
+
 
 subirResultados(): void{
   this.administradorService.subirResultados(this.dataSource.data).subscribe({

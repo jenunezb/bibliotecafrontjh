@@ -61,8 +61,21 @@ form {
   }
   
   .formulario {
-    margin-bottom: 30px;
+    margin-top: -78px;
     display: flex;
     flex-wrap: wrap; 
   }
-  
+  .imagen {
+    width: 65px;
+    height: 65px;
+    margin-left: 300px; /* Mantiene el margen izquierdo de 200px */
+    margin-top: -28px; /* Ajusta el margen superior a 20px (o el valor deseado) */
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+  }
+  .mat-elevation-z8 {
+    width: 128%; /* O ajusta el ancho según sea necesario */
+    border-collapse: collapse; /* Para asegurar que los bordes se vean bien */
+    margin-top: 20px; /* Espacio superior entre la tabla y el contenido anterior */
+  }

@@ -21,6 +21,8 @@ import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.comp
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
 import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
 import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.component';
+import { ResultadosConcretosComponent } from './pagina/resultados-concretos/resultados-concretos.component';
+import { InformeConcretosComponent } from './pagina/informe-concretos/informe-concretos.component';
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -41,6 +43,8 @@ const routes: Routes = [
     { path: "concretos-pdf", component: ConcretosPdfComponent },
     { path: "registro-obra", component: RegistroObraComponent },
     { path: "orden-concretos", component: OrdenConcretosComponent},
+    { path: "resultados-concretos", component: ResultadosConcretosComponent},
+    { path: "informe-concretos", component: InformeConcretosComponent},
     { path: "asignar-obra/:id", component: AsignarObraComponent},
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];

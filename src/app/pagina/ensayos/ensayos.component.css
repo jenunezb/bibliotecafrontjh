@@ -151,7 +151,7 @@ input:focus-visible + label {
 }
 
 .tab-panel {
-  padding: 30px 0;
+  padding: 10px 0;
   border-top: 1px solid #fafafa;
 }
 
@@ -172,7 +172,7 @@ body {
   max-width: 65em;
 }
 .tab-panel table {
-  width: 135%; /* O ajusta el ancho según sea necesario */
+  width: 128%; /* O ajusta el ancho según sea necesario */
   border-collapse: collapse; /* Para asegurar que los bordes se vean bien */
   margin-top: 20px; /* Espacio superior entre la tabla y el contenido anterior */
 }
@@ -182,6 +182,8 @@ body {
   padding: 10px; /* Espacio interno dentro de las celdas */
   
 }
+
+
 
   
 

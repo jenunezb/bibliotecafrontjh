@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { Alerta } from 'src/app/modelo/alerta';
 import { SedesGetDTO } from 'src/app/modelo/sedes-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-sedes',
@@ -17,13 +18,15 @@ export class SedesComponent implements OnInit {
   ciudad: string = '';
   alerta: Alerta | null = null;
   editingRowIndex: number | null = null;
+  roles: string[] = [];
 
-  constructor(private authService: AuthService,private adminService: AdministradorService) {}
+  constructor(private authService: AuthService,private adminService: AdministradorService,private tokenService: TokenService) {}
 
   ngOnInit(): void {
     this.listarSedes();
-  }
 
+    this.roles = this.tokenService.getRole();  
+}
 
   public listarSedes(): void{
     this.adminService.listarSedes()

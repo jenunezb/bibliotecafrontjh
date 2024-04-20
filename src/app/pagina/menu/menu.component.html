@@ -6,8 +6,8 @@
 
   <div class="menu-items">
     <button class="menu-item" *ngIf="roles.includes('administrador')" (click)="cambiarSeccion('usuarios')">Usuarios</button>
-    <button class="menu-item" (click)="cambiarSeccion('empresas')">Empresas</button>
-    <button class="menu-item" (click)="cambiarSeccion('obra')">Obras</button>
+    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))" (click)="cambiarSeccion('empresas')">Empresas</button>
+    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))"(click)="cambiarSeccion('obra')">Obras</button>
     <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
       <option value="" selected disabled>Ensayos</option>
       <option value="ensayos">Concretos</option>
@@ -15,7 +15,7 @@
       <option value="aceros">Aceros</option>
     </select>
     
-    <button class="menu-item" (click)="cambiarSeccion('sedes')">Sedes</button>
+    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))"(click)="cambiarSeccion('sedes')">Sedes</button>
     <button class="menu-item" (click)="logout()">Salir</button>
   </div>
 

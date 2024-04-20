@@ -193,4 +193,9 @@ public asignarObra(asignarObras: AsignarObrasRequestDTO): Observable<MensajeDTO>
   return this.http.post<MensajeDTO>(`${this.authURL}/asignarObras`, asignarObras);
 }
 
+public subirResultados(cilindroDto: CilindroGetDto[]): Observable<MensajeDTO> {
+  console.log("das");
+  return this.http.post<MensajeDTO>(`${this.authURL}/subirResultados`, cilindroDto);
+}
+
 }

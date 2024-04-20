@@ -40,7 +40,6 @@ export class ResultadosConcretosComponent {
     }
   }
   
-
   listarCilindros(): void {
     this.administradorService.listarResultados(this.ordenDto)
       .subscribe(
@@ -80,5 +79,17 @@ export class ResultadosConcretosComponent {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }
 
-}
+subirResultados(): void{
+  this.administradorService.subirResultados(this.dataSource.data).subscribe({
+    next: data => {
+      this.alerta = { mensaje: data.respuesta, tipo: "success" };
+      alert('¡Se han subido los resultados exitosamente!');
+      this.listarCilindros();
+    },
+    error: err => {
+      this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+    }
+  });
+  }
 
+}

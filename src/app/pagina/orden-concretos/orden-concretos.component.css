@@ -28,6 +28,10 @@ form {
     cursor: pointer; 
     float: left;
   }
+  .mi-boton:hover {
+    background-color: #44740d; /* Nuevo color de fondo al pasar el cursor */
+}
+ 
   
   .label {
     margin-top: 11px;

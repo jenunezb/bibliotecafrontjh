@@ -34,6 +34,10 @@ th{
   cursor: pointer; 
   float: left;
 }
+.mi-boton:hover {
+  background-color: #44740d; /* Nuevo color de fondo al pasar el cursor */
+}
+
 .imagen{
   padding: 5px 5px; 
   margin-top: -15px;
@@ -169,6 +173,7 @@ body {
 }
 
 .tabset {
+  margin-top: -25px;
   max-width: 65em;
 }
 .tab-panel table {

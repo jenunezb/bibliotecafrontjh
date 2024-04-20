@@ -30,7 +30,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   listarAdministradores(): void {
-
     this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
     this.titulo = 'Administradores';
     this.administradorService.listarAdministradores()
@@ -154,8 +153,8 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  asignarObra(id:string): void {
-    window.open(`/asignar-obra/${id}`, 'Asignar obra', 'width=600, height=500');
+  asignarObra(id:number): void {
+    window.open(`/asignar-obra/${id}`, 'Asignar obra', 'width=900, height=700');
   }
 
 }

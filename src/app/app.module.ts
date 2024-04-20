@@ -33,7 +33,8 @@ import { ObraComponent } from './pagina/obra/obra.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
 import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
-import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.component';
+import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.compone
     BrowserModule,
     FormsModule, 
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

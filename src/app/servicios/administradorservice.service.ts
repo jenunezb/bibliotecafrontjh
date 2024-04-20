@@ -141,10 +141,12 @@ export class AdministradorService {
     const url = `${this.authURL}/buscarSede/${ciudad}`;
     return this.http.get<SedesGetDTO[]>(url);
   }
-  buscarIngeniero(nombre: string): Observable<IngenieroGetDTO[]> {
-    const url = `${this.authURL}/buscarIngenieros/${nombre}`;
-    return this.http.get<IngenieroGetDTO[]>(url);
+  
+  buscarIngeniero(id: number): Observable<IngenieroGetDTO> {
+    const url = `${this.authURL}/buscarIngenieros/${id}`;
+    return this.http.get<IngenieroGetDTO>(url);
   }
+
   buscarDigitador(nombre: string): Observable<DigitadorDTO[]> {
     const url = `${this.authURL}/buscarDigitador/${nombre}`;
     return this.http.get<DigitadorDTO[]>(url);
@@ -183,9 +185,9 @@ public listarOrden (orden: OrdenDto):Observable<EdadesDto>{
   return this.http.post<EdadesDto>(`${this.authURL}/listarOrden`, orden);
 }
 
-public asignarObra(cedula: string): Observable<MensajeDTO> {
-  console.log(cedula);
-  return this.http.post<MensajeDTO>(`${this.authURL}/asignarObra`, cedula);
+public asignarObra(id: number): Observable<MensajeDTO> {
+  console.log(id);
+  return this.http.post<MensajeDTO>(`${this.authURL}/asignarObra`, id);
 }
 
 }

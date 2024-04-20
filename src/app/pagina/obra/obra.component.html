@@ -41,16 +41,6 @@
                 <th mat-header-cell *matHeaderCellDef> Nombre Empresa </th>
                 <td mat-cell *matCellDef="let element"> {{element.empresa}} </td>
             </ng-container>
-
-            <!-- Acciones Column -->
-            <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                <td mat-cell *matCellDef="let element" style="text-align: left;">
-                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
-                        <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
-                    </a>
-                </td>
-            </ng-container>
     
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -26,9 +26,9 @@
                 <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #e15639;" matTooltip="Eliminar Usuario" (click)="eliminarUsuario(element.correo)">
                   <mat-icon>delete</mat-icon>
                 </a>
-                <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #1f516f;" (click)="asignarObra(element.cedula)">
+                <a *ngIf="col === 'acciones' && !editingRowIndex" class="btn-danger pointer" style="color: #1f516f;" (click)="asignarObra(element.id)">
                   <mat-icon>engineering</mat-icon>
-                </a>
+                </a>                
               </ng-container>
               <ng-template #editMode>
                 <!-- Código para el modo de edición -->

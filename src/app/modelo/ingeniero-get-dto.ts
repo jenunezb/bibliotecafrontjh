@@ -4,4 +4,5 @@ export class IngenieroGetDTO{
     ciudad: string = "";
     Teléfono: string = "";
     correo: string = "";
+    id: number=0;
 }

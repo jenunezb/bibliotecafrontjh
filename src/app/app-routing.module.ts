@@ -20,9 +20,13 @@ import { ObraComponent } from './pagina/obra/obra.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
 import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
+<<<<<<< HEAD
 import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.component';
 import { ResultadosConcretosComponent } from './pagina/resultados-concretos/resultados-concretos.component';
 import { InformeConcretosComponent } from './pagina/informe-concretos/informe-concretos.component';
+=======
+import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
+>>>>>>> 181b727da71d6aa9c4dbbaefad90e09d3ec78831
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -43,9 +47,13 @@ const routes: Routes = [
     { path: "concretos-pdf", component: ConcretosPdfComponent },
     { path: "registro-obra", component: RegistroObraComponent },
     { path: "orden-concretos", component: OrdenConcretosComponent},
+<<<<<<< HEAD
     { path: "resultados-concretos", component: ResultadosConcretosComponent},
     { path: "informe-concretos", component: InformeConcretosComponent},
     { path: "asignar-obra/:id", component: AsignarObraComponent},
+=======
+    { path: "asignar-obra/:cedula", component: AsignarObraComponent},
+>>>>>>> 181b727da71d6aa9c4dbbaefad90e09d3ec78831
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

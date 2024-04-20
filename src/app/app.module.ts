@@ -33,9 +33,17 @@ import { ObraComponent } from './pagina/obra/obra.component';
 import { RegistroObraComponent } from './pagina/registro-obra/registro-obra.component';
 import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
 import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
+<<<<<<< HEAD
 import { AsignarObraComponent } from './pagina/asignar-obra/asignar-obra.component';
 import { ResultadosConcretosComponent } from './pagina/resultados-concretos/resultados-concretos.component';
 import { InformeConcretosComponent } from './pagina/informe-concretos/informe-concretos.component';
+=======
+import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
+import { AcerosPdfComponent } from './pagina/aceros-pdf/aceros-pdf.component';
+import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+>>>>>>> 181b727da71d6aa9c4dbbaefad90e09d3ec78831
 
 @NgModule({
   declarations: [
@@ -60,8 +68,13 @@ import { InformeConcretosComponent } from './pagina/informe-concretos/informe-co
     ConcretosPdfComponent,
     OrdenConcretosComponent,
     AsignarObraComponent,
+<<<<<<< HEAD
     ResultadosConcretosComponent,
     InformeConcretosComponent
+=======
+    SuelosPdfComponent,
+    AcerosPdfComponent
+>>>>>>> 181b727da71d6aa9c4dbbaefad90e09d3ec78831
   ],
   imports: [
     BrowserModule,
@@ -81,7 +94,8 @@ import { InformeConcretosComponent } from './pagina/informe-concretos/informe-co
     BrowserModule,
     FormsModule, 
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

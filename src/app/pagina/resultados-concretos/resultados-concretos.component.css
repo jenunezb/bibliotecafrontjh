@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    margin-top: 50px; /* Ajusta este valor según lo que necesites */
+    text-align: left;
+    margin-bottom: 20px; /* Ajusta este valor según lo necesites */
+
+}
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+.tabla-container {
+    margin-top: 20px; /* Ajusta este valor según lo necesites */
+}
+.mi-boton {
+    padding: 10px 20px; 
+    margin-bottom: 20px;
+    margin-left: 100px;
+    background-color: #318f06; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    float: left;
+  }
+  
+  .label {
+    margin-top: 11px;
+    display: inline-block;
+    width: 60px; 
+    text-align: right;
+    margin-right: 10px;
+  }
+  
+  .busqueda {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 125px;
+  }
+  
+  .fecha {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 112px;
+  }
+  
+
+  .form-container {
+    display: flex;
+    justify-content: center; /* Centra el formulario horizontalmente */
+    align-items: center; /* Centra el formulario verticalmente */
+  }
+  
+  .formulario {
+    margin-top: -48px;
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  .imagen{
+    width: 65px;
+    height: 65px;
+    margin-left:600px;
+    display: flex;
+    flex-wrap: wrap;
+  }

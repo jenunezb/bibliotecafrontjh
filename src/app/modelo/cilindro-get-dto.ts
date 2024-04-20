@@ -5,4 +5,7 @@ export class CilindroGetDto{
     ensayo: string = "";
     fechaToma: string = "";
     fechaFalla: string = "";
+    peso:string="";
+    forma: string= "";
+    idForma: string= "";
 }

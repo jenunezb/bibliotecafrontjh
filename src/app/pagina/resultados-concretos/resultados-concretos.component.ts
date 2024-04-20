@@ -16,7 +16,7 @@ import { OrdenDto } from 'src/app/modelo/orden-dto';
 export class ResultadosConcretosComponent {
 
   dataSource = new MatTableDataSource<CilindroGetDto>([]);
-  displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma','peso','forma','idForma']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['Cr','numeroMuestra', 'nombreObra', 'tipoMuestraCilindro', 'fechadeToma','peso','forma','formaFalla']; // Define las columnas que deseas mostrar
   alerta: Alerta | null = null;
   seccionActiva: string = ''; // Variable para controlar la sección activa
   mostrarOrdenConcretos: boolean = false;
@@ -84,7 +84,7 @@ subirResultados(): void{
     next: data => {
       this.alerta = { mensaje: data.respuesta, tipo: "success" };
       alert('¡Se han subido los resultados exitosamente!');
-      this.listarCilindros();
+      this.dataSource.data = []; // Limpiar los datos de la tabla
     },
     error: err => {
       this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };

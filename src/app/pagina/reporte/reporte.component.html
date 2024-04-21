@@ -1,1 +1,98 @@
-<p>REPOOOOORTES</p>
+<div class="container">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+    <form class="formulario" (ngSubmit)="listarReporte()">
+      <label class="label" for="cr">CR:</label>
+      <input class="busqueda" type="text" id="cr" name="cr" [(ngModel)]="fechasReporteDto.cr">
+  
+      <label class="label" for="fecha">Fecha:</label>
+      <input class="fecha" type="date" id="fecha" name="fecha" [(ngModel)]="fechasReporteDto.fechaInicio">
+  
+      <label class="label" for="fecha">Fecha:</label>
+      <input class="fecha" type="date" id="fecha" name="fecha" [(ngModel)]="fechasReporteDto.fechaFin">
+
+      <input class="mi-boton" type="submit" value="Aceptar">
+    </form>
+    </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+     <ng-container matColumnDef="muestra">
+         <th mat-header-cell *matHeaderCellDef> muestra </th>
+         <td mat-cell *matCellDef="let element"> {{element.muestra}} </td>
+     </ng-container>        
+  
+     <ng-container matColumnDef="descripcion">
+         <th mat-header-cell *matHeaderCellDef> descripcion </th>
+         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+     </ng-container>
+  
+     <ng-container matColumnDef="fechadeToma">
+         <th mat-header-cell *matHeaderCellDef> Fecha de Toma</th>
+         <td mat-cell *matCellDef="let element"> {{element.fechaToma}} </td>
+     </ng-container>
+
+     <ng-container matColumnDef="fechaFalla">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Ensayo</th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFalla}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edad">
+      <th mat-header-cell *matHeaderCellDef> Edad</th>
+      <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="peso">
+    <th mat-header-cell *matHeaderCellDef> peso</th>
+    <td mat-cell *matCellDef="let element"> {{element.peso }} </td>
+</ng-container>
+
+<ng-container matColumnDef="densidad">
+    <th mat-header-cell *matHeaderCellDef> densidad</th>
+    <td mat-cell *matCellDef="let element"> {{element.densidad | number: '1.2-2'}} </td>
+</ng-container>
+
+<ng-container matColumnDef="carga">
+    <th mat-header-cell *matHeaderCellDef> carga</th>
+    <td mat-cell *matCellDef="let element"> {{element.carga}} </td>
+</ng-container>
+
+<ng-container matColumnDef="obra">
+    <th mat-header-cell *matHeaderCellDef> obra</th>
+    <td mat-cell *matCellDef="let element"> {{element.obra}} </td>
+</ng-container>
+
+<ng-container matColumnDef="esfuerzoKg">
+    <th mat-header-cell *matHeaderCellDef> esfuerzoKg</th>
+    <td mat-cell *matCellDef="let element"> {{element.esfuerzoKg | number: '1.2-2'}} </td>
+</ng-container>
+
+<ng-container matColumnDef="esfuerzoPsi">
+    <th mat-header-cell *matHeaderCellDef> esfuerzoPsi</th>
+    <td mat-cell *matCellDef="let element"> {{element.esfuerzoPsi | number: '1.2-2'}} </td>
+</ng-container>
+
+<ng-container matColumnDef="esfuerzoMpa">
+    <th mat-header-cell *matHeaderCellDef> esfuerzoMpa</th>
+    <td mat-cell *matCellDef="let element"> {{element.esfuerzoMpa | number: '1.2-2'}} </td>
+</ng-container>
+
+<ng-container matColumnDef="resistencia">
+    <th mat-header-cell *matHeaderCellDef> resistencia</th>
+    <td mat-cell *matCellDef="let element"> {{element.resistencia}} </td>
+</ng-container>
+
+<ng-container matColumnDef="desarrollo">
+    <th mat-header-cell *matHeaderCellDef> desarrollo</th>
+    <td mat-cell *matCellDef="let element"> {{element.desarrollo | number: '1.2-2'}} </td>
+</ng-container>
+
+<ng-container matColumnDef="obs">
+    <th mat-header-cell *matHeaderCellDef> obs</th>
+    <td mat-cell *matCellDef="let element"> {{element.obs}} </td>
+</ng-container>
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     
+      </table>
+  

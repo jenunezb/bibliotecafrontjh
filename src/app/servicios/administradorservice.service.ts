@@ -17,6 +17,7 @@ import { SeccionDto } from '../modelo/SeccionDto';
 import { EdadesDto } from '../modelo/edades-get-dto';
 import { OrdenDto } from '../modelo/orden-dto';
 import { AsignarObrasRequestDTO } from '../modelo/asignar-obras-dto';
+import { FechasReporteDto } from '../modelo/fechas-reporte-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -196,6 +197,10 @@ public asignarObra(asignarObras: AsignarObrasRequestDTO): Observable<MensajeDTO>
 public subirResultados(cilindroDto: CilindroGetDto[]): Observable<MensajeDTO> {
   console.log(cilindroDto);
   return this.http.post<MensajeDTO>(`${this.authURL}/subirResultados`, cilindroDto);
+}
+
+public listarReporte(fechasReporteDto:FechasReporteDto):Observable<MensajeDTO>{
+  return this.http.post<MensajeDTO>(`${this.authURL}/listarReportes`, fechasReporteDto);
 }
 
 }

@@ -24,6 +24,7 @@ import { ResultadosConcretosComponent } from './pagina/resultados-concretos/resu
 import { InformeConcretosComponent } from './pagina/informe-concretos/informe-concretos.component';
 import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
 import { ReporteComponent } from './pagina/reporte/reporte.component';
+import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -48,6 +49,7 @@ const routes: Routes = [
     { path: "informe-concretos", component: InformeConcretosComponent},
     { path: "asignar-obra/:id", component: AsignarObraComponent},
     { path: "asignar-obra/:cedula", component: AsignarObraComponent},
+    { path: "suelos-pdf", component: SuelosPdfComponent},
     { path: "reporte", component: ReporteComponent},
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];

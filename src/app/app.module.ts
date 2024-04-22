@@ -69,7 +69,8 @@ import { ReporteComponent } from './pagina/reporte/reporte.component';
     InformeConcretosComponent,
     SuelosPdfComponent,
     AcerosPdfComponent,
-    ReporteComponent
+    ReporteComponent,
+
   ],
   imports: [
     BrowserModule,

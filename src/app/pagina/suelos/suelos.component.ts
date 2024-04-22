@@ -16,6 +16,7 @@ export class SuelosComponent {
   dataSource = new MatTableDataSource<ConcretosDto>([]);
   displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
+  seccionActiva: string = ''
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
 
@@ -36,5 +37,11 @@ export class SuelosComponent {
         }
 
       );
+  }
+
+  cambiarSeccion(seccion: string) {
+    this.seccionActiva = seccion;
+    this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
+    
   }
 }

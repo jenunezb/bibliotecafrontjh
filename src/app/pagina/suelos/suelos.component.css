@@ -97,4 +97,12 @@ th{
     }
 
   }
-  
+  .imagen {
+    width: 65px;
+    height: 65px;
+    margin-left: 300px; /* Mantiene el margen izquierdo de 200px */
+    margin-top: 48px; /* Ajusta el margen superior a 20px (o el valor deseado) */
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+  }

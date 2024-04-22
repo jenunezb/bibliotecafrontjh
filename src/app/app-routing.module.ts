@@ -25,6 +25,7 @@ import { InformeConcretosComponent } from './pagina/informe-concretos/informe-co
 import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
 import { ReporteComponent } from './pagina/reporte/reporte.component';
 import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
+import { RegistroSuelosComponent } from './pagina/registro-suelos/registro-suelos.component';
 
 const routes: Routes = [
     { path: "registro-usuarios", component: RegistroUsuariosComponent, canActivate: [RolesGuard], data: {expectedRole: ["administrador"] }  },
@@ -44,6 +45,7 @@ const routes: Routes = [
     { path: "registro-muestra/:id", component: RegistroMuestraComponent },
     { path: "concretos-pdf", component: ConcretosPdfComponent },
     { path: "registro-obra", component: RegistroObraComponent },
+    { path: "registro-suelos", component: RegistroSuelosComponent },
     { path: "orden-concretos", component: OrdenConcretosComponent},
     { path: "resultados-concretos", component: ResultadosConcretosComponent},
     { path: "informe-concretos/:fecha", component: InformeConcretosComponent},

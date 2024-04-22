@@ -98,11 +98,110 @@ th{
 
   }
   .imagen {
-    width: 65px;
-    height: 65px;
-    margin-left: 300px; /* Mantiene el margen izquierdo de 200px */
-    margin-top: 48px; /* Ajusta el margen superior a 20px (o el valor deseado) */
-    display: flex;
-    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
   }
+  .tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+  
+  .tabset .tab-panel {
+    display: none;
+  }
+  
+  .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+  
+  /*
+   Styling
+  */
+  body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #333;
+    font-weight: 300;
+  }
+  
+  .tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 25px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    width: 22px;
+    height: 4px;
+    background: #383a38;
+  }
+  
+  input:focus-visible + label {
+    outline: 7px solid rgba(0,102,204,1);
+    border-radius: 3px;
+  }
+  
+  .tabset > label:hover,
+  .tabset > input:focus + label,
+  .tabset > input:checked + label {
+    color: #06c;
+  }
+  
+  .tabset > label:hover::after,
+  .tabset > input:focus + label::after,
+  .tabset > input:checked + label::after {
+    background: #06c;
+  }
+  
+  .tabset > input:checked + label {
+    border-color: #ccc;
+    border-bottom: 1px solid #fff;
+  }
+  
+  .tab-panel {
+    padding: 10px 0;
+    border-top: 1px solid #fafafa;
+  }
+  
+  /*
+   Demo purposes only
+  */
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    padding: 0px;
+  }
+  
+  .tabset {
+    margin-top: 35px;
+    max-width: 65em;
+  }
+  .tab-panel table {
+    width: 128%; /* O ajusta el ancho según sea necesario */
+    border-collapse: collapse; /* Para asegurar que los bordes se vean bien */
+    margin-top: 20px; /* Espacio superior entre la tabla y el contenido anterior */
+  }
+  
+  .tab-panel th,
+  .tab-panel td {
+    padding: 10px; /* Espacio interno dentro de las celdas */
+    
+  }
+  

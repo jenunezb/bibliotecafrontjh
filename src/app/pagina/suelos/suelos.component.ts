@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class SuelosComponent {
 
   dataSource = new MatTableDataSource<ConcretosDto>([]);
-  displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
+  displayedColumns: string[] = ['Cr','numerodeMuestra', 'proyecto', 'fechaProgramada', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   seccionActiva: string = ''
 

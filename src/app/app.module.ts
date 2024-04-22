@@ -40,6 +40,8 @@ import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
 import { AsignarObraComponent } from './pagina/asignar-obra/AsignarObraComponent';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReporteComponent } from './pagina/reporte/reporte.component';
+import { RegistroSuelosComponent } from './pagina/registro-suelos/registro-suelos.component';
+import { ResultadosSuelosComponent } from './pagina/resultados-suelos/resultados-suelos.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { ReporteComponent } from './pagina/reporte/reporte.component';
     SuelosPdfComponent,
     AcerosPdfComponent,
     ReporteComponent,
+    RegistroSuelosComponent,
+    ResultadosSuelosComponent,
 
   ],
   imports: [

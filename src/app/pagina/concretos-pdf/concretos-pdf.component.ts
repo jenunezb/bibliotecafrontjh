@@ -5,6 +5,7 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { FechasReporteDto } from 'src/app/modelo/fechas-reporte-dto';
 import { ReporteGetDto } from 'src/app/modelo/reporte-get-dto';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-concretos-pdf',
@@ -13,18 +14,36 @@ import { ReporteGetDto } from 'src/app/modelo/reporte-get-dto';
 })
 export class ConcretosPdfComponent {
 
-  dataSource: ReporteGetDto[] = [];
+  dataSource = new MatTableDataSource<ReporteGetDto>([]);
   ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
   fechasReporteDto: FechasReporteDto = new FechasReporteDto();
+  fecha: string[]=[];
+  displayedColumns: string[] = ['muestra'];
 
-
-  constructor(private adminService: AdministradorService) {}
+  constructor(private adminService: AdministradorService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const url: string = params['fechas']; // Suponiendo que el parámetro en la URL se llama 'id'
+       const urlParts: string[] = url.split('_'); // Dividimos la URL por el guion bajo '_' 
+      if (urlParts.length === 3) {
+        this.fecha = urlParts.slice(0, 3); // Tomamos los primeros tres elementos
+        console.log(this.fecha);
+
+      } else {
+        console.error('La URL no tiene el formato esperado.');
+      }
+    });
+
     this.listarReporte();
   }
 
   listarReporte(): void {
+
+    this.fechasReporteDto.cr=this.fecha[0];
+    this.fechasReporteDto.fechaInicio=this.fecha[1];
+    this.fechasReporteDto.fechaFin=this.fecha[2];
+
     this.adminService.listarReporte(this.fechasReporteDto)
       .subscribe(
         (response: any) => {

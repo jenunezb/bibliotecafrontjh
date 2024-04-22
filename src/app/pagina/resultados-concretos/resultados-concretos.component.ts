@@ -25,7 +25,7 @@ export class ResultadosConcretosComponent {
   mostrarOrdenConcretos: boolean = false;
   editState: { [key: string]: boolean } = {};
   ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
-
+  fechas:string[]=[];
 
   @Output() generarReportePDF = new EventEmitter<void>();
   pdfTemplate: any;
@@ -74,7 +74,6 @@ export class ResultadosConcretosComponent {
     }
   }
   
-
   listarCilindros(): void {
     this.administradorService.listarResultados(this.ordenDto)
       .subscribe(
@@ -113,7 +112,6 @@ export class ResultadosConcretosComponent {
   openWindow(id: string): void {
     window.open(`/registro-muestra/${id}`, 'Crear Cilindro', 'width=600, height=500');
 }
-
 
 
 subirResultados(): void{

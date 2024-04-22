@@ -26,7 +26,6 @@ export class RegistroSuelosComponent implements OnInit  {
     }
   }
 
-
   constructor(private adminService: AdministradorService, private authService: AuthService, private router: Router, private tokenService: TokenService){
     this.suelosDTO = new RegistroSuelosDto();
   }

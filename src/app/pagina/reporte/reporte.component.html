@@ -12,6 +12,10 @@
       <input class="fecha" type="date" id="fecha" name="fecha" [(ngModel)]="fechasReporteDto.fechaFin">
 
       <input class="mi-boton" type="submit" value="Aceptar">
+
+      <div class="imagen">
+        <img class="imagen" src="assets/img/pdf2.png.png" (click)="openWindowResultados('concretos-pdf/{{fechasReporteDto}}')"alt="Icono">
+        </div>
     </form>
     </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

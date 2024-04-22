@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Alerta } from 'src/app/modelo/alerta';
 import { FechasReporteDto } from 'src/app/modelo/fechas-reporte-dto';
 import { ReporteGetDto } from 'src/app/modelo/reporte-get-dto';
@@ -12,28 +12,40 @@ import { AuthService } from 'src/app/servicios/auth.service';
   templateUrl: './reporte.component.html',
   styleUrls: ['./reporte.component.css']
 })
-export class ReporteComponent {
+export class ReporteComponent implements OnInit{
 
   dataSource = new MatTableDataSource<ReporteGetDto>([]);
   displayedColumns: string[] = ['muestra', "descripcion", "fechadeToma", "fechaFalla","edad","peso", "densidad","carga","obra", "esfuerzoKg", "esfuerzoPsi", "esfuerzoMpa", "resistencia", "desarrollo", "obs"];
   alerta: Alerta | null = null;
   fechasReporteDto: FechasReporteDto = new FechasReporteDto();
+  fecha: string = "";
 
-  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
+  constructor( private administradorService: AdministradorService, private route:ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.fecha = params['fechasReporteDto'];
+      this.listarReporte();
+      console.log(this.fecha);
+    });
+  }
 
   public listarReporte(): void{
     this.administradorService.listarReporte(this.fechasReporteDto)
     .subscribe(
       (response: any) => {
         this.dataSource.data = response.respuesta; 
-        console.log(this.dataSource.data);
         if(this.dataSource.data.length==0){
-          alert("Error: Complete toda la información ");
         }
       },
       error => {
         this.alerta = { mensaje: error.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
       }
     );
+  }
+
+  openWindowResultados(fechasReporteDto: string): void {
+    fechasReporteDto= this.fechasReporteDto.cr +"_"+this.fechasReporteDto.fechaInicio +"_"+ this.fechasReporteDto.fechaFin;
+    window.open(`/concretos-pdf/${fechasReporteDto}`, 'Crear Cilindro', 'width=600, height=500');
   }
 }

@@ -1,6 +1,6 @@
 export class CilindroGetDto{
     cr: string = "";
-    numeroMuestra: string = "";
+    muestra: string = "";
     nombreObra: string = "";
     ensayo: string = "";
     fechaToma: string = "";

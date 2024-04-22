@@ -106,8 +106,8 @@ export class AdministradorService {
     // La información de la ciudad se pasa como parte de la URL
     return this.http.delete<MensajeDTO>(`${this.authURL}/eliminarEmpresa/${nombre}`);
   }
-  buscarEmpresas(nombre: string): Observable<EmpresasGetDTO[]> {
-    const url = `${this.authURL}/buscarEmpresa/${nombre}`;
+  buscarEmpresas(nit: string): Observable<EmpresasGetDTO[]> {
+    const url = `${this.authURL}/buscarEmpresa/${nit}`;
     return this.http.get<EmpresasGetDTO[]>(url);
   }
  

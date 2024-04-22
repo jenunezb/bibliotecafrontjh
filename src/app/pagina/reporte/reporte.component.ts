@@ -27,9 +27,12 @@ export class ReporteComponent {
       (response: any) => {
         this.dataSource.data = response.respuesta; 
         console.log(this.dataSource.data);
+        if(this.dataSource.data.length==0){
+          alert("Error: Complete toda la información ");
+        }
       },
       error => {
-        console.error('Error al obtener la orden:', error);
+        this.alerta = { mensaje: error.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
       }
     );
   }

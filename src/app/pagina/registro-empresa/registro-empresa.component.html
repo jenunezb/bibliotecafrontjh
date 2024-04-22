@@ -23,12 +23,18 @@
   <div *ngIf="camposIncompletos" class="alert-message">
     Por favor completa todos los campos.
   </div>
-<!-- Mostrar mensaje de error si el NIT está repetido -->
-<div *ngIf="mostrarErrorNitRepetido" class="alert alert-danger">
-  El NIT ya se encuentra registrado.
-</div>
+
   <button class="btn" (click)="registrar()">Registrar</button>
   <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert">
+    {{ alerta.mensaje }}
+  </div>
+
+     <!-- Mensaje de alerta -->
+<div *ngIf="alerta" style="margin-top: 10px;">
+  <div *ngIf="alerta.tipo === 'danger'" style="color: #721c24; background-color: #f8d7da; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+  <div *ngIf="alerta.tipo === 'success'" style="color: #155724; background-color: #d4edda; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
     {{ alerta.mensaje }}
   </div>
 </div>

@@ -5,6 +5,7 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { Router } from '@angular/router';
+import { EdadesDto } from 'src/app/modelo/edades-get-dto';
 
 @Component({
   selector: 'app-orden-concretos',
@@ -36,7 +37,7 @@ export class OrdenConcretosComponent {
   
   cambiarSeccion(seccion: string) {
     this.seccionActiva = seccion;
-    this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
-    
+    this.router.navigateByUrl(`/informe-concretos/${this.ordenDto.fecha}`); // Navegar a la ruta correspondiente
   }
+
 }

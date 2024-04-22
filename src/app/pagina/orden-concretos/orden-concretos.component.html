@@ -2,7 +2,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div class="imagen">
-  <img class="imagen" src="assets/img/pdf2.png.png" (click)="cambiarSeccion('informe-concretos')" alt="Icono">
+  <img class="imagen" src="assets/img/pdf2.png.png" (click)="cambiarSeccion('informe-concretos/{{ordenDto.fecha}}')" alt="Icono">
 </div>
   <form class="formulario" (ngSubmit)="listarOrden()">
     <label class="label" for="cr">CR:</label>

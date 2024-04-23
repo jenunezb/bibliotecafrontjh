@@ -18,6 +18,8 @@ import { EdadesDto } from '../modelo/edades-get-dto';
 import { OrdenDto } from '../modelo/orden-dto';
 import { AsignarObrasRequestDTO } from '../modelo/asignar-obras-dto';
 import { FechasReporteDto } from '../modelo/fechas-reporte-dto';
+import { SuelosDTO } from '../modelo/SuelosDTO';
+import { RegistroSuelosDto } from '../modelo/registroSuelos-get-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -202,5 +204,14 @@ public subirResultados(cilindroDto: CilindroGetDto[]): Observable<MensajeDTO> {
 public listarReporte(fechasReporteDto:FechasReporteDto):Observable<MensajeDTO>{
   return this.http.post<MensajeDTO>(`${this.authURL}/listarReportes`, fechasReporteDto);
 }
+
+public registrarMuestraSuelos(suelosDTO: RegistroSuelosDto): Observable<MensajeDTO> {
+  console.log(suelosDTO);
+  return this.http.post<MensajeDTO>(`${this.authURL}/registrarMuestraSuelos`, suelosDTO);
+}
+
+public listarSuelos ():Observable<SeccionDto>{
+  return this.http.get<SeccionDto>(`${this.authURL}/listarSuelos`);
+} 
 
 }

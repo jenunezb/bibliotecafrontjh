@@ -6,8 +6,6 @@ import { TokenService } from 'src/app/servicios/token.service';
 import { Router } from '@angular/router';
 import { RegistroSuelosDto } from 'src/app/modelo/registroSuelos-get-dto';
 
-
-
 @Component({
   selector: 'app-registro-suelos',
   templateUrl: './registro-suelos.component.html',
@@ -19,7 +17,6 @@ export class RegistroSuelosComponent implements OnInit  {
   suelosDTO: RegistroSuelosDto;
   alerta: { mensaje: string, tipo: string } | null = null;
 
-
   ngOnInit() {
     if (this.authService.estaAutenticado()) {
       this.router.navigate(['/registro-suelos']); 
@@ -28,5 +25,19 @@ export class RegistroSuelosComponent implements OnInit  {
 
   constructor(private adminService: AdministradorService, private authService: AuthService, private router: Router, private tokenService: TokenService){
     this.suelosDTO = new RegistroSuelosDto();
+  }
+
+  public registrarMuestraSuelos(): void{
+    this.adminService.registrarMuestraSuelos(this.suelosDTO).subscribe({
+      next: (data) => {
+        this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+        alert('¡La muestra ha sido creada!');
+      
+        window.close();
+      },
+      error: (err) => {
+        this.alerta = { mensaje: err.error.respuesta || 'No se ha podido registrar la muestra', tipo: 'danger' };
+      }
+    });
   }
 }

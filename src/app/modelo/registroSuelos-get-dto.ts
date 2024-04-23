@@ -6,10 +6,8 @@ export class RegistroSuelosDto{
     localizacion: string= "";
     cantera: string= "";
     fechaToma: string = "";
-    fechaRecibo: string = "";
-    fechaProgramada: string = "";
+    fechaRecibido: string = "";
     descripcion: string = "";
-    obs: string = "";
 
 
 }

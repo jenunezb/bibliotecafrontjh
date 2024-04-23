@@ -22,18 +22,18 @@ export class SuelosComponent {
 
   ngOnInit(): void {
 
-    this.listarIngenieros();
+    this.listarSuelos();
   }
   
-  listarIngenieros(): void {
-    this.administradorService.listarIngenieros()
+  listarSuelos(): void {
+    this.administradorService.listarSuelos()
       .subscribe(
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta;
         },
         error => {
-          console.error('Error al obtener la lista de ingenieros:', error);
+          console.error('Error al obtener la lista de muestras de suelo:', error);
         }
 
       );

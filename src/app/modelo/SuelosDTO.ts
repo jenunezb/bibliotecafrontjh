@@ -1,9 +1,8 @@
 export class SuelosDTO{
 
-    Cr: string = "";
-    numerodeMuestra: string = "";
+    cr: string = "";
+    numerodeMuestra: number = 0;
     nombreObra: string = "";
     fechaProgramada: string = "";
-  
   }
   

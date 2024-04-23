@@ -19,6 +19,7 @@ export class EnsayosComponent {
   alerta: Alerta | null = null;
   seccionActiva: string = ''; // Variable para controlar la sección activa
   mostrarOrdenConcretos: boolean = false;
+  roles: string[] = [];
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
   

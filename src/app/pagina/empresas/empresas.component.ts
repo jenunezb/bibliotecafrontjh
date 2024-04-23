@@ -16,6 +16,8 @@ export class EmpresasComponent implements OnInit {
   displayedColumns: string[] = ['nit', 'nombre', 'direccion', 'telefono', 'acciones']; 
   alerta: Alerta | null = null;
   editingRowIndex: number | null = null;
+  roles: string[] = [];
+
 
   constructor(private authService: AuthService, private adminService: AdministradorService) {
 

@@ -5,23 +5,22 @@
   </div>
 
   <div class="menu-items">
-    <button class="menu-item" *ngIf="roles.includes('administrador')" (click)="cambiarSeccion('usuarios')">Usuarios</button>
+    <button class="menu-item" *ngIf="roles.includes('admin')" (click)="cambiarSeccion('usuarios')">Usuarios</button>
     <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))" (click)="cambiarSeccion('empresas')">Empresas</button>
-    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))"(click)="cambiarSeccion('obra')">Obras</button>
+    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente')) || roles.includes('ingeniero')" (click)="cambiarSeccion('obra')">Obras</button>
     <select id="roles-filter" class="roles-select" (change)="seleccionarSeccion($event)">
-      <option value="" selected disabled>Ensayos</option>
-      <option value="ensayos">Concretos</option>
-      <option value="suelos">Suelos</option>
-      <option value="aceros">Aceros</option>
+      <option value="ensayos" selected disabled>Ensayos</option>
+      <option value="ensayos" *ngIf="roles.includes('admin') || roles.includes('ingeniero') || roles.includes('cliente')">Concretos</option>
+      <option value="suelos" *ngIf="roles.includes('admin') || roles.includes('ingeniero')">Suelos</option>
+      <option value="aceros" *ngIf="roles.includes('admin') || roles.includes('ingeniero')">Aceros</option>
     </select>
-    
-    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))"(click)="cambiarSeccion('sedes')">Sedes</button>
+    <button class="menu-item" *ngIf="!(roles.includes('digitador') || roles.includes('cliente'))" (click)="cambiarSeccion('sedes')">Sedes</button>
     <button class="menu-item" (click)="logout()">Salir</button>
   </div>
 
   <!-- Área para mostrar las secciones activas -->
   <div class="menu-container">
-    <div *ngIf="seccionActiva === 'usuarios' || seccionActiva === 'ingeniero' || seccionActiva === 'digitador'|| seccionActiva === 'cliente'">
+    <div *ngIf="seccionActiva === 'usuarios'">
       <a routerLink="/usuarios" (click)="cambiarSeccion('usuarios')"></a>
     </div>
     <div *ngIf="seccionActiva === 'empresas'">
@@ -33,12 +32,12 @@
     <div *ngIf="seccionActiva === 'sedes'">
       <a routerLink="/sedes" (click)="cambiarSeccion('sedes')"></a>
     </div>
-    <div *ngIf="seccionActiva === 'ensayos' || seccionActiva === 'suelos' || seccionActiva === 'aceros'">
+    <div *ngIf="seccionActiva === 'ensayos' || seccionActiva === 'concretos' || seccionActiva === 'suelos' || seccionActiva === 'aceros'">
       <a routerLink="/ensayos" (click)="cambiarSeccion('ensayos')"></a>
-      <a routerLink="/suelos" (click)="cambiarSeccion('suelos')"></a>
-      <a routerLink="/aceros" (click)="cambiarSeccion('aceros')"></a>
+      <a routerLink="/concretos" *ngIf="roles.includes('admin') || roles.includes('ingeniero') || roles.includes('cliente')" (click)="cambiarSeccion('concretos')"></a>
+      <a routerLink="/suelos" *ngIf="roles.includes('admin') || roles.includes('ingeniero')" (click)="cambiarSeccion('suelos')"></a>
+      <a routerLink="/aceros" *ngIf="roles.includes('admin') || roles.includes('ingeniero')" (click)="cambiarSeccion('aceros')"></a>
     </div>
   </div>
   
-
 </div>

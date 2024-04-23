@@ -62,41 +62,47 @@ export class RegistroSedesComponent {
       );
     }
   
-  registrar(): void {
-    if (!this.ciudad || !this.direccion ||!this.telefono) {
-      this.camposIncompletos = true;
-      this.mostrarErrorSedeRepetido = false;
-      return;
-    }
-    this.adminService.agregarSede(this.ciudad, this.direccion,this.telefono).subscribe({
-      next: (data) => {
-        this.alerta = { mensaje: data.respuesta, tipo: 'success' };
-        alert('¡La sede ha sido creada!');
-        window.close(); 
-      },
-      error: (error) => {
-        console.error('Error al registrar la empresa:', error);
-        if (error && error.error && typeof error.error === 'string') {
-          // Mostrar mensaje de error del backend con estilo de error
-          this.mostrarAlerta(error.error, 'danger');
-        } else {
-          // Mostrar mensaje de error genérico con estilo de error
-          this.mostrarAlerta('La sede ya se encuentra registrada para esta ciudad.', 'danger');
-        }
-      },
-      complete: () => {
-        // Restablecer la bandera de campos incompletos una vez se inicia el registro
+  
+    registrar(): void {
+      // Obtener valores desde sedesDto y otras variables
+      const ciudadSeleccionada = this.sedesDto.ciudad;
+      const direccion = this.direccion;
+      const telefono = this.telefono;
+  
+      // Verificar si hay campos incompletos
+      if (!ciudadSeleccionada || !direccion || !telefono) {
         this.camposIncompletos = true;
-        this.mostrarErrorSedeRepetido = false;
+        return;
       }
-    });
-  }
-
-    // Función para mostrar alerta con estilo específico
-    mostrarAlerta(mensaje: string, tipo: string): void {
-      this.alerta = { mensaje: mensaje, tipo: tipo };
+  
+      // Llamar al servicio para agregar la sede
+      this.adminService.agregarSede(ciudadSeleccionada, direccion, telefono).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡La sede ha sido creada!');
+          window.close(); 
+        },
+        error: (error) => {
+          console.error('Error al registrar la sede:', error);
+          if (error && error.error && typeof error.error === 'string') {
+            // Mostrar mensaje de error del backend con estilo de error
+            this.mostrarAlerta(error.error, 'danger');
+          } else {
+            // Mostrar mensaje de error genérico con estilo de error
+            this.mostrarAlerta('La sede ya se encuentra registrada para esta ciudad.', 'danger');
+          }
+        },
+        complete: () => {
+          // Restablecer la bandera de campos incompletos una vez se inicia el registro
+          this.camposIncompletos = false;
+        }
+      });
     }
-    
+  
+    mostrarAlerta(mensaje: string, tipo: string): void {
+      this.alerta = { mensaje, tipo };
+    }
+  
   
     // Función para detectar cambios en los campos y ocultar el mensaje de error si todos los campos están llenos
     detectarCambios(): void {

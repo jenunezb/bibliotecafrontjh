@@ -50,17 +50,21 @@
       </thead>
       <tbody>
         <tr *ngFor="let cilindro of dataSource.data">
-          <td class="border border-black px-2 py-1">{{ cilindro.cr }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.carga }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.muestra }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.descripcion }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.fechaToma }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.fechaFalla }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td> //acá iría sección
           <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.peso }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.densidad }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.carga }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.obra }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.esfuerzoKg }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.EsfuerzoMpa }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.EsfuerzoPsi }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.desarrollo }}</td>
+          <td class="border border-black px-2 py-1">{{ cilindro.desarrollo }}</td> //acá iría fc%
+          <td class="border border-black px-2 py-1">{{ cilindro.formaFalla }}</td>
           <td class="border border-black px-2 py-1">{{ cilindro.obs }}</td>
         </tr>        
 

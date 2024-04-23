@@ -6,18 +6,15 @@ body {
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
   margin-top: 20px;
   border: 1px solid #ddd;
-  font-size: 12px; /* Tamaño de fuente más pequeño para la tabla */
   border-bottom: 2px solid rgb(211, 207, 207); /* Línea negra de 2px de grosor como subrayado */
 
 }
 
 th, td {
-  padding: 8px;
-  text-align: left;
+  padding: 3px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 

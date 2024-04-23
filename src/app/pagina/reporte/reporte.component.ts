@@ -46,6 +46,6 @@ export class ReporteComponent implements OnInit{
 
   openWindowResultados(fechasReporteDto: string): void {
     fechasReporteDto= this.fechasReporteDto.cr +"_"+this.fechasReporteDto.fechaInicio +"_"+ this.fechasReporteDto.fechaFin;
-    window.open(`/concretos-pdf/${fechasReporteDto}`, 'Crear Cilindro', 'width=600, height=500');
+    window.open(`/concretos-pdf/${fechasReporteDto}`, 'Crear Cilindro', 'width=1000, height=500');
   }
 }

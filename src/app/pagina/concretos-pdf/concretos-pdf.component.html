@@ -27,49 +27,99 @@
       <p>Observaciones: Los resultados corresponden exclusivamente a las muestras ensayadas.</p>
       <p>N=Normal B=Bajo</p>
     </div>
-    <table>
-      <thead>
-          <tr>
-            <th class="border border-black px-2 py-1">Cilindro N°</th>
-            <th class="border border-black px-2 py-1">Localización</th>
-            <th class="border border-black px-2 py-1">Fecha de toma</th>
-            <th class="border border-black px-2 py-1">Fecha de ensayo</th>
-            <th class="border border-black px-2 py-1">Sección (Días)</th>
-            <th class="border border-black px-2 py-1">Edad (Días)</th>
-            <th class="border border-black px-2 py-1">Peso (kg)</th>
-            <th class="border border-black px-2 py-1">Densidad (kg/m³)</th>
-            <th class="border border-black px-2 py-1">Carga máxima (kN)</th>
-            <th class="border border-black px-2 py-1">Esfuerzo (kg/cm²)</th>
-            <th class="border border-black px-2 py-1">Esfuerzo (MPa)</th>
-            <th class="border border-black px-2 py-1">Esfuerzo (P.S.I.)</th>
-            <th class="border border-black px-2 py-1">Fc %</th>
-            <th class="border border-black px-2 py-1">Desarrollo de falla</th>
-            <th class="border border-black px-2 py-1">Forma</th>
-            <th class="border border-black px-2 py-1">OBS</th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cilindro of dataSource.data">
-          <td class="border border-black px-2 py-1">{{ cilindro.muestra }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.descripcion }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.fechaToma }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.fechaFalla }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td> //acá iría sección
-          <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.peso }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.densidad }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.carga }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.esfuerzoKg }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.EsfuerzoMpa }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.EsfuerzoPsi }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.desarrollo }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.desarrollo }}</td> //acá iría fc%
-          <td class="border border-black px-2 py-1">{{ cilindro.formaFalla }}</td>
-          <td class="border border-black px-2 py-1">{{ cilindro.obs }}</td>
-        </tr>        
+    <div class="mi-componente-container">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Columna: Cilindro N° -->
+    <ng-container matColumnDef="Cilindro N°">
+        <th mat-header-cell *matHeaderCellDef> Cilindro N° </th>
+        <td mat-cell *matCellDef="let element"> {{element.cr}} </td>
+    </ng-container>  
 
-      </tbody>
-    </table>
+    <!-- Columna: Localización -->
+    <ng-container matColumnDef="Localización">
+        <th mat-header-cell *matHeaderCellDef> Localización </th>
+        <td mat-cell *matCellDef="let element"> {{element.resistencia}} </td>
+    </ng-container> 
+
+    <!-- Columna: Fecha de toma -->
+    <ng-container matColumnDef="Fecha de toma">
+        <th mat-header-cell *matHeaderCellDef> Fecha de toma </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaToma}} </td>
+    </ng-container> 
+
+    <!-- Columna: Fecha de ensayo -->
+    <ng-container matColumnDef="Fecha de ensayo">
+        <th mat-header-cell *matHeaderCellDef> Fecha de ensayo </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFalla}} </td>
+    </ng-container> 
+
+    <!-- Columna: Sección (Días) -->
+    <ng-container matColumnDef="Sección">
+        <th mat-header-cell *matHeaderCellDef> Sección</th>
+        <td mat-cell *matCellDef="let element"> {{element.ensayo}} </td>
+    </ng-container> 
+
+    <!-- Columna: Edad (Días) -->
+    <ng-container matColumnDef="Edad (Días)">
+        <th mat-header-cell *matHeaderCellDef> Edad</th>
+        <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+    </ng-container> 
+
+    <!-- Columna: Peso (kg) -->
+    <ng-container matColumnDef="Peso (kg)">
+        <th mat-header-cell *matHeaderCellDef> Peso (kg) </th>
+        <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+    </ng-container> 
+
+    <!-- Columna: Densidad (kg/m³) -->
+    <ng-container matColumnDef="Densidad (kg/m³)">
+        <th mat-header-cell *matHeaderCellDef> Densidad (kg/m³) </th>
+        <td mat-cell *matCellDef="let element"> {{element.densidad | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Carga máxima (kN) -->
+    <ng-container matColumnDef="Carga máxima (kN)">
+        <th mat-header-cell *matHeaderCellDef> Carga máxima (kN) </th>
+        <td mat-cell *matCellDef="let element"> {{element.carga}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (kg/cm²) -->
+    <ng-container matColumnDef="Esfuerzo (kg/cm²)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (kg/cm²) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoKg | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (MPa) -->
+    <ng-container matColumnDef="Esfuerzo (MPa)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (MPa) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoMpa | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (P.S.I.) -->
+    <ng-container matColumnDef="Esfuerzo (P.S.I.)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (P.S.I.) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoPsi | number: '1.2-2'}} </td>
+    </ng-container> 
+
+
+    <!-- Columna: Desarrollo de falla -->
+    <ng-container matColumnDef="Desarrollo de falla">
+        <th mat-header-cell *matHeaderCellDef> Desarrollo de falla </th>
+        <td mat-cell *matCellDef="let element"> {{element.desarrollo | number: '1.2-2'}} </td>
+    </ng-container> 
+
+
+    <!-- Columna: OBS -->
+    <ng-container matColumnDef="OBS">
+        <th mat-header-cell *matHeaderCellDef> OBS </th>
+        <td mat-cell *matCellDef="let element"> {{element.obs}} </td>
+    </ng-container> 
+
+    <!-- Definir las filas de encabezado y filas de datos -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+    </div>
     <div class="mb-4">
       <h2 class="font-bold">NOTAS:</h2>
       <p>Nota 1: No se realiza muestreo, la muestra fue suministrada por el cliente.</p>
@@ -101,19 +151,5 @@
         <p >** FIN DE INFORME ** PROHIBIDA LA REPRODUCCIÓN PARCIAL O TOTAL DE ESTE INFORME SIN PREVIA AUTORIZACIÓN DE STEELSOFT</p>
       </div>
   </div>    
-  
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-    <ng-container matColumnDef="muestra">
-        <th mat-header-cell *matHeaderCellDef> muestra </th>
-        <td mat-cell *matCellDef="let element"> {{element.carga}} </td>
-    </ng-container>  
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-
-    
 </body>
 </html>

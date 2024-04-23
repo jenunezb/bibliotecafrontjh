@@ -1,7 +1,6 @@
 import { Component, ViewChild , ElementRef,  EventEmitter, Output } from '@angular/core';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { FechasReporteDto } from 'src/app/modelo/fechas-reporte-dto';
 import { ReporteGetDto } from 'src/app/modelo/reporte-get-dto';
@@ -14,11 +13,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConcretosPdfComponent {
 
-  dataSource = new MatTableDataSource<ReporteGetDto>([]);
-  ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
+dataSource = new MatTableDataSource<ReporteGetDto>([]);
+ displayedColumns: string[] = [
+    'Cilindro N°', 'Localización', 'Fecha de toma', 'Fecha de ensayo', 'Sección', 'Edad (Días)',
+    'Peso (kg)', 'Densidad (kg/m³)', 'Carga máxima (kN)', 'Esfuerzo (kg/cm²)', 'Esfuerzo (MPa)', 'Esfuerzo (P.S.I.)'
+, 'Desarrollo de falla', 'OBS'
+];
+    ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
   fechasReporteDto: FechasReporteDto = new FechasReporteDto();
   fecha: string[]=[];
-  displayedColumns: string[] = ['muestra'];
+  displayedColumnsa: string[] = ['muestra'];
+
 
   constructor(private adminService: AdministradorService, private route: ActivatedRoute) {}
 

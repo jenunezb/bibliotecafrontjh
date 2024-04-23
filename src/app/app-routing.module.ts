@@ -48,7 +48,7 @@ const routes: Routes = [
     { path: "registro-suelos", component: RegistroSuelosComponent },
     { path: "orden-concretos", component: OrdenConcretosComponent},
     { path: "resultados-concretos", component: ResultadosConcretosComponent},
-    { path: "informe-concretos/:fechasReporteDto", component: InformeConcretosComponent},
+    { path: "informe-concretos/:fecha", component: InformeConcretosComponent},
     { path: "asignar-obra/:id", component: AsignarObraComponent},
     { path: "asignar-obra/:cedula", component: AsignarObraComponent},
     { path: "suelos-pdf", component: SuelosPdfComponent},

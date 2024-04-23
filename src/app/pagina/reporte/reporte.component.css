@@ -81,7 +81,7 @@ form {
     cursor: pointer;
   }
   .mat-elevation-z8 {
-    width: 135%; /* O ajusta el ancho según sea necesario */
+    width: 125%; /* O ajusta el ancho según sea necesario */
     border-collapse: collapse; /* Para asegurar que los bordes se vean bien */
     margin-top: 20px; /* Espacio superior entre la tabla y el contenido anterior */
   }

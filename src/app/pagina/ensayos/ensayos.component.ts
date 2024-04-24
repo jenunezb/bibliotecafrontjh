@@ -37,7 +37,7 @@ export class EnsayosComponent {
   
 
   listarCilindros(): void {
-    this.administradorService.listarCilindros()
+    this.authService.listarCilindros()
       .subscribe(
         (response: any) => {
           confirm

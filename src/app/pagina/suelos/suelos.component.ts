@@ -26,7 +26,7 @@ export class SuelosComponent {
   }
   
   listarSuelos(): void {
-    this.administradorService.listarSuelos()
+    this.authService.listarSuelos()
       .subscribe(
         (response: any) => {
           confirm

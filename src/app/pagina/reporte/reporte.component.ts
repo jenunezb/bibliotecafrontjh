@@ -20,7 +20,7 @@ export class ReporteComponent implements OnInit{
   fechasReporteDto: FechasReporteDto = new FechasReporteDto();
   fecha: string = "";
 
-  constructor( private administradorService: AdministradorService, private route:ActivatedRoute) { }
+  constructor(private authService: AuthService, private administradorService: AdministradorService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,7 +31,7 @@ export class ReporteComponent implements OnInit{
   }
 
   public listarReporte(): void{
-    this.administradorService.listarReporte(this.fechasReporteDto)
+    this.authService.listarReporte(this.fechasReporteDto)
     .subscribe(
       (response: any) => {
         this.dataSource.data = response.respuesta; 

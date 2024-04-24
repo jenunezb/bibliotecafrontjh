@@ -5,7 +5,8 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { Router } from '@angular/router';
-import { EdadesDto } from 'src/app/modelo/edades-get-dto';
+import { AuthService } from 'src/app/servicios/auth.service';
+
 
 @Component({
   selector: 'app-orden-concretos',
@@ -20,10 +21,10 @@ export class OrdenConcretosComponent {
   seccionActiva: string = '';
   ordenDto: OrdenDto = new OrdenDto(); // Instancia de OrdenDto
 
-  constructor(private adminService: AdministradorService,private router: Router) {}
+  constructor(private authService: AuthService,private adminService: AdministradorService,private router: Router) {}
 
   public listarOrden(): void {
-    this.adminService.listarOrden(this.ordenDto)
+    this.authService.listarOrden(this.ordenDto)
       .subscribe(
         (response: any) => {
           this.dataSource.data = response.respuesta; 

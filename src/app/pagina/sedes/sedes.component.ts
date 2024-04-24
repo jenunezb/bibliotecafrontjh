@@ -29,7 +29,7 @@ export class SedesComponent implements OnInit {
 }
 
   public listarSedes(): void{
-    this.adminService.listarSedes()
+    this.authService.listarSedes()
     .subscribe(
       (response: any) => {
         confirm

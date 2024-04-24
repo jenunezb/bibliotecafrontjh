@@ -5,6 +5,8 @@ import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { FechasReporteDto } from 'src/app/modelo/fechas-reporte-dto';
 import { ReporteGetDto } from 'src/app/modelo/reporte-get-dto';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
+
 
 @Component({
   selector: 'app-concretos-pdf',
@@ -25,7 +27,7 @@ dataSource = new MatTableDataSource<ReporteGetDto>([]);
   displayedColumnsa: string[] = ['muestra'];
 
 
-  constructor(private adminService: AdministradorService, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService,private adminService: AdministradorService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -49,7 +51,7 @@ dataSource = new MatTableDataSource<ReporteGetDto>([]);
     this.fechasReporteDto.fechaInicio=this.fecha[1];
     this.fechasReporteDto.fechaFin=this.fecha[2];
 
-    this.adminService.listarReporte(this.fechasReporteDto)
+    this.authService.listarReporte(this.fechasReporteDto)
       .subscribe(
         (response: any) => {
           this.dataSource = response.respuesta; // Asigna la respuesta al dataSource

@@ -31,7 +31,7 @@ export class ObraComponent implements OnInit{
   }
   
   listarObras(): void {
-    this.administradorService.listarObras()
+    this.authService.listarObras()
       .subscribe(
         (response: any) => {
           this.dataSource.data = response.respuesta;

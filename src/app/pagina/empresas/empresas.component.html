@@ -4,7 +4,7 @@
   <div class="Empresas"><span>Empresas</span></div>
 
   <div>
-    <button class="mi-boton" *ngIf="roles.includes('administrador')"href="/registro-empresa" onclick="window.open('/registro-empresa', 'Crear Empresas', 'width=600, height=400'); return false;" class="mi-boton">Crear Empresas</button>
+    <button class="mi-boton" href="/registro-empresa" onclick="window.open('/registro-empresa', 'Crear Empresas', 'width=600, height=400'); return false;" class="mi-boton">Crear Empresas</button>
 
     <div class="busqueda">
       <form (ngSubmit)="buscarEmpresas(busqueda.value)" class="search-form">

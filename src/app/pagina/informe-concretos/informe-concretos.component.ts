@@ -4,6 +4,8 @@ import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
 import { OrdenDto } from 'src/app/modelo/orden-dto';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Route } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
+
 
 @Component({
   selector: 'app-informe-concretos',
@@ -19,7 +21,7 @@ export class InformeConcretosComponent implements OnInit {
   private contadorDocumentos: string = "0001";
   fecha: string = "";
 
-  constructor(private administradorService: AdministradorService,private route:ActivatedRoute) {
+  constructor(private authService: AuthService,private administradorService: AdministradorService,private route:ActivatedRoute) {
     this.ordenDto = new OrdenDto();
    }
 
@@ -34,7 +36,7 @@ export class InformeConcretosComponent implements OnInit {
   }
   listarCilindros(): void {
     this.ordenDto.fecha=this.fecha;
-    this.administradorService.listarOrden(this.ordenDto).subscribe(
+    this.authService.listarOrden(this.ordenDto).subscribe(
         (response: any) => {
           confirm
           this.dataSource.data = response.respuesta;

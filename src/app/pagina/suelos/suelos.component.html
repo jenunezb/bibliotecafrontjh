@@ -13,7 +13,7 @@
        
             <div class="tab-panels">
                 <section id="marzen" class="tab-panel">
-                <button class="mi-boton" onclick="window.open('/registro-suelos', 'Crear Suelos', 'width=600, height=500'); return false;">Crear suelos</button>
+                <button class="mi-boton" *ngIf="roles.includes('administrador')"   onclick="window.open('/registro-suelos', 'Crear Suelos', 'width=600, height=500'); return false;">Crear suelos</button>
                  
     
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">       

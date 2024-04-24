@@ -7,6 +7,8 @@ import { ObrasDto } from 'src/app/modelo/obras-get-dto';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { Alerta } from 'src/app/modelo/alerta';
+import { TokenService } from 'src/app/servicios/token.service';
+
 
 
 @Component({
@@ -21,13 +23,18 @@ export class ObraComponent implements OnInit{
   alerta!: Alerta;
   usuarioDto: UsuarioDTO;
   empresaDto: EmpresasGetDTO;
+  roles: string[] = [];
 
-  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { 
+
+  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService,private tokenService: TokenService) { 
   this.usuarioDto = new UsuarioDTO();
   this.empresaDto = new EmpresasGetDTO();
   }
   ngOnInit(): void {
     this.listarObras();
+
+    this.roles = this.tokenService.getRole();  
+
   }
   
   listarObras(): void {

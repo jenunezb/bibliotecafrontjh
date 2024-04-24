@@ -5,6 +5,8 @@ import { ConcretosDto } from 'src/app/modelo/concretos-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { TokenService } from 'src/app/servicios/token.service';
+
 
 @Component({
   selector: 'app-aceros',
@@ -16,9 +18,11 @@ export class AcerosComponent {
   dataSource = new MatTableDataSource<ConcretosDto>([]);
   displayedColumns: string[] = ['numerodeMuestra', 'Cr', 'proyecto', 'ensayo', 'fechadeToma', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
+  roles: string[] = [];
 
 
-  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
+
+  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService,private tokenService: TokenService) { }
 
   ngOnInit(): void {
 

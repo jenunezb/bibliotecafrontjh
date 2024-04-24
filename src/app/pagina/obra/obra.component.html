@@ -5,7 +5,7 @@
             <div class="Suelos"><span>Obras</span></div>
        
             <div>
-                <button class="mi-boton" href="/registro-obra" onclick="window.open('/registro-obra', 'Crear Obra','width=600, height=700'); return false;" class="mi-boton">Crear Obra</button>                   
+                <button class="mi-boton" *ngIf="roles.includes('administrador')" href="/registro-obra" onclick="window.open('/registro-obra', 'Crear Obra','width=600, height=700'); return false;" class="mi-boton">Crear Obra</button>                   
     
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <!-- Nit Column -->

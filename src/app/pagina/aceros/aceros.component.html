@@ -5,17 +5,8 @@
             <div class="Aceros"><span>Aceros</span></div>
        
             <div>
-                <button class="mi-boton">Crear Aceros</button>
-    
-                <div class="busqueda">
-                    <form action="../../form-result.php" method="post" target="_blank" class="search-form">
-                      <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
-                      <button type="submit" class="search-button">
-                        <mat-icon>search</mat-icon>
-                      </button>
-                    </form>    
+                <button class="mi-boton"*ngIf="roles.includes('administrador')" >Crear Aceros</button>
                     
-                </div>                    
     
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <!-- Nit Column -->

@@ -5,6 +5,8 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { CilindroGetDto } from 'src/app/modelo/cilindro-get-dto';
+import { TokenService } from 'src/app/servicios/token.service';
+
 
 
 @Component({
@@ -21,10 +23,12 @@ export class EnsayosComponent {
   mostrarOrdenConcretos: boolean = false;
   roles: string[] = [];
 
-  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
+  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService,private tokenService: TokenService) { }
   
   ngOnInit(): void {
     this.listarCilindros();
+    this.roles = this.tokenService.getRole();  
+
   }
   cambiarSecciones(seccion: string) {
     console.log('Cambiar sección a:', seccion);

@@ -4,6 +4,8 @@ import { Alerta } from 'src/app/modelo/alerta';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { TokenService } from 'src/app/servicios/token.service';
+
 
 @Component({
   selector: 'app-empresas',
@@ -19,12 +21,15 @@ export class EmpresasComponent implements OnInit {
   roles: string[] = [];
 
 
-  constructor(private authService: AuthService, private adminService: AdministradorService) {
+
+  constructor(private authService: AuthService, private adminService: AdministradorService,private tokenService: TokenService) {
 
   }
 
   ngOnInit(): void {
     this.listarEmpresas(); // Cargar empresas al inicializar el componente
+
+    this.roles = this.tokenService.getRole();  
 
   }
   // Método para activar el modo de edición en una fila específica

@@ -5,6 +5,8 @@ import { ConcretosDto } from 'src/app/modelo/concretos-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { TokenService } from 'src/app/servicios/token.service';
+
 
 @Component({
   selector: 'app-suelos',
@@ -17,12 +19,16 @@ export class SuelosComponent {
   displayedColumns: string[] = ['Cr','numerodeMuestra', 'proyecto', 'fechaProgramada', 'acciones']; // Define las columnas que deseas mostrar
   alerta!: Alerta;
   seccionActiva: string = ''
+  roles: string[] = [];
 
-  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService) { }
+  constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService,private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
     this.listarSuelos();
+
+    this.roles = this.tokenService.getRole();  
+
   }
   
   listarSuelos(): void {

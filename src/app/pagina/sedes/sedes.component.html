@@ -6,14 +6,7 @@
     <div>
         <button class="mi-boton"*ngIf="roles.includes('administrador')"  href="/registro-sedes" onclick="window.open('/registro-sedes', 'Crear Sedes', 'width=600, height=400'); return false;" class="mi-boton">Crear sedes</button>
         <button class="mi-boton" *ngIf="roles.includes('administrador')"href="/registro-ciudad" onclick="window.open('/registro-ciudad', 'Crear Ciudad', 'width=800, height=600'); return false;" class="mi-boton">Crear ciudad</button>
-      <div class="busqueda">
-        <form (ngSubmit)="buscarSedes(busqueda.value)" class="search-form">
-          <input #busqueda type="search" name="busquedamusica" placeholder="Search for Ciudad...." class="search-input" (keyup)="onBuscarInputChange(busqueda.value)" required>
-          <button type="submit" class="search-button">
-            <mat-icon>search</mat-icon>
-          </button>
-        </form>
-      </div>
+   
   
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Definición de columnas -->

@@ -16,11 +16,15 @@ export class RegistroCilindroComponent implements OnInit {
   dataSource = new MatTableDataSource<RegistroCilindroComponent>([]);
   cilindroDto: RegistroCilindroDto;
   alerta: { mensaje: string, tipo: string } | null = null;
+  roles: string[] = [];
+
 
   ngOnInit() {
     if (this.authService.estaAutenticado()) {
       this.router.navigate(['/registro-cilindro']); 
       this.listaSeccion();
+      this.roles = this.tokenService.getRole();  
+
     }
   }
 

@@ -6,7 +6,7 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
-
+import { GradacionDTO } from 'src/app/modelo/gradacion-dto';
 
 @Component({
   selector: 'app-suelos',
@@ -20,6 +20,7 @@ export class SuelosComponent {
   alerta!: Alerta;
   seccionActiva: string = ''
   roles: string[] = [];
+  codigo: string = "";
 
   constructor(private authService: AuthService,private router: Router, private administradorService: AdministradorService,private tokenService: TokenService) { }
 
@@ -50,4 +51,9 @@ export class SuelosComponent {
     this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
     
   }
+
+openWindow(codigo: string): void {
+    window.open(`/resultados-suelos/${codigo}`, 'Crear Cilindro', 'width=600, height=500');
+}
+
 }

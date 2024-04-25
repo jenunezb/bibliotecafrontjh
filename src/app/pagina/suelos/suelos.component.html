@@ -48,7 +48,7 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef> Acciones </th>
                 <td mat-cell *matCellDef="let element" style="text-align: left;">
-                    <mat-icon onclick="window.open('/resultados-suelos', 'Crear Suelos', 'width=800, height=600'); return false;">add</mat-icon>
+                    <mat-icon (click)="openWindow(element.numerodeMuestra)">add</mat-icon>
                 </td>
             </ng-container>
     

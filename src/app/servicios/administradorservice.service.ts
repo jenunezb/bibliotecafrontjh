@@ -18,8 +18,9 @@ import { EdadesDto } from '../modelo/edades-get-dto';
 import { OrdenDto } from '../modelo/orden-dto';
 import { AsignarObrasRequestDTO } from '../modelo/asignar-obras-dto';
 import { FechasReporteDto } from '../modelo/fechas-reporte-dto';
-import { SuelosDTO } from '../modelo/SuelosDTO';
+import { tap } from 'rxjs/operators';
 import { RegistroSuelosDto } from '../modelo/registroSuelos-get-dto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -213,5 +214,11 @@ public registrarMuestraSuelos(suelosDTO: RegistroSuelosDto): Observable<MensajeD
 public listarSuelos ():Observable<SeccionDto>{
   return this.http.get<SeccionDto>(`${this.authURL}/listarSuelos`);
 } 
+
+public mostrarGradacion(codigo: number): Observable<MensajeDTO> {
+  return this.http.get<MensajeDTO>(`${this.authURL}/mostrarGradacion/${codigo}`).pipe(
+    tap(data => console.log('Datos del backend:', data))
+  );
+}
 
 }

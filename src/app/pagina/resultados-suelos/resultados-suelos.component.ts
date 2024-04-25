@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { RegistroSuelosDto } from 'src/app/modelo/registroSuelos-get-dto';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
 import { GradacionDTO } from 'src/app/modelo/gradacion-dto';
 
@@ -12,11 +12,11 @@ import { GradacionDTO } from 'src/app/modelo/gradacion-dto';
 })
 export class ResultadosSuelosComponent {
   seccionActiva: string = ''
-  codigo: number = 1;
+  id: number = 0;
 
-  dataSource = new MatTableDataSource<GradacionDTO>([]);
-
-  constructor(private router: Router, private administradorService: AdministradorService){}
+  dataSource = new MatTableDataSource<GradacionDTO>;
+  
+  constructor(private route: ActivatedRoute, private router: Router, private administradorService: AdministradorService, private cdr: ChangeDetectorRef){}
 
   cambiarSeccion(seccion: string) {
     this.seccionActiva = seccion;
@@ -25,22 +25,35 @@ export class ResultadosSuelosComponent {
   }
 
   ngOnInit(): void {
-    this.mostrarResultados();
+    this.route.params.subscribe(params => {
+      this.id = params['codigo'];
+      this.mostrarResultados();
+    });
   }
-
   
-  mostrarResultados(){
-    this.administradorService.mostrarGradacion(this.codigo)
-    .subscribe(
-      (response: any) => {
-        confirm
-        this.dataSource.data = response.respuesta;
-        console.log(this.dataSource.data + "entra");
-      },
-      error => {
-        console.error('Error al obtener la lista de muestras de suelo:', error);
-      }
-    );
-    window.open(`/resultados-suelos/${this.codigo}`, 'Asignar obra', 'width=900, height=700');
-      }
+  mostrarResultados(): void {
+    this.administradorService.mostrarGradacion(this.id)
+      .subscribe(
+        (respuesta: any) => {
+          // Crear un objeto GradacionDTO a partir de la respuesta
+          const gradacion = new GradacionDTO();
+          gradacion.cr = respuesta.respuesta.cr;
+          gradacion.codigoMuestra = respuesta.respuesta.codigoMuestra;
+          gradacion.fechaEnsayo = respuesta.respuesta.fechaEnsayo;
+          gradacion.resultados = respuesta.respuesta.resultados;
+          gradacion.tamices = respuesta.respuesta.tamices;
+          gradacion.pesoAntesLavado = respuesta.respuesta.pesoAntesLavado;
+  
+          // Asignar el objeto GradacionDTO a dataSource.data
+          this.dataSource.data = [gradacion];
+          console.log(this.dataSource.data);
+          // Forzar la detección de cambios después de asignar los datos
+          this.cdr.detectChanges();
+        },
+        error => {
+          console.error('Error al obtener la lista de muestras de suelo:', error);
+        }
+      );
+  }
+  
 }

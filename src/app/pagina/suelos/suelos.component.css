@@ -98,9 +98,10 @@ th{
 
   }
   .imagen {
-    width: 40px;
-    height: 40px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
+    position:relative;
   }
   .tabset > input[type="radio"] {
     position: absolute;

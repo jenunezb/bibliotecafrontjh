@@ -17,6 +17,11 @@ th, td {
     padding: 8px;
     text-align: center; /* Alinear texto al centro */
 }
+.imagen {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
 
 th {
     background-color: #f4f4f4;
@@ -43,3 +48,19 @@ input[type="text"]:focus {
     outline: none; /* Eliminar el contorno de enfoque predeterminado */
     border-color: #4CAF50; /* Cambiar el color del borde al verde cuando está en foco */
 }
+.btn {
+
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #1b8603;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .btn:hover {
+    background-color: #099432;
+  }

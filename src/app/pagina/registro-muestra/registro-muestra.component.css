@@ -1,0 +1,40 @@
+  /* Estilos para el botón de guardar */
+  .btn {
+    display: block;
+    margin: 20px auto;
+    width: 30%; /* Aumentar el ancho del botón */
+    padding: 12px 10px; /* Incrementar el espaciado interno */
+    font-size: 14px; /* Aumentar el tamaño de la fuente */
+    border-radius: 5px;
+    background-color: #1b8603;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  /* Selector basado en la clase 'btn' y el tipo 'submit' del botón */
+button.btn[type="submit"] {
+    color: white; /* Establece el color del texto como blanco */
+  }
+
+  .btn:hover {
+    background-color: #44740d; /* Nuevo color de fondo al pasar el cursor */
+}
+ 
+  .mat-elevation-z8 {
+    margin-top: 40px; /* Mantener el margen superior */
+    margin-bottom: 20px; /* Reducir el margen inferior */
+  }
+
+  .Concretos {
+    margin-bottom: 0px; /* Reducir el margen inferior */
+    width: 100%;
+    text-align: center; 
+    font-size: 25px; 
+    font-weight: bold;
+  }
+
+
+  
+  
+  

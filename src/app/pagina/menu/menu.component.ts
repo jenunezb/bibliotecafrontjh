@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SesionDto } from 'src/app/modelo/sesion-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
 
@@ -9,22 +8,17 @@ import { TokenService } from 'src/app/servicios/token.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit{
-
+export class MenuComponent implements OnInit {
   title = "SteelSoft";
   isLogged = false;
   roles: string[] = [];
   email: string = "";
-  mostrarUsuarios: boolean = false;
-  mostrarEmpresas: boolean = false;
-  mostrarEnsayos: boolean = false;
-  mostrarSedes: boolean = false;
-  
+  seccionActiva: string = '';
+
+  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService) {}
+
   ngOnInit() {
     // Verificar si el usuario ya está autenticado
-    if (this.authService.estaAutenticado()) {
-    }
-
     this.isLogged = this.tokenService.isLogged();
 
     if (this.isLogged) {
@@ -33,14 +27,19 @@ export class MenuComponent implements OnInit{
     }
   }
   
-  sesionDTO: SesionDto;
+  seleccionarSeccion(event: any) {
+    const seccionSeleccionada = event.target.value;
+    if (seccionSeleccionada) {
+      this.cambiarSeccion(seccionSeleccionada);
+    }
+  }
   
-  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService){
-    this.sesionDTO = new SesionDto();
+  cambiarSeccion(seccion: string) {
+    this.seccionActiva = seccion;
+    this.router.navigateByUrl('/' + seccion); // Navegar a la ruta correspondiente
   }
 
-  public logout() {
+  logout() {
     this.tokenService.logout();
   }
-  
 }

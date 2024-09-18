@@ -28,9 +28,15 @@ export class AppComponent implements OnInit {
     this.tokenService.logout();
   }
 
-    // Método para verificar si la ruta actual es registro-usuarios
-    isRouteIncluded(routes: string[]): boolean {
-      return routes.includes(this.router.url);
+   // Método para verificar si la ruta actual es registro-usuarios
+   isRouteIncluded(routesToExclude: string[]): boolean {
+    const currentRoute = this.router.url;
+    for (const route of routesToExclude) {
+      if (currentRoute.startsWith(route)) {
+        return true;
+      }
     }
+    return false;
+  }
  
 }

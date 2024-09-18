@@ -10,11 +10,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuComponent } from './pagina/menu/menu.component';
 import { LoginComponent } from './pagina/login/login.component';
-import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { EnsayosComponent } from './pagina/ensayos/ensayos.component';
 import { MatSelectModule } from '@angular/material/select';
-import { EmpresasComponent } from './pagina/empresas/empresas.component';
+import { CommonModule } from '@angular/common';
+import { UsuariosComponent } from './pagina/usuarios/usuarios.component';
 import { SedesComponent } from './pagina/sedes/sedes.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SuelosComponent } from './pagina/suelos/suelos.component';
@@ -23,10 +23,22 @@ import { RegistroCiudadComponent } from './pagina/registro-ciudad/registro-ciuda
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AcerosComponent } from './pagina/aceros/aceros.component';
 import { RegistroSedesComponent } from './pagina/registro-sedes/registro-sedes.component';
 import { RegistroEmpresaComponent } from './pagina/registro-empresa/registro-empresa.component';
 import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-cilindro.component';
+import { RegistroMuestraComponent } from './pagina/registro-muestra/registro-muestra.component';
+import { LibroComponent } from './pagina/libro/libro.component';
+import { RegistroLibroComponent } from './pagina/registro-libro/registro-libro.component';
+import { ConcretosPdfComponent } from './pagina/concretos-pdf/concretos-pdf.component';
+import { OrdenConcretosComponent } from './pagina/orden-concretos/orden-concretos.component';
+import { ResultadosConcretosComponent } from './pagina/resultados-concretos/resultados-concretos.component';
+import { InformeConcretosComponent } from './pagina/informe-concretos/informe-concretos.component';
+import { SuelosPdfComponent } from './pagina/suelos-pdf/suelos-pdf.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReporteComponent } from './pagina/reporte/reporte.component';
+import { RegistroSuelosComponent } from './pagina/registro-suelos/registro-suelos.component';
+import { ResultadosSuelosComponent } from './pagina/resultados-suelos/resultados-suelos.component';
+
 
 @NgModule({
   declarations: [
@@ -34,17 +46,27 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
     AppComponent,
     AlertaComponent,
     LoginComponent,
-    UsuariosComponent,
     EnsayosComponent,
-    EmpresasComponent,
+    UsuariosComponent,
     SedesComponent,
     SuelosComponent,
     RegistroUsuariosComponent,
     RegistroCiudadComponent,
-    AcerosComponent,
     RegistroSedesComponent,
     RegistroEmpresaComponent,
-    RegistroCilindroComponent
+    RegistroCilindroComponent,
+    RegistroMuestraComponent,
+    LibroComponent,
+    RegistroLibroComponent,
+    ConcretosPdfComponent,
+    OrdenConcretosComponent,
+    ResultadosConcretosComponent,
+    InformeConcretosComponent,
+    SuelosPdfComponent,
+    ReporteComponent,
+    RegistroSuelosComponent,
+    ResultadosSuelosComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +81,13 @@ import { RegistroCilindroComponent } from './pagina/registro-cilindro/registro-c
     NgxPaginationModule,
     MatInputModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CommonModule,
+    BrowserModule,
+    FormsModule, 
+    MatTableModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }

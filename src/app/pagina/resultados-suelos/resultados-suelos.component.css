@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 10px;
+}
+
+table {
+    width: 120%; /* Ancho completo de la tabla */
+    border-collapse: collapse;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* Fondo blanco para la tabla */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* Alinear texto al centro */
+}
+.imagen {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+th {
+    background-color: #f4f4f4;
+}
+.fecha {
+    margin-top: -25px;
+    font-size: 16px;
+    margin-bottom: 20px; /* Espacio inferior */
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Transición suave para el cambio de color del borde */
+}
+
+/* Estilo para el campo de entrada cuando está en foco (activo) */
+input[type="text"]:focus {
+    outline: none; /* Eliminar el contorno de enfoque predeterminado */
+    border-color: #4CAF50; /* Cambiar el color del borde al verde cuando está en foco */
+}
+.btn {
+
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #1b8603;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .btn:hover {
+    background-color: #099432;
+  }

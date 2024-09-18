@@ -1,23 +1,32 @@
-<form class="registration-form">
+<div class="registration-form">
 
-    <div class="form-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" class="form-control" required>
+  <div class="form-group">
+    <label for="ciudad">Ciudad:</label>
+    <select id="ciudad" name="ciudad" class="form-control" [(ngModel)]="sedesDto.ciudad" >
+      <option value="" selected disabled>Seleccione una ciudad</option>
+      <option *ngFor="let ciudad of dataSources.data" [value]="ciudad.nombre">{{ ciudad.nombre }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" class="form-control"(input)="detectarCambios()">
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" [(ngModel)]="telefono" name="telefono" class="form-control"(input)="detectarCambios()">
+  </div>
+
+  <!-- Mostrar mensaje de error si hay campos incompletos -->
+  <div *ngIf="camposIncompletos" class="alert-message">
+    Por favor completa todos los campos.
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn" (click)="registrar()">Registrar</button>
+    <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert-message">
+      {{ alerta.mensaje }}
     </div>
-    <div class="form-group">
-      <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="direccion" class="form-control" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" class="form-control">
-    </div>
-  
-  
-    <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary">Registrar</button>
-    </div>
-  </form>
-  
-  
+  </div>
+</div>

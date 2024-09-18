@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Ensayo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <div id="pdf-template" div class="container mx-auto">
+    <div class="bordered-div">
+      <div>
+        <img alt="Company Logo" class="h-12" src="../../../assets/img/steelsoft.png" width="200" height="150"/>
+      </div>
+      <div style="text-align: center;">
+        <h1 class="text-2xl font-bold">INFORME DE ENSAYO A COMPRESION EN CILINDROS DE CONCRETO</h1>
+        <p>NTC-673/2021</p>
+      </div>      
+      <div>
+        <p>Código: F-EM-04/03</p>
+        <p>CR: 04238</p>
+        <p>Inf. N°: 1137326</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <p>Observaciones: Los resultados corresponden exclusivamente a las muestras ensayadas.</p>
+      <p>N=Normal B=Bajo</p>
+    </div>
+    <div class="mi-componente-container">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Columna: Cilindro N° -->
+    <ng-container matColumnDef="Cilindro N°">
+        <th mat-header-cell *matHeaderCellDef> Cilindro N° </th>
+        <td mat-cell *matCellDef="let element"> {{element.cr}} </td>
+    </ng-container>  
+
+    <!-- Columna: Localización -->
+    <ng-container matColumnDef="Localización">
+        <th mat-header-cell *matHeaderCellDef> Localización </th>
+        <td mat-cell *matCellDef="let element"> {{element.resistencia}} </td>
+    </ng-container> 
+
+    <!-- Columna: Fecha de toma -->
+    <ng-container matColumnDef="Fecha de toma">
+        <th mat-header-cell *matHeaderCellDef> Fecha de toma </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaToma}} </td>
+    </ng-container> 
+
+    <!-- Columna: Fecha de ensayo -->
+    <ng-container matColumnDef="Fecha de ensayo">
+        <th mat-header-cell *matHeaderCellDef> Fecha de ensayo </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFalla}} </td>
+    </ng-container> 
+
+    <!-- Columna: Sección (Días) -->
+    <ng-container matColumnDef="Sección">
+        <th mat-header-cell *matHeaderCellDef> Sección</th>
+        <td mat-cell *matCellDef="let element"> {{element.ensayo}} </td>
+    </ng-container> 
+
+    <!-- Columna: Edad (Días) -->
+    <ng-container matColumnDef="Edad (Días)">
+        <th mat-header-cell *matHeaderCellDef> Edad</th>
+        <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+    </ng-container> 
+
+    <!-- Columna: Peso (kg) -->
+    <ng-container matColumnDef="Peso (kg)">
+        <th mat-header-cell *matHeaderCellDef> Peso (kg) </th>
+        <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+    </ng-container> 
+
+    <!-- Columna: Densidad (kg/m³) -->
+    <ng-container matColumnDef="Densidad (kg/m³)">
+        <th mat-header-cell *matHeaderCellDef> Densidad (kg/m³) </th>
+        <td mat-cell *matCellDef="let element"> {{element.densidad | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Carga máxima (kN) -->
+    <ng-container matColumnDef="Carga máxima (kN)">
+        <th mat-header-cell *matHeaderCellDef> Carga máxima (kN) </th>
+        <td mat-cell *matCellDef="let element"> {{element.carga}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (kg/cm²) -->
+    <ng-container matColumnDef="Esfuerzo (kg/cm²)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (kg/cm²) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoKg | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (MPa) -->
+    <ng-container matColumnDef="Esfuerzo (MPa)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (MPa) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoMpa | number: '1.2-2'}} </td>
+    </ng-container> 
+
+    <!-- Columna: Esfuerzo (P.S.I.) -->
+    <ng-container matColumnDef="Esfuerzo (P.S.I.)">
+        <th mat-header-cell *matHeaderCellDef> Esfuerzo (P.S.I.) </th>
+        <td mat-cell *matCellDef="let element"> {{element.esfuerzoPsi | number: '1.2-2'}} </td>
+    </ng-container> 
+
+
+    <!-- Columna: Desarrollo de falla -->
+    <ng-container matColumnDef="Desarrollo de falla">
+        <th mat-header-cell *matHeaderCellDef> Desarrollo de falla </th>
+        <td mat-cell *matCellDef="let element"> {{element.desarrollo | number: '1.2-2'}} </td>
+    </ng-container> 
+
+
+    <!-- Columna: OBS -->
+    <ng-container matColumnDef="OBS">
+        <th mat-header-cell *matHeaderCellDef> OBS </th>
+        <td mat-cell *matCellDef="let element"> {{element.obs}} </td>
+    </ng-container> 
+
+    <!-- Definir las filas de encabezado y filas de datos -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+    </div>
+    <div class="mb-4">
+      <h2 class="font-bold">NOTAS:</h2>
+      <p>Nota 1: No se realiza muestreo, la muestra fue suministrada por el cliente.</p>
+      <p>Nota 2: Los resultados corresponden exclusivamente a la muestra ensayada tal y como se recibió de parte del cliente. El proceso de selección de la muestra es definido por el cliente.</p>
+      <p>Nota 3: La información de Cantera, Localización, Descripción de la muestra, Fecha de toma, fue suministrada por el cliente.</p>
+    </div>
+    <div class="mb-4 image-container">
+      <img alt="Diagrama de cono con fractura tipo 1" class="diagram" src="../../../assets/img/imagen123.png" width="500" height="700"/>
+    </div>
+    <div class="footer-section mb-4">
+        <div>
+          <p class="signature">Danilo Vargas</p>
+          <p>INGENIERO RESIDENTE DE LABORATORIO</p>
+        </div>
+        <div>
+          <p>RECIBIDO</p>
+          <p>FIRMA:</p>
+          <p>FECHA:</p>
+        </div>
+        <div>
+          <p>Código: F-EM-04/03</p>
+          <p>Inf N°: 1137326</p>
+          <p>Aprobado: 2024-04-09</p>
+          <p>Pág. 1/1 | 2024-04-09</p>
+        </div>
+      </div>
+      
+      <div class="footer-disclaimer">
+        <p >** FIN DE INFORME ** PROHIBIDA LA REPRODUCCIÓN PARCIAL O TOTAL DE ESTE INFORME SIN PREVIA AUTORIZACIÓN DE STEELSOFT</p>
+      </div>
+  </div>    
+</body>
+</html>

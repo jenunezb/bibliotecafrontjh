@@ -1,63 +1,65 @@
 <div class="container">
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-            <div class="Sedes"><span>Sedes</span></div>
-       
-            <div>
-                <button class="mi-boton" href="/registro-sedes" onclick="window.open('/registro-sedes', 'Crear Sedes', 'width=600, height=400'); return false;" class="mi-boton">Crear sedes</button>
-                <button class="mi-boton" href="/registro-ciudad" onclick="window.open('/registro-ciudad', 'Crear Ciudad', 'width=800, height=600'); return false;" class="mi-boton">Crear ciudad</button>
-    
-                <div class="busqueda">
-                    <form action="../../form-result.php" method="post" target="_blank" class="search-form">
-                      <input type="search" name="busquedamusica" placeholder="Search...." class="search-input">
-                      <button type="submit" class="search-button">
-                        <mat-icon>search</mat-icon>
-                      </button>
-                    </form>
-                  </div>
-                  
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <!-- Cedula Column -->
-            <ng-container matColumnDef="Nombre">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    
-                <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
-            </ng-container>        
-    
-            <!-- Nombre Column -->
-            <ng-container matColumnDef="Direccion">
-                <th mat-header-cell *matHeaderCellDef> Direccion </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  
+    <div class="Sedes"><span>Sedes</span></div>
+  
+    <div>
+        <button class="mi-boton"*ngIf="roles.includes('administrador')"  href="/registro-sedes" onclick="window.open('/registro-sedes', 'Crear Sedes', 'width=600, height=400'); return false;" class="mi-boton">Crear sedes</button>
+        <button class="mi-boton" *ngIf="roles.includes('administrador')"href="/registro-ciudad" onclick="window.open('/registro-ciudad', 'Crear Ciudad', 'width=800, height=600'); return false;" class="mi-boton">Crear ciudad</button>
+   
+  
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Definición de columnas -->
+        <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+          <th mat-header-cell *matHeaderCellDef> {{col === 'acciones' ? 'Acciones' : col === 'direccion' ? 'Dirección' : col === 'telefono' ? 'Teléfono' : col | titlecase}} </th>
+          <td mat-cell *matCellDef="let element; let rowIndex = index">
+            <!-- Verifica si estamos en modo de edición para esta fila -->
+            <ng-container *ngIf="editingRowIndex !== rowIndex; else editMode">
+              <!-- Contenido de la celda -->
+              <ng-container *ngIf="col !== 'acciones' && col !== 'Ciudad'">
+                {{element[col]}}
+              </ng-container>
+              <!-- Icono de edición y eliminación -->
+              <ng-container *ngIf="col === 'acciones' && !editingRowIndex">
+                <a class="pointer" (click)="startEditing(rowIndex)">
+                  <mat-icon>edit</mat-icon>
+                </a>
+                <a class="btn-danger pointer" style="color: #e15639;" (click)="eliminarSede(element.ciudad)">
+                  <mat-icon>delete</mat-icon>
+                </a>
+              </ng-container>
             </ng-container>
-    
-    
-            <!-- Telefono Column -->
-            <ng-container matColumnDef="telefono">
-                <th mat-header-cell *matHeaderCellDef> Teléfono</th>
-                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
-            </ng-container>
-    
-    
-            <!-- Acciones Column -->
-            <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                <td mat-cell *matCellDef="let element" style="text-align: left;">
-            
-                    <a class="pointer" style="color: #1f516f;" matTooltip="Editar Usuario">
-                        <mat-icon>edit</mat-icon> <!-- Icono de edición -->
-                    </a>
-                    <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Usuario">
-                        <mat-icon>delete</mat-icon> <!-- Icono de eliminación -->
-                    </a>
-                </td>
-            </ng-container>
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            
-        </table>
-        
-        
+            <!-- Modo de edición -->
+            <ng-template #editMode>
+              <!-- Contenido de la celda -->
+              <ng-container *ngIf="col !== 'acciones' && col !== 'ciudad'">
+                <input type="text" [(ngModel)]="element[col]"class="edit-input">
+              </ng-container>
+              <!-- Iconos de guardado y cancelación -->
+              <ng-container *ngIf="col === 'acciones'">
+                <a class="btn-danger pointer" style="color: #e15639;" (click)="cancelEditing()">
+                  <mat-icon>cancel</mat-icon>
+                </a>
+              </ng-container>
+               <!-- Iconos de guardado y cancelación -->
+               <ng-container *ngIf="col === 'acciones'">
+                <a class="btn-danger pointer" style="color: #0f41e6;" (click)="saveChanges()">
+                  <mat-icon class="circle-icon">check_circle</mat-icon>
+
+                </a>
+              </ng-container>
+            </ng-template>
+          </td>
+        </ng-container>
+      
+        <!-- Fila de encabezado y fila de datos -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; index as rowIndex; columns: displayedColumns"></tr>
+      </table>
+      
+      
+      
+      
     </div>
-    
+  </div>
+  

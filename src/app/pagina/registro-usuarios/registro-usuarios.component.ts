@@ -2,50 +2,133 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { CiudadGetDto } from 'src/app/modelo/ciudad-get-dto';
-import { SesionDto } from 'src/app/modelo/sesion-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
-import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
+import { UsuarioDTO } from 'src/app/modelo/biblioteca/usuario-dto';
+import { AdministradorService } from 'src/app/servicios/administradorservice.service'
 
 @Component({
   selector: 'app-registro-usuarios',
   templateUrl: './registro-usuarios.component.html',
   styleUrls: ['./registro-usuarios.component.css']
 })
-export class RegistroUsuariosComponent implements OnInit{
+export class RegistroUsuariosComponent{
 
-  dataSource = new MatTableDataSource<CiudadGetDto>([]);
-  displayedColumns: string[] = ['nombre'];
+  dataSource = new MatTableDataSource<UsuarioDTO>([]);
+  displayedColumns: string[] = ['cedula','nombre','ciudad','telefono','correo','acciones'];
   usuarioDto: UsuarioDTO;
+  alerta: { mensaje: string, tipo: string } | null = null;
+  correoDuplicado = false;
+  alertaCorreoIncompleto = false;
+  mostrarErrorCorreoVacio= false;
+  mostrarErrorCorreoCampo= false;
 
-  ngOnInit() {
-    if (this.authService.estaAutenticado()) {
-      this.router.navigate(['/registro-usuarios']); 
-    }
-
-    this.listarCiudades();
-  }
-
-  sesionDTO: SesionDto;
-  
-  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService){
-    this.sesionDTO = new SesionDto();
+  constructor(private authService: AuthService, private router: Router, private tokenService: TokenService,private adminService: AdministradorService){
     this.usuarioDto = new UsuarioDTO();
   }
 
-  listarCiudades(): void{
-    this.authService.listarCiudades()
-    .subscribe(
-      (response: any) => {
-        confirm
-        this.dataSource.data = response.respuesta; 
-        console.log(this.dataSource.data);
-      },
-      error => {
-        console.error('Error al obtener la lista de ciudades:', error);
+  registrar(): void {
+
+    if (this.usuarioDto.rol === 'administrador') {
+      this.adminService.agregarAdministrador(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Administrador ha sido creado!');
+          window.close();
+        },
+        error: (err) => {
+          if (err.error.respuesta === 'Por favor completa el campo de correo') {
+            this.mostrarErrorCorreoVacio = true; // Mostrar mensaje de error de correo vacío
+            this. mostrarErrorCorreoCampo= true;
+          } else {
+            this.mostrarErrorCorreoVacio = false; 
+            this. mostrarErrorCorreoCampo= false;
+          }
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
+    }
+    
+    if(this.usuarioDto.rol=='cliente'){
+      this.adminService.agregarCliente(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Cliente ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Campo cedula ya esta registrado.', tipo: 'danger' };
+        }
+      });
+    }
+
+    if(this.usuarioDto.rol=='digitador'){
+      this.adminService.agregarDigitador(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Digitador ha sido creado!');
+        
+          window.close();
+        },
+        error: (err) => {
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+  
+          }
+      });
+    }
+
+    //CODIGO PARA JHON
+
+    if (this.usuarioDto.rol === 'usuario') {
+      this.usuarioDto.genero="MASCULINO";
+      this.usuarioDto.rol="USER";
+      console.log("entra hasta aca");
+      this.adminService.agregarUsuario(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Usuario ha sido creado!');
+          window.close();
+        },
+        error: (err) => {
+          if (err.error.respuesta === 'Por favor completa el campo de correo') {
+            this.mostrarErrorCorreoVacio = true; // Mostrar mensaje de error de correo vacío
+            this. mostrarErrorCorreoCampo= true;
+          } else {
+            this.mostrarErrorCorreoVacio = false; 
+            this. mostrarErrorCorreoCampo= false;
+          }
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
+    }
+    }
+
+    public sonIguales():boolean{
+      return this.usuarioDto.password == this.usuarioDto.confirmaPassword;
+      }
+      sonCamposVacios(): boolean {
+        return !this.usuarioDto.rol || !this.usuarioDto.email || !this.usuarioDto.password;
+      }
+      validarCorreo(): void {
+        this.alertaCorreoIncompleto = !this.usuarioDto.email; // Verifica si el campo de correo está vacío
       }
     
-    );
+      // Método para limpiar la bandera de alerta de correo incompleto cuando el campo se llena
+      limpiarAlertaCorreo(): void {
+        if (this.usuarioDto.email) {
+          this.alertaCorreoIncompleto = false; // Oculta la alerta si el campo de correo está lleno
+        }
+      }
+    
+        // Función para mostrar alerta con estilo específico
+    mostrarAlerta(mensaje: string, tipo: string): void {
+      this.alerta = { mensaje: mensaje, tipo: tipo };
+    }
+    detectarCambios(): void {
+      if ( this.usuarioDto.email== null) {
+        this.mostrarErrorCorreoVacio = true; 
+        this.mostrarErrorCorreoCampo = true; // Mostrar alerta de NIT repetido
+      } 
   }
 }

@@ -1,0 +1,55 @@
+<form class="registration-form">
+
+    <div class="form-group">
+      <div class="form-group">
+        <label for="cr">Cr:</label>
+        <input type="text" id="cr" name="cr" class="form-control" [(ngModel)]="suelosDTO.cr" required>
+      </div>
+        
+    </div>
+
+        <div class="form-group">
+            <label for="tipoEnsayo">Tipo de Ensayo:</label>
+            <select id="tipoEnsayo" name="tipoEnsayo" class="form-control" [(ngModel)]="suelosDTO.ensayo" required>
+              <option value="" selected disabled>Seleccione los Ensayos</option>             
+               <option value="Compresión Inconfinada sobre Muestras de Suelo">Compresión Inconfinada sobre Muestras de Suelo</option>
+              <option value="Densidad (Gravedad Específica) y Absorción de Agregados Gruesos">Densidad (Gravedad Específica) y Absorción de Agregados Gruesos</option>
+              <option value="Granulometría INVE 213/2013 y Límites INVE 125-126/2013">Granulometría INVE 213/2013 y Límites INVE 125-126/2013</option>
+              <option value="Densidad y Absorción del Agregado Fino NTC 237/1995">Densidad y Absorción del Agregado Fino NTC 237/1995</option>
+              <option value="Contenido de cemento">Contenido de cemento</option>
+
+            </select>
+          </div>
+          
+
+        <div class="form-group">
+            <label for="localizacion">Localización:</label>
+            <input type="text" id="localizacion" name="localizacion" class="form-control" [(ngModel)]="suelosDTO.localizacion" required>
+          </div>
+        <div class="form-group">
+            <label for="cantera">Cantera:</label>
+            <input type="text" id="cantera" name="cantera" class="form-control" [(ngModel)]="suelosDTO.cantera" required>
+          </div>
+    
+    <div class="form-group">
+        <label for="fechaToma">Fecha de toma:</label>
+        <input type="text" id="fechaToma" name="fechaToma" class="form-control" [(ngModel)]="suelosDTO.fechaToma" required>
+      </div>
+
+      <div class="form-group">
+        <label for="fechaRecibo">Fecha de recibo:</label>
+        <input type="text" id="fechaRecibo" name="fechaRecibo" class="form-control" [(ngModel)]="suelosDTO.fechaRecibido" required>
+      </div>
+
+      <div class="form-group">
+        <label for="observaciones">Descripción:</label>
+        <input type="text" id="observaciones" name="observaciones" class="form-control" [(ngModel)]="suelosDTO.descripcion" required>
+      </div>
+  
+      <div class="form-group text-center">
+        <button class="btn" (click)="registrarMuestraSuelos()">Registrar</button>
+        <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert" >
+          {{ alerta.mensaje }}
+        </div>
+      </div>
+  </form>

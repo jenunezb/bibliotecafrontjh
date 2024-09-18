@@ -1,27 +1,40 @@
-<form class="registration-form">
+<div class="registration-form">
+  <div class="form-group">
+    <label for="cedula">Cédula:</label>
+    <input type="text" id="cedula" [(ngModel)]="cedula" class="form-control" (input)="detectarCambios()">
+  </div>
 
-    <div class="form-group">
-        <label for="nombre">Nit:</label>
-        <input type="text" id="nit" name="nit" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="direccion" class="form-control" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" class="form-control">
-    </div>
-  
-  
-    <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary">Registrar</button>
-    </div>
-  </form>
-  
-  
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" (input)="detectarCambios()">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" id="email" [(ngModel)]="email" class="form-control" (input)="detectarCambios()">
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" [(ngModel)]="telefono" class="form-control" (input)="detectarCambios()">
+  </div>
+
+  <!-- Mostrar mensaje de error si hay campos incompletos -->
+  <div *ngIf="camposIncompletos" class="alert-message">
+    Por favor completa todos los campos.
+  </div>
+
+  <button class="btn" (click)="registrar()">Registrar</button>
+  <div *ngIf="alerta" [ngClass]="'alert-' + alerta.tipo" class="alert">
+    {{ alerta.mensaje }}
+  </div>
+
+     <!-- Mensaje de alerta -->
+<div *ngIf="alerta" style="margin-top: 10px;">
+  <div *ngIf="alerta.tipo === 'danger'" style="color: #721c24; background-color: #f8d7da; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+  <div *ngIf="alerta.tipo === 'success'" style="color: #155724; background-color: #d4edda; padding: 0.75rem 1.25rem; border-radius: 0.25rem;">
+    {{ alerta.mensaje }}
+  </div>
+</div>

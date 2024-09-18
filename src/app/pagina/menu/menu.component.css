@@ -1,17 +1,19 @@
 .navbar {
-    background-color: green;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
+  background-color: green;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ancho completo */
+  position: fixed; /* Fijar la posición */
+  top: 0; /* Posicionar en la parte superior */
+  left: 0; /* Posicionar en la esquina izquierda */
+  z-index: 999; /* Asegurar que esté encima de otros elementos */
+}
+
   
   .logo {
     font-size: 20px;
-  }
-  
-  .menu-items {
-    display: flex;
   }
   
   .menu-item {
@@ -19,9 +21,10 @@
     border: none;
     color: white;
     padding: 5px 10px;
-    margin-left: 10px;
+    margin-left: 20px;
     cursor: pointer;
   }
+  
   
   .table-container {
     margin-top: 20px;
@@ -42,4 +45,30 @@
     background-color: green;
     color: white;
   }
+  /* Estilos para el select */
+.roles-select {
+  background-color: green; /* Color de fondo igual al de la navbar */
+  color: white;
+  border: none; /* Quita el borde predeterminado del select */
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 13px; /* Tamaño de fuente */
+}
+
+/* Estilos para el select al estar en foco */
+.roles-select:focus {
+  outline: none; /* Quita el contorno al seleccionar el select */
+}
+
+/* Estilos para las opciones del select */
+.roles-select option {
+  background-color: green; /* Color de fondo igual al de la navbar */
+  color: white;
+}
+
+
+
+
+
   

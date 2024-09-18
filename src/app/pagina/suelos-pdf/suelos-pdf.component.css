@@ -1,0 +1,66 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px; /* Espaciado interior */
+    border-radius: 20px; /* Bordes redondeados *
+    max-width: 800px; /* Ancho máximo del contenido */
+    margin: auto; /* Centrar el contenido */
+    width: 1000px;
+}
+
+/* Estilos para los elementos internos */
+img {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bordered-div {
+    border: 2px solid #f1eeee; /* Borde negro alrededor */
+    padding: 20px; /* Espaciado interior */
+    margin-bottom: 20px; /* Espacio inferior para separar */
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #ccc; /* Borde superior */
+    padding-top: 20px; /* Espacio interno superior */
+    }
+    
+    .footer-section div {
+    flex: 1;
+    text-align: center;
+    }
+    
+    .footer-section div:not(:last-child) {
+    border-right: 2px solid #ccc; /* Borde derecho entre columnas */
+    padding-right: 20px; /* Espacio interno derecho */
+    }
+    
+
+.signature {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Espacio inferior para separar */
+}
+
+th, td {
+    border: 1px solid #000000; /* Bordes de celda */
+    padding: 8px;
+    text-align: center;
+}
+.text-xs {
+    font-weight: bold; /* Negrita */
+    text-align: center; /* Centrado */
+    margin-bottom: 10px;
+}

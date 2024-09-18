@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Ensayo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <div id="pdf-template" div class="container mx-auto">
+    <div class="bordered-div">
+      <div>
+        <img alt="Company Logo" class="h-12" src="../../../assets/img/steelsoft.png" width="200" height="150"/>
+      </div>
+      <div style="text-align: center;">
+        <h1 class="text-2xl font-bold">PROGRAMACION ENSAYOS DE CONCRETOS,MORTERO,GROUTING,VIGAS,MURETES</h1>
+      </div>      
+      <div>
+        <p>Fecha Aprobación: {{ primeraFechaToma }}</p>
+        <p>Codigo:{{ codigoConsecutivo }}</p>
+        <p>Página: 1/10</p>
+      </div>
+    </div>
+    <div class="border-t border-b border-black py-2 mb-4 horizontal-container">
+        <div class="item">
+            <span class="label">FECHA:</span>
+            <span class="value">{{ fechaActual }}</span>
+        </div>
+        <div class="item">
+            <span class="label">Norma:</span>
+            <span class="value">NTC 673</span>
+            <span>(1)</span>
+        </div>
+        <div class="item">
+            <span class="label">Ensayo:</span>
+            <span class="value">INVE 410</span>
+            <span>(1)</span>
+        </div>
+    </div>
+    
+    
+    <table class="w-full text-xs border-collapse">
+        <thead>
+            <tr>
+                <th class="border border-black px-2 py-1">CR</th>
+                <th class="border border-black px-2 py-1">Muestra N°</th>
+                <th class="border border-black px-2 py-1">Ensayo</th>
+                <th class="border border-black px-2 py-1">Edad (días)</th>
+                <th class="border border-black px-2 py-1">SINO</th>
+                <th class="border border-black px-2 py-1">Diametro 1 (mm)</th>
+                <th class="border border-black px-2 py-1">Diametro 2 (mm)</th>
+                <th class="border border-black px-2 py-1">Altura (mm)</th>
+                <th class="border border-black px-2 py-1">Peso (g)</th>
+                <th class="border border-black px-2 py-1">Carga Máx. (kN)</th>
+                <th class="border border-black px-2 py-1">Forma de falla</th>
+                <th class="border border-black px-2 py-1">Observaciones</th>
+            </tr>
+        </thead>
+    
+<tbody>
+    <tr *ngFor="let cilindro of dataSource.data">
+        <td class="border border-black px-2 py-1">{{ cilindro.cr }}</td>
+        <td class="border border-black px-2 py-1">{{ cilindro.muestra }}</td>
+        <td class="border border-black px-2 py-1">{{ cilindro.ensayo }}</td>
+        <td class="border border-black px-2 py-1">{{ cilindro.edad }}</td>
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+        <td class="border border-black px-2 py-1"></td> 
+  </tr>
+</tbody>
+    </table>
+
+  </div>      
+</body>
+</html>

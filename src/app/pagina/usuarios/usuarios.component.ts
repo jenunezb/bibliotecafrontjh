@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { AdministradorDTO } from 'src/app/modelo/administrador-get-dto';
 import { Alerta } from 'src/app/modelo/alerta';
-import { IngenieroGetDTO } from 'src/app/modelo/ingeniero-get-dto';
+import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
+import { UsuarioDTO } from 'src/app/modelo/biblioteca/usuario-dto';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -13,148 +14,132 @@ import { TokenService } from 'src/app/servicios/token.service';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  
-  dataSource = new MatTableDataSource<AdministradorDTO>([]);
-  displayedColumns: string[] = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];  
+
+  displayedColumns: string[] = ['cedula', 'nombre', 'email', 'genero', 'rol'];
+  dataSource = new MatTableDataSource<UsuarioDTO>([]);
   alerta: Alerta | null = null;
-  seccionActiva: string = ''; 
   editingRowIndex: number | null = null;
-  titulo = 'Usuarios';
+  roles: string[] = [];
 
 
-  constructor(private administradorService: AdministradorService, tokenService: TokenService, private router: Router) {
+  constructor(private authService: AuthService, private adminService: AdministradorService,private tokenService: TokenService) {
+
   }
 
   ngOnInit(): void {
-    this.cambiarSeccion('usuarios');
-  }
+    this.listarUsuarios(); // Cargar usuarios al inicializar el componente
+    this.roles = this.tokenService.getRole();  
 
-  listarAdministradores(): void {
-    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
-    this.titulo = 'Administradores';
-    this.administradorService.listarAdministradores()
-      .subscribe(
-        (response: any) => {
-          this.dataSource.data = response.respuesta; 
-        },
-        error => {
-          console.error('Error al obtener la lista de Administradores:', error);
-        }
-      );
   }
-
-  listarIngenieros(): void {
-    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
-    this.titulo = 'Ingenieros';
-    this.administradorService.listarIngenieros()
-      .subscribe(
-        (response: any) => {
-          this.dataSource.data = response.respuesta; 
-        },
-        error => {
-          console.error('Error al obtener la lista de Ingenieros:', error);
-        }
-      );
-  }
-
-  listarDigitadores(): void {
-    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo', 'acciones'];
-    this.titulo = 'Digitadores';
-    this.administradorService.listarDigitadores()
-      .subscribe(
-        (response: any) => {
-          this.dataSource.data = response.respuesta; 
-        },
-        error => {
-          console.error('Error al obtener la lista de Digitadores:', error);
-        }
-      );
-  }
-
-  listarClientes(): void {
-    this.displayedColumns = ['cedula', 'nombre', 'ciudad', 'telefono', 'correo','cargo', 'acciones']; 
-    this.titulo = 'Clientes';
-    console.log("entra a clientes")
-    this.administradorService.listarClientes()
-      .subscribe(
-        (response: any) => {
-          this.dataSource.data = response.respuesta; 
-        },
-        error => {
-          console.error('Error al obtener la lista de Digitadores:', error);
-        }
-      );
-  }
-
-  cambiarSeccion(seccion: string) {
-    this.seccionActiva = seccion;
-    switch(seccion) {
-      case 'usuarios':
-        this.listarAdministradores();
-        break;
-      case 'ingenieros':
-        this.listarIngenieros();
-        break;
-      case 'digitadores':
-        this.listarDigitadores();
-        break;
-      case 'clientes':
-        this.listarClientes();
-        break;
-      default:
-        console.error('Sección no válida:', seccion);
-        break;
-    }
-  }
-
-  seleccionarSeccion(event: any) {
-    const seccionSeleccionada = event?.target?.value;
-    if (seccionSeleccionada) {
-        this.cambiarSeccion(seccionSeleccionada);
-    }
-  }
-
+  // Método para activar el modo de edición en una fila específica
   startEditing(rowIndex: number): void {
     this.editingRowIndex = rowIndex;
   }
-
+  
   saveChanges(): void {
     if (this.editingRowIndex !== null && this.editingRowIndex >= 0 && this.editingRowIndex < this.dataSource.data.length) {
-      const modifiedRow = this.dataSource.data[this.editingRowIndex] as unknown as IngenieroGetDTO; 
-      console.log('Datos a editar:', modifiedRow); 
-      this.administradorService.editarIngeniero(modifiedRow).subscribe(
+      const modifiedRow = this.dataSource.data[this.editingRowIndex];
+      this.adminService.editarEmpresa(modifiedRow).subscribe(
         (response) => {
-          this.editingRowIndex = null; 
-          alert('¡El ingeniero ha sido editado!');
-          this.listarIngenieros(); 
+          this.editingRowIndex = null; // Salir del modo de edición
+          alert('¡La empresa ha sido editada!');
+          this.listarEmpresas(); // Actualizar la lista de empresas después de editar
         },
         (error) => {
-          console.error('Error al editar el ingeniero:', error);
+          console.error('Error al editar la empresa:', error);
+          // Manejo de errores, mostrar mensaje al usuario, etc.
         }
       );
     }
   }
 
-  cancelEditing() {
-    this.editingRowIndex = null; 
+  listarEmpresas(): void {
+    this.authService.listarEmpresas()
+      .subscribe(
+        (response: any) => {
+          this.dataSource.data = response.respuesta;
+        },
+        error => {
+          console.error('Error al obtener la lista de empresas:', error);
+        }
+      );
   }
 
-  eliminarUsuario(correo:string): void {
-    if (confirm('¿Estás seguro de eliminar el usuario?')) {
-        this.administradorService.eliminarUsuario(correo).subscribe({
-            next: data => {
-                this.alerta = { mensaje: data.respuesta, tipo: "success" };
-                this.listarIngenieros();
-            },
-            error: err => {
-                this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
-            }
-        });
+  listarUsuarios(): void {
+    this.adminService.listarUsuarios()
+      .subscribe(
+        (response: any) => {
+          this.dataSource.data = response;
+          console.log(response);
+        },
+        error => {
+          console.error('Error al obtener la lista de usuarios:', error);
+        }
+      );
+  }
+
+  buscarEmpresas(nombre: string): void {
+    if (nombre.trim() === '') {
+      // No se permite búsqueda con campo vacío
+      this.listarEmpresas();
+      return;
+    }
+
+    this.adminService.buscarEmpresas(nombre).subscribe(
+      (empresaEncontrada: any) => {
+        if (empresaEncontrada && empresaEncontrada.nit) {
+          // Convertir la empresa encontrada a EmpresaDTO
+          const empresaDTO: UsuarioDTO = {
+            cedula: empresaEncontrada.nit,
+            nombre: empresaEncontrada.nombre,
+            email: empresaEncontrada.direccion,
+            genero: empresaEncontrada.telefono,
+            rol: empresaEncontrada.rol,
+            password: empresaEncontrada.password,
+            confirmaPassword:empresaEncontrada.password
+          };
+
+          // Actualizar el dataSource con el resultado transformado
+          this.dataSource.data = [empresaDTO];
+
+          // Limpiar la alerta si la búsqueda fue exitosa
+          this.alerta = null;
+        } else {
+          console.error('Respuesta del servicio no válida:', empresaEncontrada);
+          this.dataSource.data = []; // Vaciar la tabla si la respuesta no es válida
+          this.alerta = { mensaje: 'Respuesta del servicio no válida.', tipo: 'error' };
+        }
+      },
+      error => {
+        console.error('Error al buscar empresas:', error);
+        this.dataSource.data = []; // Vaciar la tabla en caso de error
+        this.alerta = { mensaje: 'Error al buscar empresas. Inténtalo de nuevo más tarde.', tipo: 'error' };
+      }
+    );
+  }
+
+  eliminarEmpresa(direccion: string): void {
+    if (confirm('¿Estás seguro de eliminar la empresa?')) {
+      this.adminService.eliminarEmpresa(direccion).subscribe({
+        next: data => {
+          this.alerta = { mensaje: data.respuesta, tipo: "success" };
+          alert('¡La empresa ha sido eliminada!');
+          this.listarEmpresas();
+        },
+        error: err => {
+          this.alerta = { mensaje: err.error.respuesta, tipo: "danger" };
+        }
+      });
     }
   }
 
-  asignarObra(id:number): void {
-    window.open(`/asignar-obra/${id}`, 'Asignar obra', 'width=900, height=700');
+  onBuscarInputChange(value: string): void {
+    if (value.trim() === '') {
+      this.listarEmpresas(); // Volver a cargar la lista completa cuando el campo de búsqueda esté vacío
+    }
+  }
+  cancelEditing() {
+    this.editingRowIndex = null; // Salir del modo de edición
   }
 
 }

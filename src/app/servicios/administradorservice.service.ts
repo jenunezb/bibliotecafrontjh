@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IngenieroGetDTO } from '../modelo/ingeniero-get-dto';
 import { EmpresasGetDTO } from 'src/app/modelo/empresas-get-dto ';
 import { MensajeDTO } from '../modelo/mensaje-dto';
-import { UsuarioDTO } from '../modelo/usuario-dto';
+import { UsuarioDTO } from '../modelo/biblioteca/usuario-dto';
 import { SedesGetDTO } from '../modelo/sedes-dto';
 import { DigitadorDTO } from '../modelo/digitador-get-dto';
 import { ClienteDTO } from '../modelo/cliente-get-dto';
@@ -28,7 +28,7 @@ import { GradacionDTO } from '../modelo/gradacion-dto';
 })
 export class AdministradorService {
 
-  private authURL = 'http://localhost:8080/api/administrador';
+  private authURL = 'http://localhost:8080/api/admin';
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
@@ -119,10 +119,12 @@ export class AdministradorService {
     const url = `${this.authURL}/buscarAdministrador/${correo}`;
     return this.http.get<AdministradorDTO[]>(url);
   }
-  editarEmpresa(empresa: EmpresasGetDTO): Observable<any> {
+
+  editarEmpresa(empresa: UsuarioDTO): Observable<any> {
     const url = `${this.authURL}/editarEmpresa`; // Reemplaza 'editarEmpresa' con la ruta correcta en tu backend
     return this.http.put(url, empresa);
   }
+
   editarIngeniero(ingeniero: IngenieroGetDTO): Observable<any> {
     const url = `${this.authURL}/editarIngeniero/${ingeniero.cedula}`; // Asegúrate de incluir la cédula en la URL
     return this.http.put(url, ingeniero);
@@ -220,6 +222,17 @@ public mostrarGradacion(codigo: number): Observable<GradacionDTO[]> {
   return this.http.get<GradacionDTO[]>(`${this.authURL}/mostrarGradacion/${codigo}`).pipe(
     tap(data => console.log('Datos del backend:', data))
   );
+}
+
+// DESDE AQUI VA EL PROYECTO DE JHON
+
+public agregarUsuario(usuarioDto: UsuarioDTO): Observable<MensajeDTO> {
+  console.log("entra hasta administradorservice agregar usuario"+ " \n rol:"+ usuarioDto.rol + "\n email: "+ usuarioDto.email + "\n pass: "+usuarioDto.password + "\n cedula: "+usuarioDto.cedula + "\n nombre: "+usuarioDto.nombre + "\n genero: "+usuarioDto.genero)
+  return this.http.post<MensajeDTO>(`${this.authURL}/usuarios`, usuarioDto);
+}
+
+public listarUsuarios(): Observable<UsuarioDTO[]> {
+  return this.http.get<UsuarioDTO[]>(`${this.authURL}/listaUsuarios`);
 }
 
 }

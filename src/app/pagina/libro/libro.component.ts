@@ -12,11 +12,11 @@ import { TokenService } from 'src/app/servicios/token.service';
 
 
 @Component({
-  selector: 'app-obra',
-  templateUrl: './obra.component.html',
-  styleUrls: ['./obra.component.css']
+  selector: 'app-libro',
+  templateUrl: './libro.component.html',
+  styleUrls: ['./libro.component.css']
 })
-export class ObraComponent implements OnInit{
+export class LibroComponent implements OnInit{
 
   dataSource = new MatTableDataSource<ObrasDto>([]);
   displayedColumns: string[] = ['cr', 'nombre', 'direccion', 'telefono', 'ciudad','nombreEmpresa']; // Define las columnas que deseas mostrar

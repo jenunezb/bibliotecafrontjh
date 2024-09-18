@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { TokenService } from 'src/app/servicios/token.service';
-import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
+import { UsuarioDTO } from 'src/app/modelo/biblioteca/usuario-dto';
 import { AdministradorService } from 'src/app/servicios/administradorservice.service'
 
 @Component({
@@ -23,26 +23,8 @@ export class RegistroUsuariosComponent{
   mostrarErrorCorreoVacio= false;
   mostrarErrorCorreoCampo= false;
 
-  
-
   constructor(private authService: AuthService, private router: Router, private tokenService: TokenService,private adminService: AdministradorService){
     this.usuarioDto = new UsuarioDTO();
-    this.listarCiudades();
-  }
-
-  listarCiudades(): void{
-    this.authService.listarCiudades()
-    .subscribe(
-      (response: any) => {
-        confirm
-        this.dataSource.data = response.respuesta; 
-        console.log(this.dataSource.data);
-      },
-      error => {
-        console.error('Error al obtener la lista de ciudades:', error);
-      }
-    
-    );
   }
 
   registrar(): void {
@@ -81,20 +63,6 @@ export class RegistroUsuariosComponent{
       });
     }
 
-    if(this.usuarioDto.rol=='ingeniero'){
-      this.adminService.agregarIngeniero(this.usuarioDto).subscribe({
-        next: (data) => {
-          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
-          alert('¡El Ingeniero ha sido creado!');
-        
-          window.close();
-        },
-        error: (err) => {
-          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
-        }
-      });
-    }
-
     if(this.usuarioDto.rol=='digitador'){
       this.adminService.agregarDigitador(this.usuarioDto).subscribe({
         next: (data) => {
@@ -109,21 +77,46 @@ export class RegistroUsuariosComponent{
           }
       });
     }
+
+    //CODIGO PARA JHON
+
+    if (this.usuarioDto.rol === 'usuario') {
+      this.usuarioDto.genero="MASCULINO";
+      this.usuarioDto.rol="USER";
+      console.log("entra hasta aca");
+      this.adminService.agregarUsuario(this.usuarioDto).subscribe({
+        next: (data) => {
+          this.alerta = { mensaje: data.respuesta, tipo: 'success' };
+          alert('¡El Usuario ha sido creado!');
+          window.close();
+        },
+        error: (err) => {
+          if (err.error.respuesta === 'Por favor completa el campo de correo') {
+            this.mostrarErrorCorreoVacio = true; // Mostrar mensaje de error de correo vacío
+            this. mostrarErrorCorreoCampo= true;
+          } else {
+            this.mostrarErrorCorreoVacio = false; 
+            this. mostrarErrorCorreoCampo= false;
+          }
+          this.alerta = { mensaje: err.error.respuesta || 'Error al procesar la solicitud.', tipo: 'danger' };
+        }
+      });
+    }
     }
 
     public sonIguales():boolean{
       return this.usuarioDto.password == this.usuarioDto.confirmaPassword;
       }
       sonCamposVacios(): boolean {
-        return !this.usuarioDto.rol || !this.usuarioDto.correo || !this.usuarioDto.password;
+        return !this.usuarioDto.rol || !this.usuarioDto.email || !this.usuarioDto.password;
       }
       validarCorreo(): void {
-        this.alertaCorreoIncompleto = !this.usuarioDto.correo; // Verifica si el campo de correo está vacío
+        this.alertaCorreoIncompleto = !this.usuarioDto.email; // Verifica si el campo de correo está vacío
       }
     
       // Método para limpiar la bandera de alerta de correo incompleto cuando el campo se llena
       limpiarAlertaCorreo(): void {
-        if (this.usuarioDto.correo) {
+        if (this.usuarioDto.email) {
           this.alertaCorreoIncompleto = false; // Oculta la alerta si el campo de correo está lleno
         }
       }
@@ -133,7 +126,7 @@ export class RegistroUsuariosComponent{
       this.alerta = { mensaje: mensaje, tipo: tipo };
     }
     detectarCambios(): void {
-      if ( this.usuarioDto.correo== null) {
+      if ( this.usuarioDto.email== null) {
         this.mostrarErrorCorreoVacio = true; 
         this.mostrarErrorCorreoCampo = true; // Mostrar alerta de NIT repetido
       } 

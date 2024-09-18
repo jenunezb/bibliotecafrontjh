@@ -6,8 +6,8 @@
     <a routerLink="" class="d-flex align-items-center mb-2 mb-lg-0 text-bg-dark
     text-decoration-none">
     </a>
-    <ul *ngIf="roles.includes('administrador')" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-      <app-menu *ngIf="!isRouteIncluded(['/registro-usuarios', '/registro-ciudad', '/registro-sedes', '/registro-empresa', 
+    <ul *ngIf="roles.includes('admin')" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <app-menu *ngIf="!isRouteIncluded(['/registro-usuarios', '/registro-ciudad', '/registro-sedes', '/registro-empresa', '/registro-libro', 
       '/registro-cilindro', '/registro-obra', '/registro-muestra','/concretos-pdf', '/asignar-obra', '/informe-concretos','/suelos-pdf','/registro-suelos','/resultados-suelos'])"></app-menu>
     </ul>
 

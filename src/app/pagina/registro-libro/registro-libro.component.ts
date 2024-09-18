@@ -9,11 +9,11 @@ import { AdministradorService } from 'src/app/servicios/administradorservice.ser
 import { ObrasDto } from 'src/app/modelo/obras-get-dto';
 
 @Component({
-  selector: 'app-registro-obra',
-  templateUrl: './registro-obra.component.html',
-  styleUrls: ['./registro-obra.component.css']
+  selector: 'app-registro-libro',
+  templateUrl: './registro-libro.component.html',
+  styleUrls: ['./registro-libro.component.css']
 })
-export class RegistroObraComponent implements OnInit{
+export class RegistroLibroComponent implements OnInit{
 
   dataSource = new MatTableDataSource<ObrasDto>([]);
   dataSources = new MatTableDataSource<ObrasDto>([]);

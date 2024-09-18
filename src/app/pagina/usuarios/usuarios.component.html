@@ -6,6 +6,7 @@
   <div>
     <button class="mi-boton"*ngIf="roles.includes('admin')" href="/registro-usuarios" onclick="window.open('/registro-usuarios', 'Crear Usuario', 'width=600, height=400'); return false;" class="mi-boton">Crear Usuario</button>
 
+    
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Definición de columnas -->
       <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
